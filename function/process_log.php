@@ -1,6 +1,6 @@
 <?php
-	require('../config/config.php');
-	require('../lib/db.php');
+	require('./config/config.php');
+	require('./lib/db.php');
   //require('../lib/password.php');
 	$id = $_POST['id'];
   $password = $_POST['pw'];
