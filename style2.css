@@ -1,0 +1,45 @@
+body{
+  font-family:Noto Sans CJK KR;
+  font-style:black:
+}
+body.white{
+  background-color:white;
+  color:black;
+}
+body.black{
+  background-color:black;
+  color:white;
+}
+#logo {
+  width:1000px;
+}
+#articleimg {
+  width:300px;
+}
+.container{
+  padding-top:20px;
+}
+#control{
+  margin-bottom:40px;
+}
+h1{
+  font-family:Noto Sans CJK KR;
+  font-style:black:
+}
+h2{
+  font-family:Noto Sans CJK KR;
+  font-style:bold;
+}
+#login {
+  font-size:50px;
+  font-weight:bold;
+  font-family:Noto Sans CJK KR;
+  text-align: left;
+}
+#lotext {
+  text-align: left;
+}
+#form {
+  width: 300px;
+
+}

@@ -1,0 +1,29 @@
+body{
+  font-family:Noto Sans CJK KR;
+  font-style:black:
+}
+body.white{
+  background-color:white;
+  color:black;
+}
+body.black{
+  background-color:black;
+  color:white;
+}
+#logo {
+  width:200px;
+}
+.container{
+  padding-top:20px;
+}
+#control{
+  margin-bottom:40px;
+}
+h1{
+  font-family:Noto Sans CJK KR;
+  font-style:black:
+}
+h2{
+  font-family:Noto Sans CJK KR;
+  font-style:bold;
+}
