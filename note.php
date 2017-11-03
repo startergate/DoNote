@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
   session_start();
-  $_SESSION['user'] = 'WORLD';
-  $user = $_SESSION['user'];
+  $_SESSION['nickname'] = 'DEBUG';
+  $user = $_SESSION['nickname'];
 ?>
 <html>
   <head>
@@ -25,6 +25,28 @@
           echo $user."님, 환영합니다."
         ?>
       </header>
+    </div>
+    </div>
+    <div class="container">
+    <div class="col-md-3">
+      <header class="jumbotron text-left">
+        DEBUGING!!
+      </header>
+    </div>
+    <div class="col-md-9">
+      <form action="process.php" method="post">
+        <div class="form-group">
+          <?php
+            echo "<input type='text' class='form-control' name='title' id='form-title' placeholder=".$title.">";
+          ?>
+        </div>
+        <div class="form-group">
+          <?php
+            echo "<textarea class='form-control' name='description' id='form-title' placeholder=".$text." rows=10></textarea>";
+          ?>
+        </div>
+        <input type="submit" name="name" class="btn btn-default btn-lg">
+      </form>
     </div>
     </div>
   </body>
