@@ -23,12 +23,12 @@
   </head>
   <body>
     <div class="container">
-      <div class="col-md-9">
+      <div class="col-md-12">
         <header class="jumbotron text-left">
           <h1>DoNote</h1>
         </header>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-12">
         <header class="jumbotron text-center">
           <div id="control">
             <a href="./login.php" class="btn btn-success btn-lg">로그인</a>
@@ -39,7 +39,7 @@
         <div class="col-md-12">
           <header class="jumbotron text-left">
             ⓒ 2017 STARTERGATE. This Content Can Be Used With GNU License.
-          </header> 
+          </header>
         </div>
       </div>
     </div>
