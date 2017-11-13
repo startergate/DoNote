@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <?php
-  //This Part MUST Be Removed After Login Page Making Completed.
-  ob_start();
   session_start();
-  $_SESSION['nickname'] = 'DEBUG';
+  $_SESSION['nickname'] = 'DEBUG';  //This Part MUST Be Removed After Login Page Making Completed.
   $_SESSION['uid'] = '2';
   $user = $_SESSION['nickname'];
 ?>
@@ -54,35 +52,20 @@
           }
         ?>
         <li><a href="./write.php">페이지 추가하기</li></a>
-        <br />
-        <li><?php echo $_SESSION['uid']; ?></li>
     </div>
     <div class="col-md-9">
-      <?php
-        if (empty($_GET['id'])) {
-          $id = '1';
-        } else {
-          $id = $_GET['id'];
-        }
-        $sql = "SELECT name,text,id FROM donote_ahlpa_userznote_".$_SESSION['uid']." WHERE id = ".$id;
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
-        $name = $row['name'];
-        $text = $row['text'];
-        echo '<form action="process.php?id='.$id.'" method="post">';
-        ?>
+      <form action="process_new.php" method="post">
         <div class="form-group">
           <?php
-            echo "<textarea type='text' class='form-control' name='name' id='form-title' placeholder='제목을 작성하세요.'>".$name."</textarea>";
+            echo "<textarea type='text' class='form-control' name='title' id='form-title' placeholder='제목을 작성하세요.'></textarea>";
           ?>
         </div>
         <div class="form-group">
           <?php
-            echo "<textarea class='form-control' name='text' id='form-title' placeholder='내용을 작성하세요.'>".$text."</textarea>";
-            $_SESSION['uid'] = '2';
+            echo "<textarea class='form-control' name='description' id='form-title' placeholder='내용을 작성하세요.'></textarea>";
           ?>
         </div>
-        <input type="submit" name="dummy_1" value="수정한 내용을 저장!" class="btn btn-default btn-lg">
+        <input type="submit" name="name" value="새로운 내용을 저장!" class="btn btn-default btn-lg">
       </form>
     </div>
     </div>
