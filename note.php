@@ -54,8 +54,6 @@
           }
         ?>
         <li><a href="./write.php">페이지 추가하기</li></a>
-        <br />
-        <li><?php echo $_SESSION['uid']; ?></li>
     </div>
     <div class="col-md-9">
       <?php
@@ -69,7 +67,7 @@
         $row = mysqli_fetch_assoc($result);
         $name = $row['name'];
         $text = $row['text'];
-        echo '<form action="process.php?id='.$id.'" method="post">';
+        echo '<form action="./process/edit.php?id='.$id.'" method="post">';
         ?>
         <div class="form-group">
           <?php

@@ -12,6 +12,8 @@
     //echo "<script>window.alert('로그인이 필요합니다.');</script>";
     //echo "<script>window.location=('./login.php');</script>";
   //exit;
+  //} else {
+    //$user = $_SESSION['nickname']
   //}
 ?>
 <?php
@@ -54,18 +56,14 @@
         <li><a href="./write.php">페이지 추가하기</li></a>
     </div>
     <div class="col-md-9">
-      <form action="process_new.php" method="post">
+      <form action="./process/new.php" method="post">
         <div class="form-group">
-          <?php
-            echo "<textarea type='text' class='form-control' name='title' id='form-title' placeholder='제목을 작성하세요.'></textarea>";
-          ?>
+          <textarea type='text' class='form-control' name='name' id='form-title' placeholder='제목을 작성하세요.'></textarea>
         </div>
         <div class="form-group">
-          <?php
-            echo "<textarea class='form-control' name='description' id='form-title' placeholder='내용을 작성하세요.'></textarea>";
-          ?>
+          <textarea class='form-control' name='text' id='form-title' placeholder='내용을 작성하세요.'></textarea>
         </div>
-        <input type="submit" name="name" value="새로운 내용을 저장!" class="btn btn-default btn-lg">
+        <input type="submit" name="dummy_1" value="새로운 내용을 저장!" class="btn btn-default btn-lg">
       </form>
     </div>
     </div>
