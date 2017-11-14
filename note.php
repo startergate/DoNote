@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <?php
-  //This Part MUST Be Removed After Login Page Making Completed.
   ob_start();
   session_start();
-  $_SESSION['nickname'] = 'DEBUG';
-  $_SESSION['uid'] = '2';
+  if($_SESSION['pid'] == "") {
+    echo "<script>window.alert('로그인이 필요합니다.');</script>";
+    echo "<script>window.location=('./login.php');</script>";
+  exit;
+} else {
   $user = $_SESSION['nickname'];
-?>
-<?php
-  //ob_start();
-  //session_start();
-  //if($_SESSION['uid'] == "") {
-    //echo "<script>window.alert('로그인이 필요합니다.');</script>";
-    //echo "<script>window.location=('./login.php');</script>";
-  //exit;
-  //}
+}
 ?>
 <?php
 	require("/config/config.php");
 	require("/lib/db.php");
 	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
-  $result = mysqli_query($conn, "SELECT * FROM donote_ahlpa_userznote_".$_SESSION['uid']);
+  $result = mysqli_query($conn, "SELECT * FROM donote_ahlpa_userznote_".$_SESSION['pid']);
 ?>
 <html>
   <head>
@@ -79,7 +73,7 @@
         } else {
           $id = $_GET['id'];
         }
-        $sql = "SELECT name,text,id FROM donote_ahlpa_userznote_".$_SESSION['uid']." WHERE id = ".$id;
+        $sql = "SELECT name,text,id FROM donote_ahlpa_userznote_".$_SESSION['pid']." WHERE id = ".$id;
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $name = $row['name'];

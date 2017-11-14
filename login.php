@@ -32,7 +32,7 @@
     <br />
     <h3><strong>DoNote</strong></h3>
     <br />
-      <form id='form' action="../function/process_log.php" method="post">
+      <form id='form' action="./function/process_log.php" method="post">
         <input type="text" class="form-control" name="id" id="form-title" placeholder="ID">
         <input type="password" class="form-control" name="pw" id="form-title" placeholder="PASSWORD">
         <input type="submit" name="name" class="btn btn-default btn-lg" value='로그인'>
