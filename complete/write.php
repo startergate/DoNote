@@ -5,10 +5,10 @@
 	require("../lib/db.php");
   $name = $_SESSION['name'];
 	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
-  $sql = "SELECT id FROM donote_ahlpa_userznote_".$_SESSION['uid']." WHERE name = '$name'";
+  $sql = "SELECT id FROM donote_ahlpa_userznote_".$_SESSION['pid']." WHERE name = '$name'";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
-  if($_SESSION['uid'] == "") {
+  if($_SESSION['pid'] == "") {
     echo "<script>window.alert('로그인이 필요합니다.');</script>";
     echo "<script>window.location=('./login.php');</script>";
     $_SESSION['name'] = "";

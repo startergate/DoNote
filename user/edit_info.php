@@ -4,15 +4,22 @@
   session_start();
   if($_SESSION['pid'] == "") {
     echo "<script>window.alert('로그인이 필요합니다.');</script>";
-    echo "<script>window.location=('./login.php');</script>";
-  exit;
-} else {
-  $user = $_SESSION['nickname'];
-}
+    echo "<script>window.location=('../login.php');</script>";
+    exit;
+  } else {
+    $user = $_SESSION['nickname'];
+  }
+  if($_SESSION['confirm'] == "") {
+    echo "<script>window.alert('인증이 필요합니다.');</script>";
+    echo "<script>window.location=('./confirm.php');</script>";
+    exit;
+  } else {
+    $user = $_SESSION['nickname'];
+  }
 ?>
 <?php
-	require("/config/config.php");
-	require("/lib/db.php");
+	require("../config/config.php");
+	require("../lib/db.php");
 	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
   $result = mysqli_query($conn, "SELECT * FROM donote_ahlpa_userznote_".$_SESSION['pid']);
 ?>
@@ -38,61 +45,56 @@
     <meta charset="utf-8">
     <title>DoNote Ahlpa 0.1</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="./style.css">
+  	<link rel="stylesheet" type="text/css" href="../style.css">
     <script src="/bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="container">
     <div class="col-md-12">
       <header class="jumbotron text-center">
-        <strong><h1><a href="./note.php">DoNote</a></h1></strong>
+        <strong><h1><a href="../note.php">DoNote</a></h1></strong>
       </header>
     </div>
     <div class="col-md-12">
       <header class="jumbotron text-right">
         <?php
-          echo "<a href='./user/confirm.php'>".$user."님, 환영합니다.</a>"
+          echo "<a href='./edit_info.php'>".$user."님, 환영합니다.</a>"
         ?>
       </header>
     </div>
     </div>
     <div class="container">
-    <div class="col-md-3">
+      <div class="col-md-3">
         <?php
           while ($row = mysqli_fetch_assoc($result)) {
-            echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
+            echo '<li><a href="../note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
             echo '<br />';
           }
         ?>
-        <li><a href="./write.php">페이지 추가하기</li></a>
-    </div>
-    <div class="col-md-9">
-      <?php
-        if (empty($_GET['id'])) {
-          $id = '1';
-        } else {
-          $id = $_GET['id'];
-        }
-        $sql = "SELECT name,text,id FROM donote_ahlpa_userznote_".$_SESSION['pid']." WHERE id = ".$id;
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
-        $name = $row['name'];
-        $text = $row['text'];
-        echo '<form action="./process/edit.php?id='.$id.'" method="post">';
+        <li><a href="../write.php">페이지 추가하기</li></a>
+      </div>
+      <div class="col-md-9">
+        <?php
+          echo '<form action="../function/edit_user_info.php" method="post">';
         ?>
         <div class="form-group">
           <?php
-            echo "<textarea type='text' class='form-control' name='name' id='form-title' placeholder='제목을 작성하세요.'>".$name."</textarea>";
+            echo "<textarea type='text' class='form-control' name='nickname' id='form-title' placeholder='닉네임(비워두시면 닉네임이 변경되지 않습니다.)'></textarea>";
           ?>
         </div>
         <div class="form-group">
           <?php
-            echo "<textarea class='form-control' name='text' id='form-title' placeholder='내용을 작성하세요.'>".$text."</textarea>";
+            echo "<input type='password' class='form-control' name='pw' id='form-title' placeholder='비밀번호(비워두시면 비밀번호가 변경되지 않습니다.)'>";
           ?>
         </div>
-        <input type="submit" name="dummy_1" value="수정한 내용을 저장!" class="btn btn-default btn-lg">
-      </form>
-    </div>
+        <div class="form-group">
+          <?php
+            echo "<input type='password' class='form-control' name='confirm' id='form-title' placeholder='비밀번호 확인(비밀번호 입력 란이 비어있다면, 입력하지 마세요.)'>";
+          ?>
+        </div>
+          <input type="submit" name="dummy_1" value="수정한 내용을 저장!" class="btn btn-default btn-lg">
+        </form>
+      </div>
     </div>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
   </body>

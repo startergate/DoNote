@@ -6,8 +6,8 @@
 
   $name = mysqli_real_escape_string($conn, $_POST['name']);
   $text = mysqli_real_escape_string($conn, $_POST['text']);
-  $uid = $_SESSION['uid'];
-  $udb = 'donote_ahlpa_userznote_'.$uid;
+  $pid = $_SESSION['pid'];
+  $udb = 'donote_ahlpa_userznote_'.$pid;
   $sql = "INSERT INTO $udb (name,text) VALUES ('$name','$text')";
   $result = mysqli_query($conn, $sql);
   $_SESSION['name'] = $name;

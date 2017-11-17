@@ -6,9 +6,9 @@
 
   $name = mysqli_real_escape_string($conn, $_POST['name']);
   $text = mysqli_real_escape_string($conn, $_POST['text']);
-  $uid = $_SESSION['uid'];
+  $pid = $_SESSION['pid'];
   $id = $_GET['id'];
-  $udb = 'donote_ahlpa_userznote_'.$uid;
+  $udb = 'donote_ahlpa_userznote_'.$pid;
   $sql = "UPDATE $udb SET name='$name', text='$text' WHERE id='$id'";
   $result = mysqli_query($conn, $sql);
   header('Location: ../complete/edit.php?id='.$id);
