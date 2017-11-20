@@ -1,18 +1,8 @@
 <!DOCTYPE html>
 <?php
-  ob_start();
-  session_start();
-  if($_SESSION['pid'] == "") {
-    echo "<script>window.alert('로그인이 필요합니다.');</script>";
-    echo "<script>window.location=('./login.php');</script>";
-    exit;
-  } else {
-    $user = $_SESSION['nickname']
-  }
-?>
-<?php
-	require("/config/config.php");
-	require("/lib/db.php");
+  require("./config/config.php");
+  require("./lib/db.php");
+  require("./lib/logchk.php");
 	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
   $result = mysqli_query($conn, "SELECT * FROM donote_ahlpa_userznote_".$_SESSION['pid']);
 ?>
@@ -51,13 +41,13 @@
     <div class="col-md-12">
       <header class="jumbotron text-right">
         <?php
-          echo "<a href='./user/confirm.php'>".$user."님, 환영합니다.</a>"
+          echo "<a href='./user/confirm.php'>".$_SESSION['nickname']."님, 환영합니다.</a>";
         ?>
       </header>
     </div>
     </div>
     <div class="container">
-    <div class="col-md-3">
+      <div class="col-md-3">
         <?php
           while ($row = mysqli_fetch_assoc($result)) {
             echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
@@ -65,18 +55,18 @@
           }
         ?>
         <li><a href="./write.php">페이지 추가하기</li></a>
-    </div>
-    <div class="col-md-9">
-      <form action="./process/new.php" method="post">
-        <div class="form-group">
-          <textarea type='text' class='form-control' name='name' id='form-title' placeholder='제목을 작성하세요.'></textarea>
-        </div>
-        <div class="form-group">
-          <textarea class='form-control' name='text' id='form-title' placeholder='내용을 작성하세요.'></textarea>
-        </div>
-        <input type="submit" name="dummy_1" value="새로운 내용을 저장!" class="btn btn-default btn-lg">
-      </form>
-    </div>
+      </div>
+      <div class="col-md-9">
+        <form action="./process/new.php" method="post">
+          <div class="form-group">
+            <textarea type='text' class='form-control' name='name' id='form-title' placeholder='제목을 작성하세요.'></textarea>
+          </div>
+          <div class="form-group">
+            <textarea class='form-control' name='text' id='form-title' placeholder='내용을 작성하세요.'></textarea>
+          </div>
+          <input type="submit" name="dummy_1" value="새로운 내용을 저장!" class="btn btn-default btn-lg">
+        </form>
+      </div>
     </div>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
   </body>

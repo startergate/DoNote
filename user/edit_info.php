@@ -1,23 +1,11 @@
 <!DOCTYPE html>
 <?php
-  ob_start();
-  session_start();
-  if($_SESSION['pid'] == "") {
-    echo "<script>window.alert('로그인이 필요합니다.');</script>";
-    echo "<script>window.location=('../login.php');</script>";
-    exit;
-  } else {
-    $user = $_SESSION['nickname'];
-  }
+  require("./lib/logchk.php");
   if($_SESSION['confirm'] == "") {
     echo "<script>window.alert('인증이 필요합니다.');</script>";
     echo "<script>window.location=('./confirm.php');</script>";
     exit;
-  } else {
-    $user = $_SESSION['nickname'];
   }
-?>
-<?php
 	require("../config/config.php");
 	require("../lib/db.php");
 	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
@@ -58,7 +46,7 @@
     <div class="col-md-12">
       <header class="jumbotron text-right">
         <?php
-          echo "<a href='./edit_info.php'>".$user."님, 환영합니다.</a>"
+          echo "<a href='./edit_info.php'>".$_SESSION['nickname']."님, 환영합니다.</a>"
         ?>
       </header>
     </div>

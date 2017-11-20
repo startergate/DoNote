@@ -6,7 +6,7 @@
   $nk = mysqli_real_escape_string($conn, $_POST['nickname']);
   $pw = mysqli_real_escape_string($conn, $_POST['pw']);
   $pid = $_SESSION['pid'];
-  if (!empty($_POST['nickname']) {
+  if (!empty($_POST['nickname'])) {
     $sql = "UPDATE donote_ahlpa_userinfo SET nickname='$nk' WHERE pid='$pid'";
     $result = mysqli_query($conn, $sql);
   }
@@ -14,11 +14,12 @@
     if ($_POST['pw'] === $_POST['confirm']) {
       $sql = "UPDATE donote_ahlpa_userinfo SET pw='$pw' WHERE pid='$pid'";
       $result = mysqli_query($conn, $sql);
-      header('Location: ../complete/edit.php?id='.$id);
+      header('Location: ../complete/edit_user_info.php');
     } else {
       echo "<script>window.alert('비밀번호를 다시 입력해주세요.');</script>";
       echo "<script>window.location=('../user/edit_info.php');</script>";
       exit;
     }
   }
+  header('Location: ../complete/edit_user_info.php');
 ?>

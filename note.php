@@ -1,18 +1,8 @@
 <!DOCTYPE html>
 <?php
-  ob_start();
-  session_start();
-  if($_SESSION['pid'] == "") {
-    echo "<script>window.alert('로그인이 필요합니다.');</script>";
-    echo "<script>window.location=('./login.php');</script>";
-  exit;
-} else {
-  $user = $_SESSION['nickname'];
-}
-?>
-<?php
-	require("/config/config.php");
-	require("/lib/db.php");
+  require("./lib/logchk.php");
+	require("./config/config.php");
+	require("./lib/db.php");
 	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
   $result = mysqli_query($conn, "SELECT * FROM donote_ahlpa_userznote_".$_SESSION['pid']);
 ?>
@@ -51,7 +41,7 @@
     <div class="col-md-12">
       <header class="jumbotron text-right">
         <?php
-          echo "<a href='./user/confirm.php'>".$user."님, 환영합니다.</a>"
+          echo "<a href='./user/confirm.php'>".$_SESSION['nickname']."님, 환영합니다.</a>";
         ?>
       </header>
     </div>
