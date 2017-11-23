@@ -24,7 +24,7 @@
   <body>
     <div class="container">
       <div class="col-md-12">
-        <header class="jumbotron text-left">
+        <header class="jumbotron text-center">
           <h1>DoNote</h1>
         </header>
       </div>
@@ -35,12 +35,10 @@
           </div>
         </header>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <header class="jumbotron text-left">
-            ⓒ 2017 STARTERGATE. This Content Can Be Used With GNU License.
-          </header>
-        </div>
+      <div class="col-md-12">
+        <header class="jumbotron text-left">
+          ⓒ 2017 STARTERGATE. This Content Can Be Used With GNU License.
+        </header>
       </div>
     </div>
   </body>
