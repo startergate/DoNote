@@ -42,6 +42,8 @@
       <header class="jumbotron text-right">
         <?php
           echo "<a href='./user/confirm.php'>".$_SESSION['nickname']."님, 환영합니다.</a>";
+          echo ' | ';
+          echo "<a href='./function/logout.php'>로그아웃</a>";
         ?>
       </header>
     </div>
