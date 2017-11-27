@@ -20,7 +20,7 @@
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="456580060753-4is76ugf9v0jqi0885kt4gpnb34nei0b.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <title>DoNote Ahlpa 0.1</title>
+    <title>DoNote Ahlpa</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="./style2.css">
   </head>

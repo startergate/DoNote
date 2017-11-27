@@ -26,7 +26,7 @@
     <meta name="msapplication-TileImage" content="/static/img/favicon/donote/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <meta charset="utf-8">
-    <title>DoNote Ahlpa 0.1</title>
+    <title>DoNote Ahlpa</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="./style.css">
     <script src="/bootstrap/js/bootstrap.min.js"></script>

@@ -24,20 +24,21 @@
     <meta name="theme-color" content="#ffffff">
     <title>DoNote Ahlpa</title>
   </head>
-  <body>
     <header class="jumbotron">
-    <div id=login>로그인</div>
+    <div id=login>회원가입</div>
     <br />
     <div id=lotext>
       <br />
       <h3><strong>DoNote</strong></h3>
       <br />
-      <form id='form' action="./function/process_log.php" method="post">
+      <form id='form' action="./function/process_reg.php" method="post">
         <input type="text" class="form-control" name="id" id="form-title" placeholder="아이디">
         <input type="password" class="form-control" name="pw" id="form-title" placeholder="비밀번호">
+        <input type="password" class="form-control" name="pwr" id="form-title" placeholder="비밀번호 확인">
+        <input type="text" class="form-control" name="nickname" id="form-title" placeholder="닉네임">
         <br />
-        <input type="submit" name="name" class="btn btn-light" value='로그인'>
-        <a href="./register.php" class="btn btn-light">회원가입</a>
+        <input type="submit" name="name" class="btn btn-light" value='회원가입'>
+        <a href="./login.php" class="btn btn-light">로그인</a>
       </form>
     </div>
   </header>
