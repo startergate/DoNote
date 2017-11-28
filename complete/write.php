@@ -1,6 +1,5 @@
 <?php
-  ob_start();
-  session_start();
+  require("../lib/logchk.php");
   require("../config/config.php");
 	require("../lib/db.php");
   $name = $_SESSION['name'];

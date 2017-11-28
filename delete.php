@@ -33,24 +33,23 @@
   </head>
   <body>
     <div class="container">
-      <div class="col-md-12">
-        <header class="jumbotron text-center">
-    		  <img src="../static/img/common/donotevec.png" href="./note.php" alt="STARTERGATE" class="img-rounded" id=logo \>
-          <strong><h5><a href="./note.php">DoNote</a></h5></strong>
-        </header>
-      </div>
-      <div class="col-md-12">
-        <header class="jumbotron text-right">
-          <?php
-            echo "<a href='./user/confirm.php'>".$_SESSION['nickname']."님, 환영합니다.</a>";
-            echo ' | ';
-            echo "<a href='./function/logout.php'>로그아웃</a>";
-            ?>
-          </header>
-        </div>
+    <div class="col-md-12">
+      <header class="jumbotron text-center">
+        <strong><h1><a href="./note.php">DoNote</a></h1></strong>
+      </header>
+    </div>
+    <div class="col-md-12">
+      <header class="jumbotron text-right">
+        <?php
+          echo "<a href='./user/confirm.php'>".$_SESSION['nickname']."님, 환영합니다.</a>";
+          echo ' | ';
+          echo "<a href='./function/logout.php'>로그아웃</a>";
+        ?>
+      </header>
+    </div>
     </div>
     <div class="container">
-      <div class="col-md-3">
+    <div class="col-md-3">
         <?php
           while ($row = mysqli_fetch_assoc($result)) {
             echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
@@ -58,37 +57,25 @@
           }
         ?>
         <li><a href="./write.php">페이지 추가하기</li></a>
-      </div>
-      <div class="col-md-9">
+    </div>
+    <div class="col-md-9">
+      <header class="jumbotron text-center">
         <?php
-          if (empty($_GET['id'])) {
-            $id = '0';
-          } else {
-            $id = $_GET['id'];
-          }
+          $id = $_GET['id'];
           $sql = "SELECT name,text,id FROM donote_ahlpa_userznote_".$_SESSION['pid']." WHERE id = ".$id;
           $result = mysqli_query($conn, $sql);
           $row = mysqli_fetch_assoc($result);
           $name = $row['name'];
           $text = $row['text'];
-          echo '<form action="./process/edit.php?id='.$id.'" method="post">';
+          echo '<h1>'.$name.'</h1>';
+          echo '<h2>위 내용을 삭제하시겠습니까?</h2>';
+          echo "<br />";
+          echo "<a href='./process/delete.php?id=".$id."' class='btn btn-danger btn-lg'>삭제!</a>";
+          echo "            ";
+          echo "<a href='./note.php?id=".$id."' class='btn btn-success btn-lg'>취소!</a>";
         ?>
-        <div class="form-group">
-          <?php
-            echo "<textarea type='text' class='form-control' name='name' id='form-title' placeholder='제목을 작성하세요.'>".$name."</textarea>";
-            ?>
-          </div>
-          <div class="form-group">
-            <?php
-              echo "<textarea class='form-control' name='text' id='form-title' placeholder='내용을 작성하세요.'>".$text."</textarea>";
-            ?>
-          </div>
-          <input type="submit" name="dummy_1" value="수정한 내용을 저장!" class="btn btn-default btn-lg">
-          <?php
-            echo "<a href='./delete.php?id=".$id."' class='btn btn-danger btn-lg'>이 내용을 삭제!</a>"
-          ?>
-        </form>
-      </div>
+      </header>
+    </div>
     </div>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
   </body>

@@ -1,8 +1,7 @@
 <?php
+  require("../lib/logchk.php");
 	require('../config/config.php');
 	require('../lib/db.php');
-  //require('../lib/password.php');
-  session_start();
   $password = $_POST['pw'];
   $pid = $_SESSION['pid'];
 	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);

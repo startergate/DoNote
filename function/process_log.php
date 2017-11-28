@@ -2,6 +2,7 @@
 	require('../config/config.php');
 	require('../lib/db.php');
   //require('../lib/password.php');
+	session_start();
 	$id = $_POST['id'];
   $password = $_POST['pw'];
 	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
@@ -18,7 +19,6 @@
 
 	if ($id === $sqlid) {
     if ($password === $hash) {
-			session_start();
 			$_SESSION['pid'] = $sqlpid;
 			$_SESSION['nickname'] = $sqlni;
 			header('Location: ../note.php');

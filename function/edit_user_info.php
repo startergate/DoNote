@@ -1,7 +1,7 @@
 <?php
+  require("../lib/logchk.php");
   require("../config/config.php");
   require("../lib/db.php");
-  session_start();
   $conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
   $nk = mysqli_real_escape_string($conn, $_POST['nickname']);
   $pw = mysqli_real_escape_string($conn, $_POST['pw']);
