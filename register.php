@@ -37,7 +37,7 @@
         <input type="password" class="form-control" name="pwr" id="form-title" placeholder="비밀번호 확인">
         <input type="text" class="form-control" name="nickname" id="form-title" placeholder="닉네임">
         <br />
-        <input type="submit" name="name" class="btn btn-light" value='회원가입'>
+        <input type="submit" name="confirm_register" class="btn btn-light" value='회원가입'>
         <a href="./login.php" class="btn btn-light">로그인</a>
       </form>
     </div>

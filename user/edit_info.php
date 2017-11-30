@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <?php
-  require("./lib/logchk.php");
-  if($_SESSION['confirm'] == "") {
+  require("../lib/logchk2.php");
+  if($_SESSION['confirm'] === "") {
     echo "<script>window.alert('인증이 필요합니다.');</script>";
     echo "<script>window.location=('./confirm.php');</script>";
     exit;
   }
+  $_SESSION['confirm'] = '';
 	require("../config/config.php");
 	require("../lib/db.php");
 	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
@@ -40,13 +41,15 @@
     <div class="container">
     <div class="col-md-12">
       <header class="jumbotron text-center">
-        <strong><h1><a href="../note.php">DoNote</a></h1></strong>
+        <a href="../note.php"><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo \></a>
       </header>
     </div>
     <div class="col-md-12">
       <header class="jumbotron text-right">
         <?php
-          echo "<a href='./edit_info.php'>".$_SESSION['nickname']."님, 환영합니다.</a>"
+          echo "<a href='./edit_info.php'>".$_SESSION['nickname']."님, 환영합니다.</a>";
+          echo ' | ';
+          echo "<a href='../function/logout.php'>로그아웃</a>";
         ?>
       </header>
     </div>
@@ -80,7 +83,7 @@
             echo "<input type='password' class='form-control' name='confirm' id='form-title' placeholder='비밀번호 확인(비밀번호 입력 란이 비어있다면, 입력하지 마세요.)'>";
           ?>
         </div>
-          <input type="submit" name="dummy_1" value="수정한 내용을 저장!" class="btn btn-default btn-lg">
+          <input type="submit" name="confirm_user_edit" value="수정한 내용을 저장!" class="btn btn-default btn-lg">
         </form>
       </div>
     </div>

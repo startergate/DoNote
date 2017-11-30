@@ -35,8 +35,7 @@
     <div class="container">
       <div class="col-md-12">
         <header class="jumbotron text-center">
-    		  <img src="../static/img/common/donotevec.png" href="./note.php" alt="STARTERGATE" class="img-rounded" id=logo \>
-          <strong><h5><a href="./note.php">DoNote</a></h5></strong>
+    		  <a href="./note.php"><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo \></a>
         </header>
       </div>
       <div class="col-md-12">
@@ -83,7 +82,7 @@
               echo "<textarea class='form-control' name='text' id='form-title' placeholder='내용을 작성하세요.'>".$text."</textarea>";
             ?>
           </div>
-          <input type="submit" name="dummy_1" value="수정한 내용을 저장!" class="btn btn-default btn-lg">
+          <input type="submit" name="confirm_edit" value="수정한 내용을 저장!" class="btn btn-default btn-lg">
           <?php
             echo "<a href='./delete.php?id=".$id."' class='btn btn-danger btn-lg'>이 내용을 삭제!</a>"
           ?>

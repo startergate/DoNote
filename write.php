@@ -35,13 +35,15 @@
     <div class="container">
     <div class="col-md-12">
       <header class="jumbotron text-center">
-        <strong><h1><a href="./note.php">DoNote</a></h1></strong>
+        <a href="./note.php"><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo \></a>
       </header>
     </div>
     <div class="col-md-12">
       <header class="jumbotron text-right">
         <?php
           echo "<a href='./user/confirm.php'>".$_SESSION['nickname']."님, 환영합니다.</a>";
+          echo ' | ';
+          echo "<a href='./function/logout.php'>로그아웃</a>";
         ?>
       </header>
     </div>
@@ -64,7 +66,7 @@
           <div class="form-group">
             <textarea class='form-control' name='text' id='form-title' placeholder='내용을 작성하세요.'></textarea>
           </div>
-          <input type="submit" name="dummy_1" value="새로운 내용을 저장!" class="btn btn-default btn-lg">
+          <input type="submit" name="confirm_write" value="새로운 내용을 저장!" class="btn btn-default btn-lg">
         </form>
       </div>
     </div>

@@ -3,6 +3,11 @@
   require("./lib/logchk.php");
 	require("./config/config.php");
 	require("./lib/db.php");
+  if (empty($_GET['id'])) {
+    if (!$_GET['id'] === "0") {
+      header('Location: ./function/error_confirm.php');
+    }
+  }
 	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
   $result = mysqli_query($conn, "SELECT * FROM donote_ahlpa_userznote_".$_SESSION['pid']);
 ?>
@@ -35,7 +40,7 @@
     <div class="container">
     <div class="col-md-12">
       <header class="jumbotron text-center">
-        <strong><h1><a href="./note.php">DoNote</a></h1></strong>
+        <a href="./note.php"><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo \></a>
       </header>
     </div>
     <div class="col-md-12">
@@ -43,8 +48,8 @@
         <?php
           echo "<a href='./user/confirm.php'>".$_SESSION['nickname']."님, 환영합니다.</a>";
           echo ' | ';
-          echo "<a href='./function/logout.php'>로그아웃</a>";
         ?>
+        <a href='./logout.php'>로그아웃</a>
       </header>
     </div>
     </div>
@@ -70,11 +75,16 @@
           echo '<h1>'.$name.'</h1>';
           echo '<h2>위 내용을 삭제하시겠습니까?</h2>';
           echo "<br />";
-          echo "<a href='./process/delete.php?id=".$id."' class='btn btn-danger btn-lg'>삭제!</a>";
+          echo "<form action='./process/delete.php?id=".$id."' method='post'>";
+          echo "<input type='submit' name='confirm_delete' class='btn btn-danger btn-lg' value='삭제!'>";
           echo "            ";
           echo "<a href='./note.php?id=".$id."' class='btn btn-success btn-lg'>취소!</a>";
+          echo "</form>"
         ?>
       </header>
+
+
+      </form>
     </div>
     </div>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
