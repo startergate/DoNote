@@ -22,7 +22,7 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>DoNote Ahlpa</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="./style2.css">
+  	<link rel="stylesheet" type="text/css" href="./css/style2.css">
   </head>
   <body>
     <div class="container">

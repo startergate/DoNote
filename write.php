@@ -28,25 +28,25 @@
     <meta charset="utf-8">
     <title>DoNote Ahlpa</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="./style.css">
+  	<link rel="stylesheet" type="text/css" href="./css/style.css">
     <script src="/bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="container">
-    <div class="col-md-12">
-      <header class="jumbotron text-center">
-        <a href="./note.php"><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo \></a>
-      </header>
-    </div>
-    <div class="col-md-12">
-      <header class="jumbotron text-right">
-        <?php
-          echo "<a href='./user/confirm.php'>".$_SESSION['nickname']."님, 환영합니다.</a>";
-          echo ' | ';
-          echo "<a href='./function/logout.php'>로그아웃</a>";
-        ?>
-      </header>
-    </div>
+      <div class="col-md-12">
+        <header class="jumbotron text-center">
+          <a href="./note.php"><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo \></a>
+        </header>
+      </div>
+      <div class="col-md-12">
+        <header class="jumbotron text-right">
+          <?php
+            echo "<a href='./user/confirm.php'>".$_SESSION['nickname']."님, 환영합니다.</a>";
+            echo ' | ';
+            echo "<a href='./function/logout.php'>로그아웃</a>";
+            ?>
+        </header>
+      </div>
     </div>
     <div class="container">
       <div class="col-md-3">

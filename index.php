@@ -1,5 +1,6 @@
-<html lang="en">
-  <head>
+<!DOCTYPE html>
+<html>
+  <head>
     <link rel="apple-touch-icon" sizes="57x57" href="/static/img/favicon/donote/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/static/img/favicon/donote/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/static/img/favicon/donote/apple-icon-72x72.png">
@@ -17,28 +18,24 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/static/img/favicon/donote/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <title>DoNote Ahlpa</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="./style2.css">
-  </head>
+    <link rel="stylesheet" type="text/css" href="./css/style2.css?ver=1.9">
+  	<link rel="stylesheet" type="text/css" href="./css/bg_style.css?ver=1.5">
+  	<link rel="stylesheet" type="text/css" href="/Normalize.css">
+  </head>
   <body>
-    <div class="container">
-      <div class="col-md-12">
-        <header class="jumbotron text-center">
-          <h1>DoNote</h1>
-        </header>
-      </div>
-      <div class="col-md-12">
-        <header class="jumbotron text-center">
-          <div id="control">
-            <a href="./login.php" class="btn btn-success btn-lg">로그인</a>
-          </div>
-        </header>
-      </div>
-      <div class="col-md-12">
-        <header class="jumbotron text-left">
-          ⓒ 2017 STARTERGATE. This Content Can Be Used With GNU License.
-        </header>
+    <div class="cover full-window">
+      <div class="col-sm-12">
+        <p class='text-center'>
+          <strong id='domi'>DoNote</strong>
+        </p>
+        <div id="control">
+          <p class='text-center'>
+            <a href="./login.php" class="btn btn-default btn-lg">로그인</a>
+          </p>
+        </div>
       </div>
     </div>
   </body>

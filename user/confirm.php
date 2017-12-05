@@ -31,7 +31,7 @@
     <meta charset="utf-8">
     <title>DoNote Ahlpa</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="../style.css">
+  	<link rel="stylesheet" type="text/css" href="../css/style.css">
     <script src="/bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body>

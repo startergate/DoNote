@@ -33,7 +33,7 @@
     <meta charset="utf-8">
     <title>DoNote Ahlpa</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="./style.css">
+  	<link rel="stylesheet" type="text/css" href="./css/style.css">
     <script src="/bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body>
@@ -54,7 +54,7 @@
     </div>
     </div>
     <div class="container">
-    <div class="col-md-3">
+      <div class="col-md-3">
         <?php
           while ($row = mysqli_fetch_assoc($result)) {
             echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
@@ -62,30 +62,27 @@
           }
         ?>
         <li><a href="./write.php">페이지 추가하기</li></a>
-    </div>
-    <div class="col-md-9">
-      <header class="jumbotron text-center">
-        <?php
-          $id = $_GET['id'];
-          $sql = "SELECT name,text,id FROM donote_ahlpa_userznote_".$_SESSION['pid']." WHERE id = ".$id;
-          $result = mysqli_query($conn, $sql);
-          $row = mysqli_fetch_assoc($result);
-          $name = $row['name'];
-          $text = $row['text'];
-          echo '<h1>'.$name.'</h1>';
-          echo '<h2>위 내용을 삭제하시겠습니까?</h2>';
-          echo "<br />";
-          echo "<form action='./process/delete.php?id=".$id."' method='post'>";
-          echo "<input type='submit' name='confirm_delete' class='btn btn-danger btn-lg' value='삭제!'>";
-          echo "            ";
-          echo "<a href='./note.php?id=".$id."' class='btn btn-success btn-lg'>취소!</a>";
-          echo "</form>"
-        ?>
-      </header>
-
-
-      </form>
-    </div>
+      </div>
+      <div class="col-md-9">
+        <header class="jumbotron text-center">
+          <?php
+            $id = $_GET['id'];
+            $sql = "SELECT name,text,id FROM donote_ahlpa_userznote_".$_SESSION['pid']." WHERE id = ".$id;
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $name = $row['name'];
+            $text = $row['text'];
+            echo '<h1>'.$name.'</h1>';
+            echo '<h2>위 내용을 삭제하시겠습니까?</h2>';
+            echo "<br />";
+            echo "<form action='./process/delete.php?id=".$id."' method='post'>";
+            echo "<input type='submit' name='confirm_delete' class='btn btn-danger btn-lg' value='삭제!'>";
+            echo "            ";
+            echo "<a href='./note.php?id=".$id."' class='btn btn-success btn-lg'>취소!</a>";
+            echo "</form>"
+            ?>
+        </header>
+      </div>
     </div>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
   </body>

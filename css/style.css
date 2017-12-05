@@ -3,22 +3,12 @@ body{
   font-family:Noto Sans KR;
   font-style:black:
 }
-body.white{
-  background-color:white;
-  color:black;
-}
-body.black{
-  background-color:black;
-  color:white;
-}
 #logo {
   width:200px;
 }
 .container{
   padding-top:20px;
-}
-#control{
-  margin-bottom:40px;
+  padding-bottom: 20px;
 }
 h1{
   font-family:Noto Sans KR;
@@ -27,4 +17,7 @@ h1{
 h2{
   font-family:Noto Sans KR;
   font-style:bold;
+}
+#name{
+  padding=30px;
 }

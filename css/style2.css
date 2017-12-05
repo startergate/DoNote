@@ -1,0 +1,64 @@
+body{
+  font-family:Noto Sans KR;
+  font-style:black;
+}
+#logo {
+  width: 1000px;
+}
+#articleimg {
+  width: 300px;
+}
+.container{
+  padding-top: 20px;
+}
+h1{
+  font-family: Noto Sans KR;
+  font-style: black:
+}
+h2{
+  font-family: Noto Sans KR;
+  font-style: bold;
+}
+#login {
+  font-size: 50px;
+  font-weight: bold;
+  font-family: Noto Sans KR;
+  text-align: left;
+}
+#lotext {
+  text-align: left;
+}
+#form {
+  width: 300px;
+}
+#domi {
+  font-family: Noto Sans KR;
+  font-style: black;
+  font-size: 100px;
+  color: #ffffff
+}
+#control {
+  padding-bottom: 50px;
+  text-align: center;
+  bottom: 8px;
+}
+#container {
+    position: relative;
+}
+.cover {
+  position: relative;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 100%;
+}
+.cover.full-window {
+  margin-top: 15%;
+  margin-left: 25%;
+  margin-right: 25%;
+  width: 50%
+
+}
+.cover-image {
+  min-height: 500px;
+}
