@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="./css/style2.css">
+    <link rel="stylesheet" type="text/css" href="./css/style2.css?ver=66">
     <link rel="stylesheet" href="/bootstrap-4.0b/css/bootstrap.min.css">
+  	<link rel="stylesheet" type="text/css" href="./css/bg_style.css?ver=8">
     <link rel="apple-touch-icon" sizes="57x57" href="/static/img/favicon/startergate_id/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/static/img/favicon/startergate_id/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/static/img/favicon/startergate_id/apple-icon-72x72.png">
@@ -19,30 +20,31 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/static/img/favicon/startergate_id/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon/startergate_id/favicon-16x16.png">
     <link rel="manifest" href="./manifest.json">
-    <meta name="msapplication-TileImage" content="/static/img/favicon/startergate_id//ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="/static/img/favicon/startergate_id/ms-icon-144x144.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
     <title>DoNote Ahlpa</title>
   </head>
-    <header class="jumbotron">
-    <div id=login>회원가입</div>
-    <br />
-    <div id=lotext>
+  <body>
+    <div class="covra2">
+      <div id=login>회원가입</div>
       <br />
-      <h3><strong>DoNote</strong></h3>
-      <br />
-      <form id='form' action="./function/process_reg.php" method="post">
-        <input type="text" class="form-control" name="id" id="form-title" placeholder="아이디">
-        <input type="password" class="form-control" name="pw" id="form-title" placeholder="비밀번호">
-        <input type="password" class="form-control" name="pwr" id="form-title" placeholder="비밀번호 확인">
-        <input type="text" class="form-control" name="nickname" id="form-title" placeholder="닉네임">
+      <div id=lotext>
         <br />
-        <input type="submit" name="confirm_register" class="btn btn-light" value='회원가입'>
-        <a href="./login.php" class="btn btn-light">로그인</a>
-      </form>
+        <h3><strong>DoNote</strong></h3>
+        <br />
+        <form id='form' action="./function/process_reg.php" method="post">
+          <input type="text" class="form-control" name="id" id="form-title" placeholder="아이디">
+          <input type="password" class="form-control" name="pw" id="form-title" placeholder="비밀번호">
+          <input type="password" class="form-control" name="pwr" id="form-title" placeholder="비밀번호 확인">
+          <input type="text" class="form-control" name="nickname" id="form-title" placeholder="닉네임">
+          <br />
+          <input type="submit" name="confirm_register" class="btn btn-light" value='회원가입'>
+          <a href="./login.php" class="btn btn-light">로그인</a>
+        </form>
+      </div>
     </div>
-  </header>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
-</body>
+  </body>
 </html>

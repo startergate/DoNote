@@ -3,9 +3,6 @@ body{
   font-family:Noto Sans KR;
   font-style:black:
 }
-#logo {
-  width:200px;
-}
 .container{
   padding-top:20px;
   padding-bottom: 20px;
@@ -18,6 +15,25 @@ h2{
   font-family:Noto Sans KR;
   font-style:bold;
 }
+#logo{
+  height:50px;
+}
 #name{
-  padding=30px;
+  padding:30px;
+}
+#text-right{
+  text-align: right;
+}
+#white{
+  font-size: 20px;
+  color: white;
+}
+#middle{
+  vertical-align: middle;
+}
+#padding-erase{
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }

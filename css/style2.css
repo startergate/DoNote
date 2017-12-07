@@ -24,9 +24,11 @@ h2{
   font-weight: bold;
   font-family: Noto Sans KR;
   text-align: left;
+  color: #ffffff;
 }
 #lotext {
   text-align: left;
+  color: #ffffff;
 }
 #form {
   width: 300px;
@@ -55,10 +57,19 @@ h2{
 .cover.full-window {
   margin-top: 15%;
   margin-left: 25%;
-  margin-right: 25%;
-  width: 50%
-
+  text-align: center;
+  width: 50%;
 }
 .cover-image {
   min-height: 500px;
+}
+.covra {
+  margin-top: 7%;
+  margin-left: 25px;
+  width: 50%;
+}
+.covra2 {
+  margin-top: 7%;
+  margin-left: 40px;
+  width: 50%;
 }

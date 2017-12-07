@@ -20,3 +20,4 @@
     header('Location: ../function/error_confirm.php');
   }
 ?>
+x = 1

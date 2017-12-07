@@ -28,25 +28,24 @@
     <meta charset="utf-8">
     <title>DoNote Ahlpa</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="./css/style.css">
+  	<link rel="stylesheet" type="text/css" href="./css/style.css?v=2">
+    <link rel="stylesheet" type="text/css" href="./css/bg_style_2.css?v=1">
     <script src="/bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <div class="container">
-      <div class="col-md-12">
-        <header class="jumbotron text-center">
-    		  <a href="./note.php"><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo \></a>
-        </header>
-      </div>
-      <div class="col-md-12">
-        <header class="jumbotron text-right">
-          <?php
-            echo "<a href='./user/confirm.php'>".$_SESSION['nickname']."님, 환영합니다.</a>";
-            echo ' | ';
-            echo "<a href='./function/logout.php'>로그아웃</a>";
-            ?>
-          </header>
+    <div class="container-fluid" id='padding-erase'>
+      <div id="bgi">
+        <div class="col-md-3 col-xs-12 col-sm-12">
+          <a href="./note.php" class='middle'><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo \></a>
         </div>
+        <div class="col-md-9 col-xs-12 col-sm-12">
+          <div class="text-right">
+            <?php
+              echo "<a href='./user/confirm.php' class='btn btn-link' id='white'>".$_SESSION['nickname']."님, 환영합니다.</a><a class='btn btn-link' href='./function/logout.php' id='white'>로그아웃</a>";
+            ?>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="container">
       <div class="col-md-3">
