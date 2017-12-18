@@ -1,7 +1,7 @@
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 body{
   font-family:Noto Sans KR;
-  font-style:black:
+  font-style:black;
 }
 .container{
   padding-top:20px;
@@ -9,7 +9,7 @@ body{
 }
 h1{
   font-family:Noto Sans KR;
-  font-style:black:
+  font-style:black;
 }
 h2{
   font-family:Noto Sans KR;
@@ -17,6 +17,8 @@ h2{
 }
 #logo{
   height:50px;
+  margin-left: 0px;
+  outline-offset: 30px;
 }
 #name{
   padding:30px;
@@ -36,4 +38,16 @@ h2{
   padding-right: 0px;
   padding-top: 0px;
   padding-bottom: 0px;
+}
+#padding-generate-top{
+  padding-top:20px;
+}
+#padding-generate-bottom{
+  padding-bottom: 20px;
+}
+#menu-idle{
+  padding-top: 9px;
+}
+.style-erase{
+  text-decoration: none;
 }

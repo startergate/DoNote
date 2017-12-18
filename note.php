@@ -28,17 +28,17 @@
     <meta charset="utf-8">
     <title>DoNote Ahlpa</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="./css/style.css?v=2">
+  	<link rel="stylesheet" type="text/css" href="./css/style.css?v=4">
     <link rel="stylesheet" type="text/css" href="./css/bg_style_2.css?v=1">
     <script src="/bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="container-fluid" id='padding-erase'>
       <div id="bgi">
-        <div class="col-md-3 col-xs-12 col-sm-12">
-          <a href="./note.php" class='middle'><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo \></a>
+        <div class="col-md-3">
+          <a href="./note.php" class='middle'><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
         </div>
-        <div class="col-md-9 col-xs-12 col-sm-12">
+        <div class="col-md-9">
           <div class="text-right">
             <?php
               echo "<a href='./user/confirm.php' class='btn btn-link' id='white'>".$_SESSION['nickname']."님, 환영합니다.</a><a class='btn btn-link' href='./function/logout.php' id='white'>로그아웃</a>";
@@ -47,16 +47,18 @@
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="col-md-3">
-        <?php
-          while ($row = mysqli_fetch_assoc($result)) {
-            echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
-            echo '<br />';
-          }
-        ?>
-        <li><a href="./write.php">페이지 추가하기</li></a>
-      </div>
+    <div class="container-fluid" id="padding-generate-top">
+        <div class="col-md-3">
+          <ol class="nav" nav-stacked="" nav-pills="">
+            <?php
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
+              }
+            ?>
+            <li><a href="./write.php">페이지 추가하기</li></a>
+          </ol>
+        </div>
+      <div id="padding-generate-bottom"></div>
       <div class="col-md-9">
         <?php
           if (empty($_GET['id'])) {
@@ -89,5 +91,6 @@
       </div>
     </div>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/jquery/jquery-3.2.1.min.js"></script>
   </body>
 </html>
