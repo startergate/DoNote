@@ -23,7 +23,9 @@
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/style2.css?ver=1.9">
   	<link rel="stylesheet" type="text/css" href="./css/bg_style.css?ver=1.5">
+  	<link rel="stylesheet" type="text/css" href="./css/master.css">
   	<link rel="stylesheet" type="text/css" href="/Normalize.css">
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body id="bge">
     <div class="cover full-window">

@@ -30,6 +30,8 @@
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="./css/style.css?v=4">
     <link rel="stylesheet" type="text/css" href="./css/bg_style.css?v=1">
+  	<link rel="stylesheet" type="text/css" href="./css/master.css">
+  	<link rel="stylesheet" type="text/css" href="/Normalize.css">
     <script src="/bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body>
@@ -48,16 +50,16 @@
       </div>
     </div>
     <div class="container-fluid" id="padding-generate-top">
-        <div class="col-md-3">
-          <ol class="nav" nav-stacked="" nav-pills="">
-            <?php
-              while ($row = mysqli_fetch_assoc($result)) {
-                echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
-              }
-            ?>
-            <li><a href="./write.php">페이지 추가하기</li></a>
-          </ol>
-        </div>
+      <div class="col-md-3">
+        <ol class="nav" nav-stacked="" nav-pills="">
+          <?php
+            while ($row = mysqli_fetch_assoc($result)) {
+              echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
+            }
+          ?>
+          <li><a href="./write.php">페이지 추가하기</li></a>
+        </ol>
+      </div>
       <div id="padding-generate-bottom"></div>
       <div class="col-md-9">
         <?php
@@ -73,9 +75,9 @@
           $text = $row['text'];
           echo '<form action="./process/edit.php?id='.$id.'" method="post">';
         ?>
-        <div class="form-group">
-          <?php
-            echo "<textarea type='text' class='form-control' name='name' id='form-title' placeholder='제목을 작성하세요.'>".$name."</textarea>";
+          <div class="form-group">
+            <?php
+              echo "<textarea type='text' class='form-control' name='name' id='form-title' placeholder='제목을 작성하세요.'>".$name."</textarea>";
             ?>
           </div>
           <div class="form-group">

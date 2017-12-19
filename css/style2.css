@@ -1,23 +1,8 @@
-body{
-  font-family:Noto Sans KR;
-  font-style:black;
-}
 #logo {
   width: 1000px;
 }
 #articleimg {
   width: 300px;
-}
-.container{
-  padding-top: 20px;
-}
-h1{
-  font-family: Noto Sans KR;
-  font-style: black:
-}
-h2{
-  font-family: Noto Sans KR;
-  font-style: bold;
 }
 #login {
   font-size: 50px;
