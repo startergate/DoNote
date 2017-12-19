@@ -25,7 +25,7 @@
     <meta name="theme-color" content="#ffffff">
     <title>DoNote Ahlpa</title>
   </head>
-  <body>
+  <body id="bge">
     <div class="covra2">
       <div id=login>회원가입</div>
       <br />

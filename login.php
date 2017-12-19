@@ -25,7 +25,7 @@
     <meta name="theme-color" content="#ffffff">
     <title>DoNote Ahlpa</title>
   </head>
-  <body>
+  <body id="bge">
     <div class="covra">
       <div class="container">
         <div id=login>로그인</div>

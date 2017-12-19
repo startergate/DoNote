@@ -35,14 +35,14 @@
     <title>DoNote Ahlpa</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/bg_style_2.css?v=1">
+    <link rel="stylesheet" type="text/css" href="../css/bg_style.css?v=1">
     <script src="/bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="container-fluid" id='padding-erase'>
       <div id="bgi">
         <div class="col-md-3">
-          <a href="./note.php" class='middle'><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
+          <a href="../note.php" class='middle'><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
         </div>
         <div class="col-md-9">
           <div class="text-right">

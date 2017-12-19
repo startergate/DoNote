@@ -25,7 +25,7 @@
   	<link rel="stylesheet" type="text/css" href="./css/bg_style.css?ver=1.5">
   	<link rel="stylesheet" type="text/css" href="/Normalize.css">
   </head>
-  <body>
+  <body id="bge">
     <div class="cover full-window">
       <div class="col-sm-12">
         <p class='text-center'>
