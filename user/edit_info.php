@@ -44,12 +44,12 @@
     <div class="container-fluid" id='padding-erase'>
       <div id="bgi">
         <div class="col-md-3">
-          <a href="../note.php" class='middle'><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
+          <a href="../note.php" class='middle'><img src="/static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
         </div>
         <div class="col-md-9">
           <div class="text-right">
             <?php
-              echo "<a href='./user/confirm.php' class='btn btn-link' id='white'>".$_SESSION['nickname']."님, 환영합니다.</a><a class='btn btn-link' href='./function/logout.php' id='white'>로그아웃</a>";
+              echo "<a href='./confirm.php' class='btn btn-link' id='white'>".$_SESSION['nickname']."님, 환영합니다.</a><a class='btn btn-link' href='../function/logout.php' id='white'>로그아웃</a>";
             ?>
           </div>
         </div>

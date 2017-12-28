@@ -46,7 +46,7 @@
         <div class="col-md-9">
           <div class="text-right">
             <?php
-              echo "<a href='./user/confirm.php' class='btn btn-link' id='white'>".$_SESSION['nickname']."님, 환영합니다.</a><a class='btn btn-link' href='./function/logout.php' id='white'>로그아웃</a>";
+              echo "<a href='./confirm.php' class='btn btn-link' id='white'>".$_SESSION['nickname']."님, 환영합니다.</a><a class='btn btn-link' href='../function/logout.php' id='white'>로그아웃</a>";
             ?>
           </div>
         </div>
