@@ -8,11 +8,13 @@
       if (!empty($_POST['pw'])) {
         if (!empty($_POST['nickname'])) {
           $id = $_POST['id'];
-          $pw = $_POST['pw'];
+          $pw_temp = $_POST['pw'];
           $pwr = $_POST['pwr'];
           $nickname = $_POST['nickname'];
           $_SESSION['temp'] = $id;
-          if ($pw == $pwr) {
+          if ($pw_temp == $pwr) {
+            $pw = hash("sha256",$pw_temp);
+
             $sql = 'INSERT INTO donote_ahlpa_userinfo (id,pw,nickname) VALUES("'.$id.'","'.$pw.'", "'.$nickname.'")';
             $result = mysqli_query($conn, $sql);
 

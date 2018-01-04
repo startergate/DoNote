@@ -1,13 +1,15 @@
 <?php
 	require('../config/config.php');
 	require('../lib/db.php');
-  //require('../lib/password.php');
 	session_start();
+
 	if ($_POST['confirm_login']) {
 		if (!empty($_POST['id'])) {
 			if (!empty($_POST['pw'])) {
 				$id = $_POST['id'];
-			  $password = $_POST['pw'];
+			  $pw_temp = $_POST['pw'];
+
+				$pw = hash("sha256",$pw_temp);
 				$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
 				$result = mysqli_query($conn, "SELECT * FROM donote_ahlpa_userinfo");
 
@@ -21,7 +23,7 @@
 			  $sqlpid = $row['pid'];
 
 				if ($id === $sqlid) {
-			    if ($password === $hash) {
+			    if ($pw === $hash) {
 						$_SESSION['pid'] = $sqlpid;
 						$_SESSION['nickname'] = $sqlni;
 						header('Location: ../note.php');
