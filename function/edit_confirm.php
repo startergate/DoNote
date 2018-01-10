@@ -4,7 +4,8 @@
 	require('../lib/db.php');
   if ($_POST['confirm_user'] === '확인') {
     if (!empty($_POST['pw'])) {
-      $password = $_POST['pw'];
+      $pw_temp = $_POST['pw'];
+      $password = hash("sha256",$pw_temp);
       $pid = $_SESSION['pid'];
     	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
     	$result = mysqli_query($conn, "SELECT * FROM donote_ahlpa_userinfo");

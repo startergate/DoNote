@@ -21,14 +21,14 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon/donote/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/static/img/favicon/donote/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon/donote/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="./manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/static/img/favicon/donote/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <meta charset="utf-8">
     <title>DoNote Ahlpa</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="./css/style.css?v=4">
+  	<link rel="stylesheet" type="text/css" href="./css/style.css?v=5">
     <link rel="stylesheet" type="text/css" href="./css/bg_style.css?v=1">
   	<link rel="stylesheet" type="text/css" href="./css/master.css">
   	<link rel="stylesheet" type="text/css" href="/Normalize.css">
@@ -64,15 +64,16 @@
       <div class="col-md-9">
         <?php
           if (empty($_GET['id'])) {
-            $id = '0';
+            $id = '1';
           } else {
             $id = $_GET['id'];
           }
-          $sql = "SELECT name,text,id FROM donote_ahlpa_userznote_".$_SESSION['pid']." WHERE id = ".$id;
+          $sql = "SELECT name,text,edittime FROM donote_ahlpa_userznote_".$_SESSION['pid']." WHERE id = ".$id;
           $result = mysqli_query($conn, $sql);
           $row = mysqli_fetch_assoc($result);
           $name = $row['name'];
           $text = $row['text'];
+          $edittime = $row['edittime'];
           echo '<form action="./process/edit.php?id='.$id.'" method="post">';
         ?>
           <div class="form-group">
@@ -80,9 +81,14 @@
               echo "<textarea type='text' class='form-control' name='name' id='form-title' placeholder='제목을 작성하세요.'>".$name."</textarea>";
             ?>
           </div>
-          <div class="form-group">
+          <div class="text-right edittime">
             <?php
-              echo "<textarea class='form-control' name='text' id='form-title' placeholder='내용을 작성하세요.'>".$text."</textarea>";
+              echo "최근 수정 일자: ".$edittime;
+            ?>
+          </div>
+          <div class="form-group form-text">
+            <?php
+              echo "<textarea class='form-control' name='text' id='textarea-text' placeholder='내용을 작성하세요.'>".$text."</textarea>";
             ?>
           </div>
           <input type="submit" name="confirm_edit" value="수정한 내용을 저장!" class="btn btn-default btn-lg">
@@ -92,7 +98,7 @@
         </form>
       </div>
     </div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/jquery/jquery-3.2.1.min.js"></script>
   </body>
 </html>

@@ -4,8 +4,10 @@
   require("../lib/db.php");
   if ($_POST['confirm_user_edit']) {
     $conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
+    $pw_temp = $_POST['pw']
+    $password = hash("sha256",$pw_temp);
     $nk = mysqli_real_escape_string($conn, $_POST['nickname']);
-    $pw = mysqli_real_escape_string($conn, $_POST['pw']);
+    $pw = mysqli_real_escape_string($conn, $password);
     $pid = $_SESSION['pid'];
     if (empty($_POST['nickname'])) {
       if (empty($_POST['pw'])) {

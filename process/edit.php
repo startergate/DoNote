@@ -11,7 +11,7 @@
         $pid = $_SESSION['pid'];
         $id = $_GET['id'];
         $udb = 'donote_ahlpa_userznote_'.$pid;
-        $sql = "UPDATE $udb SET name='$name', text='$text' WHERE id='$id'";
+        $sql = "UPDATE $udb SET name='$name', text='$text', edittime=now() WHERE id='$id'";
         $result = mysqli_query($conn, $sql);
         $_SESSION['confirm_edit'] = 'confirm';
         header('Location: ../complete/edit.php?id='.$id);

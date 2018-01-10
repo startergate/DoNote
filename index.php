@@ -14,7 +14,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon/donote/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/static/img/favicon/donote/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon/donote/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/donote/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/static/img/favicon/donote/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -25,7 +25,6 @@
   	<link rel="stylesheet" type="text/css" href="./css/bg_style.css?ver=1.5">
   	<link rel="stylesheet" type="text/css" href="./css/master.css">
   	<link rel="stylesheet" type="text/css" href="/Normalize.css">
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body id="bge">
     <div class="cover full-window">
@@ -40,5 +39,7 @@
         </div>
       </div>
     </div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>

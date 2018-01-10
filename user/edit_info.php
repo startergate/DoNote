@@ -33,8 +33,8 @@
     <meta name="theme-color" content="#ffffff">
     <meta charset="utf-8">
     <title>DoNote Ahlpa</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/bg_style.css?v=1">
   	<link rel="stylesheet" type="text/css" href="../css/master.css">
   	<link rel="stylesheet" type="text/css" href="/Normalize.css">
@@ -90,6 +90,7 @@
         </form>
       </div>
     </div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -66,13 +66,14 @@
           <div class="form-group">
             <textarea type='text' class='form-control' name='name' id='form-title' placeholder='제목을 작성하세요.'></textarea>
           </div>
-          <div class="form-group">
-            <textarea class='form-control' name='text' id='form-title' placeholder='내용을 작성하세요.'></textarea>
+          <div class="form-group form-text">
+            <textarea class='form-control' name='text' id='textarea-text' placeholder='내용을 작성하세요.'></textarea>
           </div>
           <input type="submit" name="confirm_write" value="새로운 내용을 저장!" class="btn btn-default btn-lg">
         </form>
       </div>
     </div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>

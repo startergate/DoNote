@@ -34,3 +34,18 @@
 #menu-idle{
   padding-top: 9px;
 }
+#textarea-text{
+  flex: 1;
+  height: 30rem;
+}
+.form-text{
+  display: flex;
+  flex-direction: column;
+}
+body{
+  height: 100%;
+}
+.edittime{
+  margin-top: -10px;
+  margin-bottom: 5px;
+}
