@@ -1,9 +1,3 @@
-<?php
-  if (empty($_SESSION['pid'])) {
-    header("Location: ./note.php");
-    exit;
-  }
-?>
 <!DOCTYPE html>
 <html>
   <head>
