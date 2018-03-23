@@ -33,8 +33,8 @@
     <meta charset="utf-8">
     <title>DoNote Ahlpa</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="./css/style.css?ver=1">
-    <link rel="stylesheet" type="text/css" href="./css/bg_style.css">
+  	<link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/bg_style.css?v=1">
   	<link rel="stylesheet" type="text/css" href="./css/master.css">
   	<link rel="stylesheet" type="text/css" href="/Normalize.css">
     <script src="/bootstrap/js/bootstrap.min.js"></script>
@@ -78,7 +78,7 @@
             echo '<h1>'.$name.'</h1>';
             echo '<h2>위 내용을 삭제하시겠습니까?</h2>';
             echo "<br />";
-            echo "<form class='margin_42_gen'action='./process/delete.php?id=".$id."' method='post'>";
+            echo "<form action='./process/delete.php?id=".$id."' method='post'>";
             echo "<input type='submit' name='confirm_delete' class='btn btn-danger btn-lg' value='삭제!'>";
             echo "            ";
             echo "<a href='./note.php?id=".$id."' class='btn btn-success btn-lg'>취소!</a>";
