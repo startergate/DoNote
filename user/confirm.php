@@ -35,18 +35,17 @@
     <link rel="stylesheet" type="text/css" href="../css/bg_style.css?v=1">
   	<link rel="stylesheet" type="text/css" href="../css/master.css">
   	<link rel="stylesheet" type="text/css" href="/Normalize.css">
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="container-fluid" id='padding-erase'>
       <div id="bgi">
         <div class="col-md-3">
-          <a href="../note.php" class='middle'><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
+          <a href="../note.php" class='middle'><img src="/static/img/common/donotevec.png" href="../note.php" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
         </div>
         <div class="col-md-9">
           <div class="text-right">
             <?php
-              echo "<a href='./confirm.php' class='btn btn-link' id='white'>".$_SESSION['nickname']."님, 환영합니다.</a><a class='btn btn-link' href='../function/logout.php' id='white'>로그아웃</a>";
+              echo "<a href='../confirm.php' class='btn btn-link' id='white'>".$_SESSION['nickname']."님, 환영합니다.</a><a class='btn btn-link' href='../function/logout.php' id='white'>로그아웃</a>";
             ?>
           </div>
         </div>
@@ -57,10 +56,10 @@
         <ol class="nav" nav-stacked="" nav-pills="">
           <?php
             while ($row = mysqli_fetch_assoc($result)) {
-              echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
+              echo '<li><a href="../note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
             }
           ?>
-          <li><a href="./write.php">페이지 추가하기</li></a>
+          <li><a href="../write.php">페이지 추가하기</li></a>
         </ol>
       </div>
       <div id="padding-generate-bottom"></div>

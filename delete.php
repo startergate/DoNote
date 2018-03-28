@@ -37,7 +37,6 @@
     <link rel="stylesheet" type="text/css" href="./css/bg_style.css">
   	<link rel="stylesheet" type="text/css" href="./css/master.css">
   	<link rel="stylesheet" type="text/css" href="/Normalize.css">
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="container-fluid" id='padding-erase'>

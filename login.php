@@ -8,7 +8,6 @@
   	<link rel="stylesheet" type="text/css" href="./css/bg_style.css?ver=8">
   	<link rel="stylesheet" type="text/css" href="./css/master.css">
   	<link rel="stylesheet" type="text/css" href="/Normalize.css">
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
     <link rel="apple-touch-icon" sizes="57x57" href="/static/img/favicon/startergate_id/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/static/img/favicon/startergate_id/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/static/img/favicon/startergate_id/apple-icon-72x72.png">
@@ -38,8 +37,8 @@
           <h3><strong>DoNote</strong></h3>
           <br />
           <form id='form' action="./function/process_log.php" method="post">
-            <input type="text" class="form-control" name="id" id="form-title" placeholder="아이디">
-            <input type="password" class="form-control" name="pw" id="form-title" placeholder="비밀번호">
+            <input type="text" class="form-control" name="id" placeholder="아이디">
+            <input type="password" class="form-control" name="pw" placeholder="비밀번호">
             <br />
             <input type="submit" name="confirm_login" class="btn btn-light" value='로그인'>
             <a href="./register.php" class="btn btn-light">회원가입</a>
