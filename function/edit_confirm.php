@@ -8,9 +8,9 @@
       $password = hash("sha256",$pw_temp);
       $pid = $_SESSION['pid'];
     	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
-    	$result = mysqli_query($conn, "SELECT * FROM donote_ahlpa_userinfo");
+    	$result = mysqli_query($conn, "SELECT * FROM donote_beta_userinfo");
 
-    	$sql = "SELECT pw FROM donote_ahlpa_userinfo WHERE pid LIKE '$pid'";	//user data select
+    	$sql = "SELECT pw FROM donote_beta_userinfo WHERE pid LIKE '$pid'";	//user data select
       $result = mysqli_query($conn, $sql);
     	$row = mysqli_fetch_assoc($result);
 

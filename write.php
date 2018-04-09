@@ -4,7 +4,7 @@
   require("./lib/db.php");
   require("./lib/logchk.php");
 	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
-  $result = mysqli_query($conn, "SELECT * FROM donote_ahlpa_userznote_".$_SESSION['pid']);
+  $result = mysqli_query($conn, "SELECT * FROM donote_beta_usernote_".$_SESSION['pid']);
 ?>
 <html>
   <head>
@@ -26,7 +26,7 @@
     <meta name="msapplication-TileImage" content="/static/img/favicon/donote/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <meta charset="utf-8">
-    <title>DoNote Ahlpa</title>
+    <title>DoNote Beta</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="./css/master.css">
   	<link rel="stylesheet" type="text/css" href="./css/style.css">

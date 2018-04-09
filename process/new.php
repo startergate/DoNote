@@ -10,7 +10,7 @@
         $name = $_POST['name'];
         $text = $_POST['text'];
         $pid = $_SESSION['pid'];
-        $udb = 'donote_ahlpa_userznote_'.$pid;
+        $udb = 'donote_beta_usernote_'.$pid;
         $sql = "INSERT INTO $udb (name,text,edittime) VALUES ('$name','$text',now())";
         $result = mysqli_query($conn, $sql);
         $_SESSION['name'] = $name;

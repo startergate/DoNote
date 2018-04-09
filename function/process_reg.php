@@ -12,21 +12,23 @@
           $pwr = $_POST['pwr'];
           $nickname = $_POST['nickname'];
           $_SESSION['temp'] = $id;
-          if ($pw_temp == $pwr) {
+          if ($pw_temp === $pwr) {
             $pw = hash("sha256",$pw_temp);
+            $pid_temp = $id.$pwr.$id;
+            $pid = md5($pid_temp);
 
-            $sql = 'INSERT INTO donote_ahlpa_userinfo (id,pw,nickname,register_date) VALUES("'.$id.'","'.$pw.'", "'.$nickname.'",now())';
+            $sql = 'INSERT INTO donote_beta_userinfo (id,pw,nickname,register_date,pid) VALUES("'.$id.'","'.$pw.'", "'.$nickname.'",now(),"'.$pid.'")';
             $result = mysqli_query($conn, $sql);
 
-            $sql = "SELECT pid FROM donote_ahlpa_userinfo WHERE id LIKE '".$_SESSION['temp']."'";
+            $sql = "SELECT pid FROM donote_beta_userinfo WHERE id LIKE '".$_SESSION['temp']."'";
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
-            $udb = 'donote_ahlpa_userznote_'.$row['pid'];
+            $udb = 'donote_beta_usernote_'.$pid;
 
             $sql = "CREATE TABLE $udb (name LONGTEXT NOT NULL,text LONGTEXT NOT NULL,edittime DATETIME NOT NULL,id INT(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY (id))";
             $result = mysqli_query($conn, $sql);
 
-            $sql = "INSERT INTO $udb (name,text,edittime) VALUES ('안녕하세요. DoNote를 이용해주셔서 감사합니다.','이 웹앱은 Ahlpa상태입니다. 언제든지 초기화될 수 있습니다.',now())";
+            $sql = "INSERT INTO $udb (name,text,edittime) VALUES ('안녕하세요. DoNote를 이용해주셔서 감사합니다.','이 웹앱은 Beta 상태입니다. 언제든지 초기화될 수 있습니다.',now())";
             $result = mysqli_query($conn, $sql);
 
             echo "<script>window.alert('회원가입이 완료되었습니다. 로그인 해주세요.');</script>";

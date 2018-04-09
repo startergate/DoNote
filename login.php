@@ -25,7 +25,7 @@
     <meta name="msapplication-TileImage" content="/static/img/favicon/startergate_id//ms-icon-144x144.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
-    <title>DoNote Ahlpa</title>
+    <title>DoNote Beta</title>
   </head>
   <body id="bge">
     <div class="covra">

@@ -19,7 +19,7 @@
     <meta name="msapplication-TileImage" content="/static/img/favicon/donote/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
-    <title>DoNote Ahlpa</title>
+    <title>DoNote Beta</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/style2.css?ver=1.9">
   	<link rel="stylesheet" type="text/css" href="./css/bg_style.css?ver=1.5">

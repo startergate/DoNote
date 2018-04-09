@@ -11,9 +11,9 @@
 
 				$pw = hash("sha256",$pw_temp);
 				$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
-				$result = mysqli_query($conn, "SELECT * FROM donote_ahlpa_userinfo");
+				$result = mysqli_query($conn, "SELECT * FROM donote_beta_userinfo");
 
-				$sql = "SELECT id,pw,nickname,pid FROM donote_ahlpa_userinfo WHERE id LIKE '$id'";	//user data select
+				$sql = "SELECT id,pw,nickname,pid FROM donote_beta_userinfo WHERE id LIKE '$id'";	//user data select
 			  $result = mysqli_query($conn, $sql);
 				$row = mysqli_fetch_assoc($result);
 

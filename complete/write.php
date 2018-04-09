@@ -5,7 +5,7 @@
   if ($_SESSION['confirm_write'] === 'confirm') {
     $name = $_SESSION['name'];
   	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
-    $sql = "SELECT id FROM donote_ahlpa_userznote_".$_SESSION['pid']." WHERE name = '$name'";
+    $sql = "SELECT id FROM donote_beta_usernote_".$_SESSION['pid']." WHERE name = '$name'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     if($_SESSION['pid'] == "") {
@@ -20,7 +20,6 @@
       exit;
     }
   } else {
-
       header('Location: ../function/error_confirm.php');
   }
 

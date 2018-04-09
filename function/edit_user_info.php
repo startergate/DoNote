@@ -17,12 +17,12 @@
       }
     }
     if (!empty($_POST['nickname'])) {
-      $sql = "UPDATE donote_ahlpa_userinfo SET nickname='$nk' WHERE pid='$pid'";
+      $sql = "UPDATE donote_beta_userinfo SET nickname='$nk' WHERE pid='$pid'";
       $result = mysqli_query($conn, $sql);
     }
     if (!empty($_POST['pw'])) {
       if ($_POST['pw'] === $_POST['confirm']) {
-        $sql = "UPDATE donote_ahlpa_userinfo SET pw='$pw' WHERE pid='$pid'";
+        $sql = "UPDATE donote_beta_userinfo SET pw='$pw' WHERE pid='$pid'";
         $result = mysqli_query($conn, $sql);
         header('Location: ../complete/edit_user_info.php');
       } else {
