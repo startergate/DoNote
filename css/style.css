@@ -37,7 +37,7 @@
 #menu-idle{
   padding-top: 9px;
 }
-#textarea-text{
+textarea#text{
   flex: 1;
   height: 30rem;
 }
@@ -51,4 +51,42 @@ body{
 .edittime{
   margin-top: -10px;
   margin-bottom: 5px;
+}
+.fixed{
+  position: fixed;
+  height: 50px;
+}
+.minfifty{
+  min-height: 50px;
+}
+@media (max-width: 991.98px){
+  hr{
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+@media (min-width: 992px) {
+  hr.displayOptionMobile{
+    display: none;
+  }
+}
+@media (min-height: 1000px) {
+  .text{
+    height: 715px;
+  }
+}
+@media (min-height: 900px) {
+  .text{
+    height: 615px;
+  }
+}
+@media (min-height: 800px) {
+  .text{
+    height: 515px;
+  }
+}
+@media (min-height: 700px) {
+  .text{
+    height: 415px;
+  }
 }

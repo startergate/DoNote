@@ -35,20 +35,18 @@
   </head>
   <body>
     <div class="container-fluid" id='padding-erase'>
-      <div id="bgi">
+      <div class="fixed" id="bgi" style="z-index: 2">
         <div class="col-md-3">
           <a href="./note.php" class='middle'><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
         </div>
-        <div class="col-md-9">
-          <div class="text-right">
-            <?php
-              echo "<a href='./user/confirm.php' class='btn btn-link' id='white'>".$_SESSION['nickname']."님, 환영합니다.</a><a class='btn btn-link' href='./function/logout.php' id='white'>로그아웃</a>";
-            ?>
-          </div>
+        <div class="col-md-9 text-right">
+          <?php
+            echo "<a href='./user/confirm.php' class='btn btn-link' id='white'>".$_SESSION['nickname']."님, 환영합니다.</a><a class='btn btn-link' href='./function/logout.php' id='white'>로그아웃</a>";
+          ?>
         </div>
       </div>
     </div>
-    <div class="container-fluid" id="padding-generate-top">
+    <div class="container-fluid" id="padding-generate-top" style="margin-top: 50px; z-index: 1">
         <div class="col-md-3">
           <ol class="nav" nav-stacked="" nav-pills="">
             <?php
@@ -59,17 +57,19 @@
             <li><a href="./write.php">페이지 추가하기</li></a>
           </ol>
         </div>
-      <div id="padding-generate-bottom"></div>
+        <hr class="displayOptionMobile" />
       <div class="col-md-9">
         <form action="./process/new.php" method="post">
           <div class="form-group">
             <textarea type='text' class='form-control' name='name' id='form-title' placeholder='제목을 작성하세요.'></textarea>
           </div>
           <div class="form-group form-text">
-            <textarea class='form-control' name='text' id='textarea-text' placeholder='내용을 작성하세요.'></textarea>
+            <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.'></textarea>
           </div>
           <input type="submit" name="confirm_write" value="새로운 내용을 저장!" class="btn btn-default btn-lg">
         </form>
+
+        <div id="padding-generate-bottom"></div>
       </div>
     </div>
 		<script src="/jquery/jquery-3.3.1.min.js"></script>

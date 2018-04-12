@@ -28,22 +28,20 @@
     <title>DoNote Beta</title>
   </head>
   <body id="bge">
-    <div class="covra">
-      <div class="container">
-        <div id=login>로그인</div>
+    <div class="covraLogin">
+      <div id=login>로그인</div>
+      <br />
+      <div id=lotext>
         <br />
-        <div id=lotext>
+        <h3><strong>DoNote</strong></h3>
+        <br />
+        <form id='form' action="./function/process_log.php" method="post">
+          <input type="text" class="form-control" name="id" placeholder="아이디">
+          <input type="password" class="form-control" name="pw" placeholder="비밀번호">
           <br />
-          <h3><strong>DoNote</strong></h3>
-          <br />
-          <form id='form' action="./function/process_log.php" method="post">
-            <input type="text" class="form-control" name="id" placeholder="아이디">
-            <input type="password" class="form-control" name="pw" placeholder="비밀번호">
-            <br />
-            <input type="submit" name="confirm_login" class="btn btn-light" value='로그인'>
-            <a href="./register.php" class="btn btn-light">회원가입</a>
-          </form>
-        </div>
+          <input type="submit" name="confirm_login" class="btn btn-light" value='로그인'>
+          <a href="./register.php" class="btn btn-light">회원가입</a>
+        </form>
       </div>
     </div>
     <script src="/jquery/jquery-3.3.1.min.js"></script>

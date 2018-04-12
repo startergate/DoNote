@@ -41,7 +41,7 @@
   </head>
   <body>
     <div class="container-fluid" id='padding-erase'>
-      <div id="bgi">
+      <div class="fixed" id="bgi" style="z-index: 2">
         <div class="col-md-3">
           <a href="../note.php" class='middle'><img src="/static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
         </div>
@@ -54,7 +54,7 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid" id="padding-generate-top">
+    <div class="container-fluid" id="padding-generate-top" style="margin-top: 50px; z-index: 1">
         <div class="col-md-3">
           <ol class="nav" nav-stacked="" nav-pills="">
             <?php

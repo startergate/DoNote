@@ -48,13 +48,15 @@
 .cover-image {
   min-height: 500px;
 }
-.covra {
-  margin-top: 7%;
-  margin-left: 25px;
+.covraLogin {
+  position: absolute;
+  margin-top: 20%;
+  margin-left: 40px;
   width: 50%;
 }
-.covra2 {
-  margin-top: 7%;
+.covraRegister {
+  position: absolute;
+  margin-top: 15%;
   margin-left: 40px;
   width: 50%;
 }

@@ -28,14 +28,14 @@
     <meta charset="utf-8">
     <title>DoNote Beta</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="./css/style.css?v=5">
+  	<link rel="stylesheet" type="text/css" href="./css/style.css?v=6">
     <link rel="stylesheet" type="text/css" href="./css/bg_style.css?v=1">
   	<link rel="stylesheet" type="text/css" href="./css/master.css">
   	<link rel="stylesheet" type="text/css" href="/Normalize.css">
   </head>
   <body>
     <div class="container-fluid" id='padding-erase'>
-      <div id="bgi">
+      <div class="fixed" id="bgi" style="z-index: 2">
         <div class="col-md-3">
           <a href="./note.php" class='middle'><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
         </div>
@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid" id="padding-generate-top">
+    <div class="container-fluid" id="padding-generate-top" style="margin-top: 50px; z-index: 1">
       <div class="col-md-3">
         <ol class="nav" nav-stacked="" nav-pills="">
           <?php
@@ -59,7 +59,7 @@
           <li><a href="./write.php">페이지 추가하기</li></a>
         </ol>
       </div>
-      <div id="padding-generate-bottom"></div>
+      <hr class="displayOptionMobile" />
       <div class="col-md-9">
         <?php
           if (empty($_GET['id'])) {
@@ -77,7 +77,7 @@
         ?>
           <div class="form-group">
             <?php
-              echo "<textarea type='text' class='form-control' name='name' id='form-title' placeholder='제목을 작성하세요.'>".$name."</textarea>";
+              echo "<textarea type='text' class='form-control' name='name' id='title' placeholder='제목을 작성하세요.'>".$name."</textarea>";
             ?>
           </div>
           <div class="text-right edittime">
@@ -87,7 +87,7 @@
           </div>
           <div class="form-group form-text">
             <?php
-              echo "<textarea class='form-control' name='text' id='textarea-text' placeholder='내용을 작성하세요.'>".$text."</textarea>";
+              echo "<textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.'>".$text."</textarea>";
             ?>
           </div>
           <input type="submit" name="confirm_edit" value="수정한 내용을 저장!" class="btn btn-default btn-lg">
@@ -96,6 +96,7 @@
           ?>
         </form>
       </div>
+      <div id="padding-generate-bottom"></div>
     </div>
     <script src="/jquery/jquery-3.3.1.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>

@@ -28,7 +28,7 @@
     <title>DoNote Beta</title>
   </head>
   <body id="bge">
-    <div class="covra2">
+    <div class="covraRegister">
       <div id=login>회원가입</div>
       <br />
       <div id=lotext>
