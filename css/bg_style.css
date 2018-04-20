@@ -14,3 +14,13 @@
   min-width: 100%;
   min-height: 50px;
 }
+@media (max-width: 991.98px) {
+  #bgiOptional{
+    background-color: #3d414d;
+    background-size: auto;
+    background-repeat:no-repeat;
+    background-position: right top;
+    min-width: 100%;
+    min-height: 50px;
+  }
+}

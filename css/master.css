@@ -14,3 +14,19 @@ h2{
   font-family: Noto Sans KR;
   font-style: bold;
 }
+hr{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#padding-erase{
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+#middle{
+  vertical-align: middle;
+}
+#text-right{
+  text-align: right;
+}

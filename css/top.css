@@ -1,0 +1,15 @@
+.fixed{
+  position: fixed;
+  height: 50px;
+}
+#logo{
+  height:50px;
+  margin-left: 0px;
+  outline-offset: 30px;
+}
+.layer1{
+   z-index: 2;
+}
+.layer2{
+  margin-top: 50px; z-index: 1
+}

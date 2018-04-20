@@ -48,15 +48,54 @@
 .cover-image {
   min-height: 500px;
 }
-.covraLogin {
+.covra{
   position: absolute;
-  margin-top: 20%;
   margin-left: 40px;
   width: 50%;
 }
-.covraRegister {
-  position: absolute;
-  margin-top: 15%;
-  margin-left: 40px;
-  width: 50%;
+#white{
+  font-size: 40px;
+  color: white;
+}
+@media (max-height: 550px) {
+  .covra{
+    display: none;
+  }
+}
+@media (min-height: 550px) {
+  .covraLogin {
+    margin-top: 7%;
+  }
+  .unable{
+    display: none;
+  }
+  .covraRegister {
+    margin-top: 7%;
+  }
+}
+@media (min-height: 600px) {
+  .covraLogin {
+    margin-top: 10%;
+  }
+  .covraRegister {
+    margin-top: 10%;
+  }
+}
+@media (min-height: 700px) {
+  .covraLogin {
+    margin-top: 200px;
+  }
+  .covraRegister {
+    margin-top: 15%;
+  }
+}
+@media (min-height: 800px) {
+  .covraLogin {
+    margin-top: 250px;
+  }
+}
+@media (min-height: 900px) {
+  .covraLogin {
+    margin-top: 300px;
+  }
 }

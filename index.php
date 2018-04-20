@@ -34,6 +34,28 @@
         </p>
         <div id="control">
           <p class='text-center'>
+            <?php
+            session_start();
+            if ($empty = empty($_SESSION['pid'])) {
+              echo $empty;
+              echo "<div id='white'>".$_SESSION['nickname']."님, 돌아오신 것을 환영합니다.</div>";
+            }
+            if (!empty($_COOKIE['donoteAutorizeRikka'])) {
+            	require('./config/config.php');
+            	require('./lib/db.php');
+            	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
+              $sql = "SELECT pw,nickname,pid FROM donote_beta_userinfo WHERE autorize_tag = '".$_COOKIE["donoteAutorizeRikka"]."'";
+							$result = mysqli_query($conn, $sql);
+							$row = mysqli_fetch_assoc($result);
+              $pw_hash = hash('sha256', $row['pw']);
+              $_COOKIE['donoteAutorizeYuuta']."<br>".$pw_hash;
+              if ($pw_hash === $_COOKIE['donoteAutorizeYuuta']) {
+                $_SESSION['nickname'] = $row['nickname'];
+                $_SESSION['pid'] = $row['pid'];
+                header("Location: ./note.php");
+              }
+            }
+            ?>
             <a href="./login.php" class="btn btn-default btn-lg">로그인</a>
           </p>
         </div>

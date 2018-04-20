@@ -9,24 +9,13 @@
 #name{
   padding:30px;
 }
-#text-right{
-  text-align: right;
-}
 #white{
   font-size: 20px;
   color: white;
 }
-#middle{
-  vertical-align: middle;
-}
-#padding-erase{
-  padding-left: 0px;
-  padding-right: 0px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-#padding-generate-top{
-  padding-top:20px;
+#black{
+  font-size: 15px;
+  color: #3d414d;
 }
 #padding-generate-bottom{
   padding-bottom: 20px;
@@ -36,10 +25,6 @@
 }
 #menu-idle{
   padding-top: 9px;
-}
-textarea#text{
-  flex: 1;
-  height: 30rem;
 }
 .form-text{
   display: flex;
@@ -52,41 +37,61 @@ body{
   margin-top: -10px;
   margin-bottom: 5px;
 }
-.fixed{
-  position: fixed;
-  height: 50px;
-}
 .minfifty{
   min-height: 50px;
+}
+textarea#text{
+  flex: 1;
 }
 @media (max-width: 991.98px){
   hr{
     margin-left: 15px;
     margin-right: 15px;
   }
-}
-@media (min-width: 992px) {
-  hr.displayOptionMobile{
+  .displayOptionWide{
     display: none;
   }
-}
-@media (min-height: 1000px) {
-  .text{
-    height: 715px;
+  #padding-generate-top{
+    padding-top:60px;
   }
 }
-@media (min-height: 900px) {
-  .text{
-    height: 615px;
+@media (min-width: 992px) {
+  .displayOptionMobile{
+    display: none;
   }
-}
-@media (min-height: 800px) {
-  .text{
-    height: 515px;
+  #padding-generate-top{
+    padding-top:10px;
   }
 }
 @media (min-height: 700px) {
-  .text{
+  #text{
     height: 415px;
+  }
+  #delete{
+    height: 555px;
+  }
+}
+@media (min-height: 800px) {
+  #text{
+    height: 515px;
+  }
+  #delete{
+    height: 655px;
+  }
+}
+@media (min-height: 900px) {
+  #text{
+    height: 615px;
+  }
+  #delete{
+    height: 755px;
+  }
+}
+@media (min-height: 1000px) {
+  #text{
+    height: 75px;
+  }
+  #delete{
+    height: 855px;
   }
 }

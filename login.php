@@ -28,7 +28,8 @@
     <title>DoNote Beta</title>
   </head>
   <body id="bge">
-    <div class="covraLogin">
+    <h1 class="unable text-center" id="white">지원되지 않습니다!</h1>
+    <div class="covra covraLogin">
       <div id=login>로그인</div>
       <br />
       <div id=lotext>
@@ -38,6 +39,8 @@
         <form id='form' action="./function/process_log.php" method="post">
           <input type="text" class="form-control" name="id" placeholder="아이디">
           <input type="password" class="form-control" name="pw" placeholder="비밀번호">
+          <input type="checkbox" name="auto"> 자동 로그인
+          <br />
           <br />
           <input type="submit" name="confirm_login" class="btn btn-light" value='로그인'>
           <a href="./register.php" class="btn btn-light">회원가입</a>

@@ -28,7 +28,8 @@
     <title>DoNote Beta</title>
   </head>
   <body id="bge">
-    <div class="covraRegister">
+    <h1 class="unable text-center" id="white">지원되지 않습니다!</h1>
+    <div class="covra covraRegister">
       <div id=login>회원가입</div>
       <br />
       <div id=lotext>
@@ -36,10 +37,10 @@
         <h3><strong>DoNote</strong></h3>
         <br />
         <form id='form' action="./function/process_reg.php" method="post">
-          <input type="text" class="form-control" name="id" id="form-title" placeholder="아이디">
-          <input type="password" class="form-control" name="pw" id="form-title" placeholder="비밀번호">
-          <input type="password" class="form-control" name="pwr" id="form-title" placeholder="비밀번호 확인">
-          <input type="text" class="form-control" name="nickname" id="form-title" placeholder="닉네임">
+          <input type="text" class="form-control" name="id" placeholder="아이디">
+          <input type="password" class="form-control" name="pw" placeholder="비밀번호">
+          <input type="password" class="form-control" name="pwr" placeholder="비밀번호 확인">
+          <input type="text" class="form-control" name="nickname" placeholder="닉네임">
           <br />
           <input type="submit" name="confirm_register" class="btn btn-light" value='회원가입'>
           <a href="./login.php" class="btn btn-light">로그인</a>

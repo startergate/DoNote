@@ -28,7 +28,7 @@
             $sql = "CREATE TABLE $udb (name LONGTEXT NOT NULL,text LONGTEXT NOT NULL,edittime DATETIME NOT NULL,id INT(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY (id))";
             $result = mysqli_query($conn, $sql);
 
-            $sql = "INSERT INTO $udb (name,text,edittime) VALUES ('안녕하세요. DoNote를 이용해주셔서 감사합니다.','이 웹앱은 Beta 상태입니다. 언제든지 초기화될 수 있습니다.',now())";
+            $sql = "INSERT INTO $udb (name,text,edittime) VALUES ('DoNote를 이용해주셔서 감사합니다.','이 웹앱은 Beta 상태입니다. 언제든지 초기화될 수 있습니다.',now())";
             $result = mysqli_query($conn, $sql);
 
             echo "<script>window.alert('회원가입이 완료되었습니다. 로그인 해주세요.');</script>";
