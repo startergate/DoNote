@@ -1,10 +1,9 @@
 .container{
   padding-bottom: 20px;
 }
-#logo{
-  height:50px;
-  margin-left: 0px;
-  outline-offset: 30px;
+#profile{
+  height: 40px;
+  margin-top: 5px;
 }
 #name{
   padding:30px;
@@ -89,7 +88,7 @@ textarea#text{
 }
 @media (min-height: 1000px) {
   #text{
-    height: 75px;
+    height: 715px;
   }
   #delete{
     height: 855px;

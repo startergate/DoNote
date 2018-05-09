@@ -43,7 +43,7 @@
           <input type="text" class="form-control" name="nickname" placeholder="닉네임">
           <br />
           <input type="submit" name="confirm_register" class="btn btn-light" value='회원가입'>
-          <a href="./login.php" class="btn btn-light">로그인</a>
+          <a href="./login.html" class="btn btn-light">로그인</a>
         </form>
       </div>
     </div>

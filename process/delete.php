@@ -11,8 +11,8 @@
       echo "<script>window.location=('../note.php');</script>";
       exit;
     }
-    $udb = 'donote_beta_usernote_'.$pid;
-    $sql = "DELETE FROM $udb WHERE id='$id';";
+    $udb = 'notedb_'.$pid;
+    $sql = "DELETE FROM $udb WHERE id='$id'";
     $result = mysqli_query($conn, $sql);
     $_SESSION['confirm_delete'] = 'confirm';
     header('Location: ../complete/delete.php?id='.$id);

@@ -83,7 +83,7 @@
 }
 @media (min-height: 700px) {
   .covraLogin {
-    margin-top: 200px;
+    margin-top: 150px;
   }
   .covraRegister {
     margin-top: 15%;
@@ -91,11 +91,11 @@
 }
 @media (min-height: 800px) {
   .covraLogin {
-    margin-top: 250px;
+    margin-top: 200px;
   }
 }
 @media (min-height: 900px) {
   .covraLogin {
-    margin-top: 300px;
+    margin-top: 250px;
   }
 }

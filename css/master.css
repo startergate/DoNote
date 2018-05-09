@@ -30,3 +30,7 @@ hr{
 #text-right{
   text-align: right;
 }
+.full-erase{
+  padding: 0px;
+  border: 0px;
+}

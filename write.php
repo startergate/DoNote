@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <?php
-  require("./config/config.php");
-  require("./lib/db.php");
   require("./lib/logchk.php");
-	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
-  $result = mysqli_query($conn, "SELECT * FROM donote_beta_usernote_".$_SESSION['pid']);
+  require("./config/config.php");
+	require("./config/config_aco.php");
+  require("./lib/db.php");
+  $conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);  //Note Database
+  $conn_n = db_init($confign["host"],$confign["duser"],$confign["dpw"],$confign["dname"]);  //User Database
+  //Select Note Database
+  $sql = "SELECT profile_img FROM userdata WHERE pid LIKE '".$_SESSION['pid']."'";
+  $result = mysqli_query($conn_n, $sql);
+  $row = mysqli_fetch_assoc($result);
+  if (empty($row['profile_img'])) {
+    $profileImg = "/static/img/common/donotepfo.png";
+  } else {
+    $profileImg = $row['profile_img'];
+  }
+  //Select Profile Image
 ?>
 <html lang="ko">
   <head>
@@ -24,12 +35,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon/donote/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/static/img/favicon/donote/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon/donote/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="./manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/static/img/favicon/donote/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <meta charset="utf-8">
-    <title>DoNote Beta</title>
+    <title>새 노트 | DoNote Beta</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="stylesheet" type="text/css" href="./css/bg_style.css?v=1">
@@ -41,18 +52,18 @@
     <div class="container-fluid" id='padding-erase'>
       <div class="fixed layer1" id="bgi">
         <div class="col-md-3">
-          <a href="./note.php" class='middle'><img src="/static/img/common/donotevec.png" href="./note.php" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
+          <a href="./note.php" class='middle'><img src="/static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
         </div>
         <div class="col-md-9 text-right" id="bgiOptional">
           <div class="btn-group dropdown">
-            <button class="btn btn-link dropdown-toggle" type="button" id="white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <?php echo $_SESSION['nickname']?>
+            <button class="full-erase btn btn-link dropdown-toggle" type="button" id="white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src='<?php echo $profileImg."' alt='".$_SESSION['nickname']?>' id='profile' class='img-circle' />
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
               <li><a class="dropdown-item" id="black" href="./user/confirm.php"><strong>정보 수정</strong></a></li>
               <li><a class="dropdown-item" id="black" href="./function/logout.php"><strong>로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
-              <li><p class="dropdown-item text-center" id="black" href="#"><strong><?php echo $_SESSION['nickname']."으로 로그인 됨."?></strong></p></li>
+              <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다.</strong></p></li>
             </ul>
           </div>
         </div>
@@ -62,6 +73,7 @@
         <div class="col-md-2">
           <ol class="nav" nav-stacked="" nav-pills="">
             <?php
+              $result = mysqli_query($conn, "SELECT * FROM notedb_".$_SESSION['pid']);
               while ($row = mysqli_fetch_assoc($result)) {
                 echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
               }
@@ -78,7 +90,7 @@
           <div class="form-group form-text">
             <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.'></textarea>
           </div>
-          <input type="submit" name="confirm_write" value="새로운 내용을 저장!" class="btn btn-default btn-lg">
+          <input type="submit" name="confirm_write" value="새로운 내용을 저장!" class="btn btn-default">
         </form>
       </div>
       <div id="padding-generate-bottom"></div>

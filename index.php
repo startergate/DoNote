@@ -14,7 +14,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon/donote/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/static/img/favicon/donote/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon/donote/favicon-16x16.png">
-    <link rel="manifest" href="/donote/manifest.json">
+    <link rel="manifest" href="./manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/static/img/favicon/donote/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -35,28 +35,29 @@
         <div id="control">
           <p class='text-center'>
             <?php
-            session_start();
-            if ($empty = empty($_SESSION['pid'])) {
-              echo $empty;
-              echo "<div id='white'>".$_SESSION['nickname']."님, 돌아오신 것을 환영합니다.</div>";
-            }
-            if (!empty($_COOKIE['donoteAutorizeRikka'])) {
-            	require('./config/config.php');
-            	require('./lib/db.php');
-            	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
-              $sql = "SELECT pw,nickname,pid FROM donote_beta_userinfo WHERE autorize_tag = '".$_COOKIE["donoteAutorizeRikka"]."'";
-							$result = mysqli_query($conn, $sql);
-							$row = mysqli_fetch_assoc($result);
-              $pw_hash = hash('sha256', $row['pw']);
-              $_COOKIE['donoteAutorizeYuuta']."<br>".$pw_hash;
-              if ($pw_hash === $_COOKIE['donoteAutorizeYuuta']) {
-                $_SESSION['nickname'] = $row['nickname'];
-                $_SESSION['pid'] = $row['pid'];
-                header("Location: ./note.php");
+              session_start();
+              if (!empty($_SESSION['pid'])) {
+                echo "<div id='white'>".$_SESSION['nickname']."님, 돌아오신 것을 환영합니다.</div>";
+                echo "<a href='./function/login_pass.php' class='btn btn-default btn-lg'>로그인</a>";
+              } else {
+                echo "<a href='./login.html' class='btn btn-default btn-lg'>로그인</a>";
               }
-            }
+              if (!empty($_COOKIE['donoteAutorizeRikka'])) {
+            	   require('./config/config_aco.php');
+            	   require('./lib/db.php');
+            	   $conn_n = db_init($confign["host"],$confign["duser"],$confign["dpw"],$confign["dname"]);
+                 $sql = "SELECT pw,nickname,pid FROM userdata WHERE autorize_tag = '".$_COOKIE["donoteAutorizeRikka"]."'";
+							   $result = mysqli_query($conn_n, $sql);
+							   $row = mysqli_fetch_assoc($result);
+                 $pw_hash = hash('sha256', $row['pw']);
+                 $_COOKIE['donoteAutorizeYuuta']."<br>".$pw_hash;
+                 if ($pw_hash === $_COOKIE['donoteAutorizeYuuta']) {
+                   $_SESSION['nickname'] = $row['nickname'];
+                   $_SESSION['pid'] = $row['pid'];
+                   header("Location: ./note.php");
+                 }
+              }
             ?>
-            <a href="./login.php" class="btn btn-default btn-lg">로그인</a>
           </p>
         </div>
       </div>

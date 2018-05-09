@@ -45,7 +45,7 @@
   	<link rel="stylesheet" type="text/css" href="../css/top.css">
   	<link rel="stylesheet" type="text/css" href="../css/master.css">
   	<link rel="stylesheet" type="text/css" href="/Normalize.css">
-    <title>기본 정보 수정 | DoNote Beta</title>
+    <title>비밀번호 수정 | DoNote Beta</title>
   </head>
   <body>
     <div class="container-fluid" id='padding-erase'>
@@ -72,19 +72,22 @@
     <div class="container-fluid layer2" id="padding-generate-top" style="margin-top: 50px; z-index: 1">
       <div class="col-md-2">
         <ol class="nav" nav-stacked="" nav-pills="">
-          <li><a href="./edit_info.php">기본정보 변경</li></a>
-          <li><a href="./edit_pw.php">비밀번호 변경</li></a>
+          <li><a href="../edit_info.php">기본정보 변경</li></a>
+          <li><a href="../edit_pw.php">비밀번호 변경</li></a>
           <li><a href="../function/logout.php">로그아웃</li></a>
           <li><a href="../note.php">노트로 돌아가기</li></a>
         </ol>
       </div>
       <hr class="displayOptionMobile" />
       <div class="col-md-10">
-        <form action="../function/edit_user_info.php" method="post">
+        <form action="../function/edit_user_pw.php" method="post">
           <div class="form-group">
-            <input type='text' class='form-control' name='nickname' placeholder='닉네임(비워두시면 변경되지 않습니다.)' />
+            <input type='password' class='form-control' name='pw' placeholder='비밀번호' />
           </div>
-          <input type="submit" name="confirm_user_edit" value="수정한 내용을 저장!" class="btn btn-default btn-lg">
+          <div class="form-group">
+            <input type='password' class='form-control' name='confirm' placeholder='비밀번호 확인' />
+          </div>
+          <input type="submit" name="confirm_user_edit" value="비밀번호 수정!" class="btn btn-default btn-lg">
         </form>
       </div>
       <div id="padding-generate-bottom"></div>

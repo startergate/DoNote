@@ -1,11 +1,11 @@
 {
  "short_name": "DoNote",
- "name": "DoNote Ahlpa",
+ "name": "DoNote Beta",
  "start_url": "\/donote/",
  "theme_color": "#3d414d",
  "background_color": "#fff",
  "display": "standalone",
- "description": "STARTERGATE IS DEVELOPING!!!",
+ "description": "DoNote. The Simpliest Note in the World.",
  "icons": [
   {
    "src": "\/static/img/favicon/donote/android-icon-36x36.png",

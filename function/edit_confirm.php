@@ -1,17 +1,16 @@
 <?php
   require("../lib/logchk2.php");
-	require('../config/config.php');
+	require('../config/config_aco.php');
 	require('../lib/db.php');
   if ($_POST['confirm_user'] === '확인') {
     if (!empty($_POST['pw'])) {
       $pw_temp = $_POST['pw'];
       $password = hash("sha256",$pw_temp);
       $pid = $_SESSION['pid'];
-    	$conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);
-    	$result = mysqli_query($conn, "SELECT * FROM donote_beta_userinfo");
+    	$conn_n = db_init($confign["host"],$confign["duser"],$confign["dpw"],$confign["dname"]);
 
-    	$sql = "SELECT pw FROM donote_beta_userinfo WHERE pid LIKE '$pid'";	//user data select
-      $result = mysqli_query($conn, $sql);
+    	$sql = "SELECT pw FROM userdata WHERE pid LIKE '$pid'";	//user data select
+      $result = mysqli_query($conn_n, $sql);
     	$row = mysqli_fetch_assoc($result);
 
       $hash = $row['pw'];
