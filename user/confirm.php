@@ -51,8 +51,8 @@
   <body>
     <div class="container-fluid" id='padding-erase'>
       <div class="fixed layer1" id="bgi" style="z-index: 2">
-        <div class="col-md-3">
-          <a href="../note.php" class='middle'><img src="/static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
+        <div class="col-md-3" style="font-size: 30px">
+          <a href="../note.php" id='white'><img src="/static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='DoNote' style='margin-top: -5px' \>사용자 정보 수정</a>
         </div>
         <div class="col-md-9 text-right" id="bgiOptional">
           <div class="btn-group dropdown">
@@ -83,11 +83,12 @@
       </div>
       <hr class="displayOptionMobile" />
       <div class="col-md-10">
-        <form action="../function/edit_confirm.php" method="post">
+        <form action="../function/edit_confirm.php" method="post" class="text-center">
           <div class="form-group">
-            <input type='password' class='form-control' name='pw' id='form-title' placeholder='비밀번호 확인'>
+            <label for="pw"><h2>비밀번호 확인이 필요합니다.</h2></label>
+            <input type='password' class='form-control' name='pw' id='form-title' placeholder='비밀번호 확인' style="width: 50%; margin-left: 25%" />
           </div>
-          <input type="submit" name="confirm_user" value="확인" class="btn btn-default btn-lg">
+          <input type="submit" name="confirm_user" value="확인" class="btn btn-default btn-lg" />
         </form>
       </div>
       <div id="padding-generate-bottom"></div>
