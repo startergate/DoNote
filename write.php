@@ -20,24 +20,24 @@
 <html lang="ko">
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="shortcut icon" href="/static/img/favicon/donote/favicon-16x16.png" type="image/x-icon">
-    <link rel="icon" href="/static/img/favicon/donote/favicon-16x16.png" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="57x57" href="/static/img/favicon/donote/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/static/img/favicon/donote/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/static/img/favicon/donote/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/static/img/favicon/donote/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/static/img/favicon/donote/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/static/img/favicon/donote/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/static/img/favicon/donote/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/static/img/favicon/donote/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/favicon/donote/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/static/img/favicon/donote/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon/donote/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/static/img/favicon/donote/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon/donote/favicon-16x16.png">
+    <link rel="shortcut icon" href="./static/img/favicon/favicon-16x16.png" type="image/x-icon">
+    <link rel="icon" href="./static/img/favicon/favicon-16x16.png" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="./static/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./static/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./static/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./static/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./static/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./static/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./static/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./static/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./static/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="./static/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./static/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./static/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./static/img/favicon/favicon-16x16.png">
     <link rel="manifest" href="./manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/static/img/favicon/donote/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="./static/img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <meta charset="utf-8">
     <title>새 노트 | DoNote Beta</title>
@@ -46,7 +46,7 @@
     <link rel="stylesheet" type="text/css" href="./css/bg_style.css?v=1">
   	<link rel="stylesheet" type="text/css" href="./css/top.css">
     <link rel="stylesheet" type="text/css" href="./css/master.css">
-  	<link rel="stylesheet" type="text/css" href="/Normalize.css">
+  	<link rel="stylesheet" type="text/css" href="./css/Normalize.css">
   </head>
   <body>
     <div class="container-fluid" id='padding-erase'>
@@ -64,25 +64,25 @@
               <li><a class="dropdown-item" id="black" href="./share/list.php"><strong>공유한 문서 보기</strong></a></li>
               <li><a class="dropdown-item" id="black" href="./function/logout.php"><strong>로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
-              <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
+              <i><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
     <div class="container-fluid layer2" id="padding-generate-top" style="margin-top: 50px; z-index: 1">
-        <div class="col-md-2">
-          <ol class="nav" nav-stacked="" nav-pills="">
-            <?php
-              $result = mysqli_query($conn, "SELECT * FROM notedb_".$_SESSION['pid']);
-              while ($row = mysqli_fetch_assoc($result)) {
-                echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
-              }
-            ?>
-            <li><a href="./write.php">페이지 추가하기</li></a>
-          </ol>
-        </div>
-        <hr class="displayOptionMobile" />
+      <div class="col-md-2">
+        <ol class="nav" nav-stacked="" nav-pills="">
+          <?php
+            $result = mysqli_query($conn, "SELECT * FROM notedb_".$_SESSION['pid']);
+            while ($row = mysqli_fetch_assoc($result)) {
+              echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
+            }
+          ?>
+          <li><a href="./write.php">페이지 추가하기</li></a>
+        </ol>
+      </div>
+      <hr class="displayOptionMobile" />
       <div class="col-md-10">
         <form action="./process/new.php" method="post">
           <div class="form-group">
@@ -96,7 +96,7 @@
       </div>
       <div id="padding-generate-bottom"></div>
     </div>
-		<script src="/jquery/jquery-3.3.1.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
+		<script src="./lib/jquery/jquery-3.3.1.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
