@@ -46,6 +46,10 @@ body{
 textarea#text{
   flex: 1;
 }
+hr.hrControlNote{
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
 @media (max-width: 991.98px){
   hr{
     margin-left: 15px;

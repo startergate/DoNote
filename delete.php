@@ -24,7 +24,7 @@
   $result = mysqli_query($conn_n, $sql);
   $row = mysqli_fetch_assoc($result);
   if (empty($row['profile_img'])) {
-    $profileImg = "/static/img/common/donotepfo.png";
+    $profileImg = "./static/img/common/donotepfo.png";
   } else {
     $profileImg = $row['profile_img'];
   }
@@ -97,7 +97,7 @@
     <div class="container-fluid" id='padding-erase'>
       <div class="fixed layer1" id="bgi" style="z-index: 2">
         <div class="col-md-3">
-          <a href="./note.php" ><img src="./static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
+          <a href="./note.php" ><img src="../static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
         </div>
         <div class="col-md-9 text-right" id="bgiOptional">
           <div class="btn-group dropdown">
