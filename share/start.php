@@ -128,8 +128,11 @@
           <div class="deleteMiddle">
             <h1><?php echo $name;?></h1>
             <h2>공유를 시작합니다.</h2>
-            <br />
             <form class='margin_42_gen' action='./function/start.php?id=<?php echo $id;?>' method='post'>
+              <input type="checkbox" name="link"> 링크를 가진 모든 사람에게 공유
+              <input type="checkbox" name="edit"> 편집 허용
+              <br />
+              <br />
               <input type='submit' name='confirm_start' class='btn btn-success btn-lg' value='확인!'>
               <a href='./note.php?id=<?php echo $id;?>' class='btn btn-danger btn-lg'>취소!</a>
             </form>

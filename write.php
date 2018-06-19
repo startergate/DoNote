@@ -2,18 +2,18 @@
 <?php
   require("./lib/logchk.php");
   require("./config/config.php");
-	require("./config/config_aco.php");
+    require("./config/config_aco.php");
   require("./lib/db.php");
-  $conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);  //Note Database
-  $conn_n = db_init($confign["host"],$confign["duser"],$confign["dpw"],$confign["dname"]);  //User Database
+  $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
+  $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
   //Select Note Database
   $sql = "SELECT profile_img FROM userdata WHERE pid LIKE '".$_SESSION['pid']."'";
   $result = mysqli_query($conn_n, $sql);
   $row = mysqli_fetch_assoc($result);
   if (empty($row['profile_img'])) {
-    $profileImg = "./static/img/common/donotepfo.png";
+      $profileImg = "./static/img/common/donotepfo.png";
   } else {
-    $profileImg = $row['profile_img'];
+      $profileImg = $row['profile_img'];
   }
   //Select Profile Image
 ?>
@@ -41,7 +41,7 @@
     <meta name="theme-color" content="#ffffff">
     <meta charset="utf-8">
     <title>새 노트 | DoNote Beta</title>
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="stylesheet" type="text/css" href="./css/bg_style.css?v=1">
   	<link rel="stylesheet" type="text/css" href="./css/top.css">
@@ -64,7 +64,7 @@
               <li><a class="dropdown-item" id="black" href="./share/list.php"><strong>공유한 문서 보기</strong></a></li>
               <li><a class="dropdown-item" id="black" href="./function/logout.php"><strong>로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
-              <i><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
+              <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
             </ul>
           </div>
         </div>
@@ -76,7 +76,7 @@
           <?php
             $result = mysqli_query($conn, "SELECT * FROM notedb_".$_SESSION['pid']);
             while ($row = mysqli_fetch_assoc($result)) {
-              echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
+                echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a><hr class="hrControlNote">';
             }
           ?>
           <li><a href="./write.php">페이지 추가하기</li></a>
@@ -96,7 +96,7 @@
       </div>
       <div id="padding-generate-bottom"></div>
     </div>
-		<script src="./lib/jquery/jquery-3.3.1.min.js"></script>
+		<script src="./lib/jquery-3.3.1.min.js"></script>
     <script src="./bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>

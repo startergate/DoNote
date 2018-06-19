@@ -37,7 +37,7 @@
                   $result = mysqli_query($conn, $sql);
 
                   $shareTable = 'startergatedonotedefaultregister_'.$pid;
-                  $sql = "INSERT INTO $sdb (shareTable,shareID,shareTF) VALUES ('".$shareTable."','이 웹앱은 Beta 상태입니다. 정상적으로 작동되지 않을 수 있습니다.',now(),'startergatedonotedefaultregister')";
+                  $sql = "INSERT INTO $sdb (shareTable,shareTF) VALUES ('".$shareTable."',0)";
                   $result = mysqli_query($conn, $sql);
 
                   echo "<script>window.alert('회원가입이 완료되었습니다. 로그인 해주세요.');</script>";

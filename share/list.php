@@ -91,11 +91,11 @@
             } else {
                 do {
                     $sMd = $row['shareMod'];
-                    if ($sMd == '0') {
+                    if ($sMd == 0) {
                         $shareStat = '링크를 가진 모든 유저에게 공유';
-                    } elseif ($sMd == '1') {
+                    } elseif ($sMd == 1) {
                         $shareStat = '지정된 유저에게만 공유';
-                    } elseif ($sMd == '2') {
+                    } elseif ($sMd == 2) {
                         $shareStat = '공유 받음';
                     } else {
                         continue;
