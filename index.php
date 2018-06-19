@@ -40,25 +40,26 @@
             <?php
               session_start();
               if (!empty($_SESSION['pid'])) {
-                echo "<div id='white'>".$_SESSION['nickname']."님, 돌아오신 것을 환영합니다.</div>";
-                echo "<a href='./function/login_pass.php' class='btn btn-default btn-lg'>로그인</a>";
+                  echo "<div id='white'>".$_SESSION['nickname']."님, 돌아오신 것을 환영합니다.</div>";
+                  echo "<script type=\"text/javascript\">setTimeout(\"location.href = './note.php'\", 5000);</script>";
+                  echo "<div style='color:white'>곧 리다이렉트됩니다.</div>";
               } else {
-                echo "<a href='./login.html' class='btn btn-default btn-lg'>로그인</a>";
+                  echo "<a href='./login.html' class='btn btn-default btn-lg'>로그인</a>";
               }
               if (!empty($_COOKIE['donoteAutorizeRikka'])) {
-            	   require('./config/config_aco.php');
-            	   require('./lib/db.php');
-            	   $conn_n = db_init($confign["host"],$confign["duser"],$confign["dpw"],$confign["dname"]);
-                 $sql = "SELECT pw,nickname,pid FROM userdata WHERE autorize_tag = '".$_COOKIE["donoteAutorizeRikka"]."'";
-							   $result = mysqli_query($conn_n, $sql);
-							   $row = mysqli_fetch_assoc($result);
-                 $pw_hash = hash('sha256', $row['pw']);
-                 $_COOKIE['donoteAutorizeYuuta']."<br>".$pw_hash;
-                 if ($pw_hash === $_COOKIE['donoteAutorizeYuuta']) {
-                   $_SESSION['nickname'] = $row['nickname'];
-                   $_SESSION['pid'] = $row['pid'];
-                   header("Location: ./note.php");
-                 }
+                  require('./config/config_aco.php');
+                  require('./lib/db.php');
+                  $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
+                  $sql = "SELECT pw,nickname,pid FROM userdata WHERE autorize_tag = '".$_COOKIE["donoteAutorizeRikka"]."'";
+                  $result = mysqli_query($conn_n, $sql);
+                  $row = mysqli_fetch_assoc($result);
+                  $pw_hash = hash('sha256', $row['pw']);
+                  $_COOKIE['donoteAutorizeYuuta']."<br>".$pw_hash;
+                  if ($pw_hash === $_COOKIE['donoteAutorizeYuuta']) {
+                      $_SESSION['nickname'] = $row['nickname'];
+                      $_SESSION['pid'] = $row['pid'];
+                      header("Location: ./note.php");
+                  }
               }
             ?>
           </p>

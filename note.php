@@ -112,11 +112,11 @@
             <?php
               if ($sTF) {
                   if ($sMod == 2) {
-                      echo "<a href='./share/add.php?id='".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</span></a>";
+                      echo "<a href='./share/add.php?id=".$id." class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</span></a>";
                   }
-                  echo "<a href='./share/stop.php?id='".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</span></a>";
+                  echo "<a href='./share/stop.php?id=".$id." class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</span></a>";
               } else {
-                  echo "<a href='./share/start.php?id='".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</span></a>";
+                  echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</span></a>";
               }
             ?>
           <div class="text-right edittime">최근 수정 일자: <?php echo $edittime?></div>
@@ -124,11 +124,11 @@
             <textarea type='text' class='form-control' name='name' id='title' placeholder='제목을 작성하세요.'><?php echo $name?></textarea>
           </div>
           <div class="form-group form-text">
-              <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.'><?php echo $text?></textarea>
+            <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.'><?php echo $text?></textarea>
           </div>
           <input type="submit" name="confirm_edit" value="저장" class="btn btn-default">
-          <a href='./delete.php?id=<?php echo $id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"> 삭제</a>
-          <a href='./share/start.php?id=<?php echo $id?>' class='btn btn-info'><span class="glyphicon glyphicon-link" aria-hidden="true"> 공유</span></a>
+          <a href='./delete.php?id=<?php echo $id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
+          <a href='./share/start.php?id=<?php echo $id?>' class='btn btn-info'><span class="glyphicon glyphicon-link" aria-hidden="true"></span> 공유</a>
         </form>
       </div>
       <div id="padding-generate-bottom"></div>

@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <?php
-  require("../lib/logchk.php");
-    require("../config/config.php");
-    require("../config/config_aco.php");
-    require("../lib/db.php");
-  if (empty($_GET['id'])) {
-      $id = 'startergatedonotedefaultregister';
-  } else {
-      $id = $_GET['id'];
-  }
+  require("../lib/logchk2.php");
+  require("../config/config.php");
+  require("../config/config_aco.php");
+  require("../lib/db.php");
   $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
   $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
-  //Select Note Database
+  $id = $_GET['id'];
+  $sqli = "SELECT name FROM notedb_".$_SESSION['pid']." WHERE id = '".$id."'";
+  $resulti = mysqli_query($conn, $sqli);
+  $row = mysqli_fetch_assoc($resulti);
+  $name = $row['name'];
+  $text = $row['text'];
 
   //Select Profile Image
   $sql = "SELECT profile_img FROM userdata WHERE pid LIKE '".$_SESSION['pid']."'";
   $result = mysqli_query($conn_n, $sql);
   $row = mysqli_fetch_assoc($result);
   if (empty($row['profile_img'])) {
-      $profileImg = "../static/img/common/donotepfo.png";
+      $profileImg = "/static/img/common/donotepfo.png";
   } else {
       $profileImg = $row['profile_img'];
   }
-
-  $sql = "SELECT shareTable,shareID,shareMod FROM sharedb_".$_SESSION['pid']." WHERE shareTF LIKE '1'";
-  $result = mysqli_query($conn, $sql);
-  $sTable = $row['shareTable'];
 ?>
 <html lang="ko">
   <head>
@@ -47,21 +43,55 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../static/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="../static/img/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../static/img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./manifest.json">
+    <link rel="manifest" href="../manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="../static/img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+    <title>공유 시작 | DoNote Beta</title>
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="../css/style.css?v=7">
+  	<link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/bg_style.css?v=1">
   	<link rel="stylesheet" type="text/css" href="../css/top.css">
   	<link rel="stylesheet" type="text/css" href="../css/master.css">
   	<link rel="stylesheet" type="text/css" href="../css/Normalize.css">
-    <title>공유된 노트 | DoNote Beta</title>
+    <style media="screen">
+    @media (min-height: 700px) {
+      .deleteMiddle{
+        margin-top: 135px;
+      }
+      #delete{
+        height: 555px;
+      }
+    }
+    @media (min-height: 800px) {
+      .deleteMiddle{
+        margin-top: 185px;
+      }
+      #delete{
+        height: 655px;
+      }
+    }
+    @media (min-height: 900px) {
+      .deleteMiddle{
+        margin-top: 235px;
+      }
+      #delete{
+        height: 755px;
+      }
+    }
+    @media (min-height: 1000px) {
+      .deleteMiddle{
+        margin-top: 285px;
+      }
+      #delete{
+        height: 855px;
+      }
+    }
+    </style>
   </head>
   <body>
     <div class="container-fluid" id='padding-erase'>
-      <div class="fixed layer1" id="bgi">
+      <div class="fixed layer1" id="bgi" style="z-index: 2">
         <div class="col-md-3" style="font-size: 30px">
           <a href="../note.php" id='white'><img src="../static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='DoNote' style='margin-top: -5px' \> Share!</a>
         </div>
@@ -72,49 +102,43 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
               <li><a class="dropdown-item" id="black" href="../user/confirm.php"><strong>정보 수정</strong></a></li>
-              <li><a class="dropdown-item selected" id="black" href="./list.php"><strong>공유한 노트 보기</strong></a></li>
               <li><a class="dropdown-item" id="black" href="../function/logout.php"><strong>로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
-              <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
+              <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다.</strong></p></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-    <div class="container-fluid layer2" id="padding-generate-top">
-      <div class="col-md-12">
+    <div class="container-fluid layer2" id="padding-generate-top" style="margin-top: 50px; z-index: 1">
+      <div class="col-md-2">
         <ol class="nav" nav-stacked="" nav-pills="">
           <?php
-            $row = mysqli_fetch_assoc($result);
-            if (!$row) {
-                echo '<li>아직 공유한 항목이 없습니다.</li><hr class="hrControlNote">';
-            } else {
-                do {
-                    $sMd = $row['shareMod'];
-                    if ($sMd == '0') {
-                        $shareStat = '링크를 가진 모든 유저에게 공유';
-                    } elseif ($sMd == '1') {
-                        $shareStat = '지정된 유저에게만 공유';
-                    } elseif ($sMd == '2') {
-                        $shareStat = '공유 받음';
-                    } else {
-                        continue;
-                    }
-                    $sTab = $row['shareTable'];
-                    $noteData = explode('_', $sTab);
-                    $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
-                    $resulte = mysqli_query($conn, $sqle);
-                    $rowe = mysqli_fetch_assoc($resulte);
-                    echo '<li><a href="./shared-stat.php?shareID='.$row['shareID'] .'">'.$rowe['name']."<div class='text-right'>".$shareStat."</div>".'</li></a>'."\n";
-                    echo "<hr>";
-                } while ($row = mysqli_fetch_assoc($result));
+            $result = mysqli_query($conn, "SELECT * FROM notedb_".$_SESSION['pid']);
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '<li><a href="../note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
             }
           ?>
+          <li><a href="../write.php">페이지 추가하기</li></a>
         </ol>
+      </div>
+      <hr class="displayOptionMobile" />
+      <div class="col-md-10">
+        <header class="jumbotron text-center" id="delete">
+          <div class="deleteMiddle">
+            <h1><?php echo $name;?></h1>
+            <h2>공유를 시작합니다.</h2>
+            <br />
+            <form class='margin_42_gen' action='./function/start.php?id=<?php echo $id;?>' method='post'>
+              <input type='submit' name='confirm_start' class='btn btn-success btn-lg' value='확인!'>
+              <a href='./note.php?id=<?php echo $id;?>' class='btn btn-danger btn-lg'>취소!</a>
+            </form>
+          </div>
+        </header>
       </div>
       <div id="padding-generate-bottom"></div>
     </div>
-    <script src="../lib/jquery-3.3.1.min.js"></script>
+		<script src="../lib/jquery-3.3.1.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
