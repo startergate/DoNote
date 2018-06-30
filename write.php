@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <?php
   require("./lib/logchk.php");
+  require("./lib/sidUnified.php");
   require("./config/config.php");
-    require("./config/config_aco.php");
+  require("./config/config_aco.php");
   require("./lib/db.php");
   $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
   $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
   //Select Note Database
-  $sql = "SELECT profile_img FROM userdata WHERE pid LIKE '".$_SESSION['pid']."'";
-  $result = mysqli_query($conn_n, $sql);
-  $row = mysqli_fetch_assoc($result);
-  if (empty($row['profile_img'])) {
-      $profileImg = "./static/img/common/donotepfo.png";
-  } else {
-      $profileImg = $row['profile_img'];
-  }
+
   //Select Profile Image
+  $profileImg = profileGet($_SESSION['pid'], $conn_n, ".");
 ?>
 <html lang="ko">
   <head>
@@ -45,6 +40,8 @@
   	<link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="stylesheet" type="text/css" href="./css/bg_style.css?v=1">
   	<link rel="stylesheet" type="text/css" href="./css/top.css">
+  	<link rel="stylesheet" type="text/css" href="./css/list.css">
+  	<link rel="stylesheet" type="text/css" href="./css/text.css">
     <link rel="stylesheet" type="text/css" href="./css/master.css">
   	<link rel="stylesheet" type="text/css" href="./css/Normalize.css">
   </head>
@@ -60,9 +57,9 @@
               <img src='<?php echo $profileImg."' alt='".$_SESSION['nickname']?>' id='profile' class='img-circle' />
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
-              <li><a class="dropdown-item" id="black" href="./user/confirm.php"><strong>정보 수정</strong></a></li>
-              <li><a class="dropdown-item" id="black" href="./share/list.php"><strong>공유한 문서 보기</strong></a></li>
-              <li><a class="dropdown-item" id="black" href="./function/logout.php"><strong>로그아웃</strong></a></li>
+              <li><a class="dropdown-item" id="black" href="./user/confirm.php"><strong><span class='glyphicon glyphicon-cog' aria-hidden='true'></span> 정보 수정</strong></a></li>
+              <li><a class="dropdown-item" id="black" href="./share/list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
+              <li><a class="dropdown-item" id="black" href="./function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
               <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
             </ul>

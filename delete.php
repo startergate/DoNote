@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <?php
   require("./lib/logchk.php");
-	require("./config/config.php");
-	require("./config/config_aco.php");
-	require("./lib/db.php");
+  require("./lib/db.php");
+  require("./lib/sidUnified.php");
+  require("./config/config.php");
+  require("./config/config_aco.php");
   if (empty($_GET['id'])) {
-    if (!$_GET['id'] == 0) {
-      header('Location: ./function/error_confirm.php');
-    }
+      if (!$_GET['id'] == 0) {
+          header('Location: ./function/error_confirm.php');
+      }
   }
-  $conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);  //Note Database
-  $conn_n = db_init($confign["host"],$confign["duser"],$confign["dpw"],$confign["dname"]);  //User Database
+  $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
+  $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
   //Select Note Database
   $id = $_GET['id'];
   $sqli = "SELECT name,text FROM notedb_".$_SESSION['pid']." WHERE id = '".$id."'";
@@ -18,16 +19,8 @@
   $row = mysqli_fetch_assoc($resulti);
   $name = $row['name'];
   $text = $row['text'];
-
   //Select Profile Image
-  $sql = "SELECT profile_img FROM userdata WHERE pid LIKE '".$_SESSION['pid']."'";
-  $result = mysqli_query($conn_n, $sql);
-  $row = mysqli_fetch_assoc($result);
-  if (empty($row['profile_img'])) {
-    $profileImg = "./static/img/common/donotepfo.png";
-  } else {
-    $profileImg = $row['profile_img'];
-  }
+  $profileImg = profileGet($_SESSION['pid'], $conn_n, ".");
 ?>
 <html lang="ko">
   <head>
@@ -55,41 +48,11 @@
   	<link rel="stylesheet" type="text/css" href="./css/style.css?ver=1">
     <link rel="stylesheet" type="text/css" href="./css/bg_style.css">
   	<link rel="stylesheet" type="text/css" href="./css/top.css">
+  	<link rel="stylesheet" type="text/css" href="./css/list.css">
+  	<link rel="stylesheet" type="text/css" href="./css/select.css">
   	<link rel="stylesheet" type="text/css" href="./css/master.css">
   	<link rel="stylesheet" type="text/css" href="./css/Normalize.css">
     <style media="screen">
-    @media (min-height: 700px) {
-      .deleteMiddle{
-        margin-top: 135px;
-      }
-      #delete{
-        height: 555px;
-      }
-    }
-    @media (min-height: 800px) {
-      .deleteMiddle{
-        margin-top: 185px;
-      }
-      #delete{
-        height: 655px;
-      }
-    }
-    @media (min-height: 900px) {
-      .deleteMiddle{
-        margin-top: 235px;
-      }
-      #delete{
-        height: 755px;
-      }
-    }
-    @media (min-height: 1000px) {
-      .deleteMiddle{
-        margin-top: 285px;
-      }
-      #delete{
-        height: 855px;
-      }
-    }
     </style>
     <title><?php echo $name;?> 삭제 | DoNote Beta</title>
   </head>
@@ -105,8 +68,9 @@
               <img src='<?php echo $profileImg."' alt='".$_SESSION['nickname']?>' id='profile' class='img-circle' />
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
-              <li><a class="dropdown-item" id="black" href="./user/confirm.php"><strong>정보 수정</strong></a></li>
-              <li><a class="dropdown-item" id="black" href="./function/logout.php"><strong>로그아웃</strong></a></li>
+              <li><a class="dropdown-item" id="black" href="./user/confirm.php"><strong><span class='glyphicon glyphicon-cog' aria-hidden='true'></span> 정보 수정</strong></a></li>
+              <li><a class="dropdown-item" id="black" href="./share/list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
+              <li><a class="dropdown-item" id="black" href="./function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
               <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
             </ul>
@@ -120,7 +84,7 @@
           <?php
             $result = mysqli_query($conn, "SELECT * FROM notedb_".$_SESSION['pid']);
             while ($row = mysqli_fetch_assoc($result)) {
-              echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
+                echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"],'</li></a><hr class="hrControlNote">';
             }
           ?>
           <li><a href="./write.php">페이지 추가하기</li></a>

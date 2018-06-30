@@ -2,18 +2,12 @@
 <?php
   require("../lib/logchk2.php");
   require("../lib/userchk.php");
+  require("../lib/sidUnified.php");
   require("../config/config_aco.php");
-	require("../lib/db.php");
-	$conn_n = db_init($confign["host"],$confign["duser"],$confign["dpw"],$confign["dname"]);
+  require("../lib/db.php");
+  $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
   //Select Profile Image
-  $sql = "SELECT profile_img FROM userdata WHERE pid LIKE '".$_SESSION['pid']."'";
-  $result = mysqli_query($conn_n, $sql);
-  $row = mysqli_fetch_assoc($result);
-  if (empty($row['profile_img'])) {
-    $profileImg = "../static/img/common/donotepfo.png";
-  } else {
-    $profileImg = $row['profile_img'];
-  }
+  $profileImg = profileGet($_SESSION['pid'], $conn_n, "..");
   $_SESSION['confirm'] = 'refresh';
 ?>
 <html lang="ko">
@@ -44,6 +38,7 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/bg_style.css?v=1">
   	<link rel="stylesheet" type="text/css" href="../css/top.css">
+  	<link rel="stylesheet" type="text/css" href="../css/list.css">
   	<link rel="stylesheet" type="text/css" href="../css/master.css">
   	<link rel="stylesheet" type="text/css" href="../css/Normalize.css">
     <title>기본 정보 수정 | DoNote Beta</title>

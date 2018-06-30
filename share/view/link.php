@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <?php
   require("./lib/logchk.php");
-  require("./lib/db.php");
-  require("./lib/sidUnified.php");
   require("./config/config.php");
   require("./config/config_aco.php");
+  require("./lib/db.php");
   //Select Note Database
   if (empty($_GET['id'])) {
       $id = 'startergatedonotedefaultregister';
@@ -23,14 +22,21 @@
   $edittime = $row['edittime'];
 
   //Select Wheater to Share
-  $sql = "SELECT shareTF, shareMod FROM sharedb_".$_SESSION['pid']." WHERE shareTable LIKE '".$id."_".$_SESSION['pid']."'";
+  $sql = "SELECT shareTF, shareMod FROM sharedb_".$_SESSION['pid']." WHERE id LIKE '".$id."'";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
   $sTF = $row['shareTF'];
   $sMod = $row['shareMod'];
 
   //Select Profile Image
-  $profileImg = profileGet($_SESSION['pid'], $conn_n, ".");
+  $sql = "SELECT profile_img FROM userdata WHERE pid LIKE '".$_SESSION['pid']."'";
+  $result = mysqli_query($conn_n, $sql);
+  $row = mysqli_fetch_assoc($result);
+  if (empty($row['profile_img'])) {
+      $profileImg = "./static/img/common/donotepfo.png";
+  } else {
+      $profileImg = $row['profile_img'];
+  }
 ?>
 <html lang="ko">
   <head>
@@ -57,13 +63,12 @@
     <meta name="msapplication-TileImage" content="./static/img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./css/master.css">
-  	<link rel="stylesheet" type="text/css" href="./css/style.css?v=8">
-    <link rel="stylesheet" type="text/css" href="./css/bg_style.css?v=1">
-  	<link rel="stylesheet" type="text/css" href="./css/top.css">
-  	<link rel="stylesheet" type="text/css" href="./css/list.css">
-  	<link rel="stylesheet" type="text/css" href="./css/text.css">
-  	<link rel="stylesheet" type="text/css" href="./css/Normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../css/master.css">
+  	<link rel="stylesheet" type="text/css" href="../../css/style.css?v=8">
+    <link rel="stylesheet" type="text/css" href="../../css/bg_style.css?v=1">
+  	<link rel="stylesheet" type="text/css" href="../../css/top.css">
+  	<link rel="stylesheet" type="text/css" href="../../css/list.css">
+  	<link rel="stylesheet" type="text/css" href="../../css/Normalize.css">
     <title><?php echo $name;?> | DoNote Beta</title>
   </head>
   <body>
@@ -79,7 +84,7 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
               <li><a class="dropdown-item" id="black" href="./user/confirm.php"><strong><span class='glyphicon glyphicon-cog' aria-hidden='true'></span> 정보 수정</strong></a></li>
-              <li><a class="dropdown-item" id="black" href="./share/list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
+              <li><a class="dropdown-item" id="black" href="./share/list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 문서 보기</strong></a></li>
               <li><a class="dropdown-item" id="black" href="./function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
               <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
@@ -91,15 +96,13 @@
     <div class="container-fluid layer2" id="padding-generate-top">
       <div class="col-md-2">
         <ol class="nav" nav-stacked="" nav-pills="">
-          <div class="donoteIdentifier" style="">노트</div><hr class='hrControlNote'>
           <?php
-            $result = mysqli_query($conn, "SELECT id,name FROM notedb_".$_SESSION['pid']);
+            $result = mysqli_query($conn, "SELECT * FROM notedb_".$_SESSION['pid']);
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"].'</li></a><hr class="hrControlNote">';
             }
           ?>
-          <li><a href="./write.php">페이지 추가하기</li></a><hr class="hrControlNote">
-          <div class="donoteIdentifier" style="">공유받은 페이지</div><hr>
+          <li><a href="./write.php">페이지 추가하기</li></a>
         </ol>
       </div>
       <hr class="displayOptionMobile" />
@@ -110,11 +113,11 @@
             <?php
               if ($sTF) {
                   if ($sMod == 2) {
-                      echo "<a href='./share/add.php?id=".$id." class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
+                      echo "<a href='./share/add.php?id='".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</span></a>";
                   }
-                  echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
+                  echo "<a href='./share/stop.php?id='".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</span></a>";
               } else {
-                  echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
+                  echo "<a href='./share/start.php?id='".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</span></a>";
               }
             ?>
           <div class="text-right edittime">최근 수정 일자: <?php echo $edittime?></div>
@@ -122,11 +125,11 @@
             <textarea type='text' class='form-control' name='name' id='title' placeholder='제목을 작성하세요.'><?php echo $name?></textarea>
           </div>
           <div class="form-group form-text">
-            <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.'><?php echo $text?></textarea>
+              <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.'><?php echo $text?></textarea>
           </div>
           <input type="submit" name="confirm_edit" value="저장" class="btn btn-default">
-          <a href='./delete.php?id=<?php echo $id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
-          <a href='./share/start.php?id=<?php echo $id?>' class='btn btn-info'><span class="glyphicon glyphicon-link" aria-hidden="true"></span> 공유</a>
+          <a href='./delete.php?id=<?php echo $id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"> 삭제</a>
+          <a href='./share/start.php?id=<?php echo $id?>' class='btn btn-info'><span class="glyphicon glyphicon-link" aria-hidden="true"> 공유</span></a>
         </form>
       </div>
       <div id="padding-generate-bottom"></div>

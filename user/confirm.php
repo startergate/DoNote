@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <?php
   require("../lib/logchk2.php");
-	require("../config/config.php");
-	require("../config/config_aco.php");
-	require("../lib/db.php");
-  $conn = db_init($config["host"],$config["duser"],$config["dpw"],$config["dname"]);  //Note Database
-  $conn_n = db_init($confign["host"],$confign["duser"],$confign["dpw"],$confign["dname"]);  //User Database
+  require(".,/lib/sidUnified.php");
+  require("../config/config.php");
+  require("../config/config_aco.php");
+  require("../lib/db.php");
+  $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
+  $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
 
   //Select Profile Image
-  $sql = "SELECT profile_img FROM userdata WHERE pid LIKE '".$_SESSION['pid']."'";
-  $result = mysqli_query($conn_n, $sql);
-  $row = mysqli_fetch_assoc($result);
-  if (empty($row['profile_img'])) {
-    $profileImg = "../static/img/common/donotepfo.png";
-  } else {
-    $profileImg = $row['profile_img'];
-  }
+  $profileImg = profileGet($_SESSION['pid'], $conn_n, "..");
 ?>
 <html lang="ko">
   <head>
@@ -46,6 +40,7 @@
   	<link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/bg_style.css?v=1">
   	<link rel="stylesheet" type="text/css" href="../css/top.css">
+  	<link rel="stylesheet" type="text/css" href="../css/list.css">
   	<link rel="stylesheet" type="text/css" href="../css/master.css">
   	<link rel="stylesheet" type="text/css" href="../css/Normalize.css">
   </head>
@@ -76,7 +71,7 @@
           <?php
             $result = mysqli_query($conn, "SELECT * FROM notedb_".$_SESSION['pid']);
             while ($row = mysqli_fetch_assoc($result)) {
-              echo '<li><a href="../note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
+                echo '<li><a href="../note.php?id='.$row['id'].'">'.$row["name"],'</li></a>'."\n";
             }
           ?>
           <li><a href="../write.php">페이지 추가하기</li></a>

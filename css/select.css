@@ -1,0 +1,32 @@
+@media (min-height: 700px) {
+  .deleteMiddle{
+    margin-top: 135px;
+    }
+  #delete{
+    height: 555px;
+  }
+}
+@media (min-height: 800px) {
+  .deleteMiddle{
+    margin-top: 185px;
+  }
+  #delete{
+    height: 655px;
+  }
+}
+@media (min-height: 900px) {
+  .deleteMiddle{
+    margin-top: 235px;
+  }
+  #delete{
+    height: 755px;
+  }
+}
+@media (min-height: 1000px) {
+  .deleteMiddle{
+    margin-top: 285px;
+  }
+  #delete{
+    height: 855px;
+  }
+}

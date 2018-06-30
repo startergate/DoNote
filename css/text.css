@@ -1,0 +1,39 @@
+#text{
+  height: 100px
+}
+@media (min-width: 992px) {
+  @media (min-height: 700px) {
+    #text{
+      height: 415px;
+    }
+  }
+  @media (min-height: 800px) {
+    #text{
+      height: 515px;
+    }
+  }
+  @media (min-height: 900px) {
+    #text{
+      height: 615px;
+    }
+  }
+  @media (min-height: 1000px) {
+    #text{
+      height: 715px;
+    }
+  }
+}
+@media (min-width: 492px) {
+  .edittime{
+    margin-top: -20px;
+  }
+}
+.edittime{
+  margin-bottom: 5px;
+}
+textarea#text{
+  flex: 1;
+}
+#name{
+  padding:30px;
+}

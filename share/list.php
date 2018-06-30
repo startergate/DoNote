@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <?php
   require("../lib/logchk.php");
-    require("../config/config.php");
-    require("../config/config_aco.php");
-    require("../lib/db.php");
+  require("../lib/db.php");
+  require("../lib/sidUnified.php");
+  require("../config/config.php");
+  require("../config/config_aco.php");
   if (empty($_GET['id'])) {
       $id = 'startergatedonotedefaultregister';
   } else {
@@ -14,18 +15,11 @@
   //Select Note Database
 
   //Select Profile Image
-  $sql = "SELECT profile_img FROM userdata WHERE pid LIKE '".$_SESSION['pid']."'";
-  $result = mysqli_query($conn_n, $sql);
-  $row = mysqli_fetch_assoc($result);
-  if (empty($row['profile_img'])) {
-      $profileImg = "../static/img/common/donotepfo.png";
-  } else {
-      $profileImg = $row['profile_img'];
-  }
+  $profileImg = profileGet($_SESSION['pid'], $conn_n, "..");
 
-  $sql = "SELECT shareTable,shareID,shareMod FROM sharedb_".$_SESSION['pid']." WHERE shareTF LIKE '1'";
+  $sql = "SELECT shareTable,shareID,shareMod FROM sharedb_".$_SESSION['pid']." WHERE shareTF LIKE 1";
   $result = mysqli_query($conn, $sql);
-  $sTable = $row['shareTable'];
+  $row = mysqli_fetch_assoc($result);
 ?>
 <html lang="ko">
   <head>
@@ -55,6 +49,7 @@
   	<link rel="stylesheet" type="text/css" href="../css/style.css?v=7">
     <link rel="stylesheet" type="text/css" href="../css/bg_style.css?v=1">
   	<link rel="stylesheet" type="text/css" href="../css/top.css">
+  	<link rel="stylesheet" type="text/css" href="../css/list.css">
   	<link rel="stylesheet" type="text/css" href="../css/master.css">
   	<link rel="stylesheet" type="text/css" href="../css/Normalize.css">
     <title>공유된 노트 | DoNote Beta</title>
@@ -71,9 +66,9 @@
               <img src='<?php echo $profileImg."' alt='".$_SESSION['nickname']?>' id='profile' class='img-circle' />
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
-              <li><a class="dropdown-item" id="black" href="../user/confirm.php"><strong>정보 수정</strong></a></li>
-              <li><a class="dropdown-item selected" id="black" href="./list.php"><strong>공유한 노트 보기</strong></a></li>
-              <li><a class="dropdown-item" id="black" href="../function/logout.php"><strong>로그아웃</strong></a></li>
+              <li><a class="dropdown-item" id="black" href="../user/confirm.php"><strong><span class='glyphicon glyphicon-cog' aria-hidden='true'></span> 정보 수정</strong></a></li>
+              <li><a class="dropdown-item selected" id="black" href="./list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
+              <li><a class="dropdown-item" id="black" href="../function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
               <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
             </ul>
@@ -85,7 +80,6 @@
       <div class="col-md-12">
         <ol class="nav" nav-stacked="" nav-pills="">
           <?php
-            $row = mysqli_fetch_assoc($result);
             if (!$row) {
                 echo '<li>아직 공유한 항목이 없습니다.</li><hr class="hrControlNote">';
             } else {
@@ -105,7 +99,7 @@
                     $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
                     $resulte = mysqli_query($conn, $sqle);
                     $rowe = mysqli_fetch_assoc($resulte);
-                    echo '<li><a href="./shared-stat.php?shareID='.$row['shareID'] .'">'.$rowe['name']."<div class='text-right'>".$shareStat."</div>".'</li></a>'."\n";
+                    echo '<li><a href="./shared-stat.php?shareID='.$row['shareID'] .'">'.$rowe['name']."<div class='text-right'>".$shareStat."</div>".'</li></a><hr class="hrControlNote">';
                     echo "<hr>";
                 } while ($row = mysqli_fetch_assoc($result));
             }

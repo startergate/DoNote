@@ -54,7 +54,6 @@
                   $result = mysqli_query($conn_n, $sql);
                   $row = mysqli_fetch_assoc($result);
                   $pw_hash = hash('sha256', $row['pw']);
-                  $_COOKIE['donoteAutorizeYuuta']."<br>".$pw_hash;
                   if ($pw_hash === $_COOKIE['donoteAutorizeYuuta']) {
                       $_SESSION['nickname'] = $row['nickname'];
                       $_SESSION['pid'] = $row['pid'];

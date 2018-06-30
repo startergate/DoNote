@@ -1,19 +1,8 @@
 .container{
   padding-bottom: 20px;
 }
-#profile{
-  height: 40px;
-  margin-top: 5px;
-}
-#name{
-  padding:30px;
-}
 #white{
   font-size: 20px;
-  color: white;
-}
-#whiteBig{
-  font-size: 25px;
   color: white;
 }
 #black{
@@ -29,26 +18,8 @@
 #menu-idle{
   padding-top: 9px;
 }
-.form-text{
-  display: flex;
-  flex-direction: column;
-}
-body{
-  height: 100%;
-}
-.edittime{
-  margin-top: -10px;
-  margin-bottom: 5px;
-}
 .minfifty{
   min-height: 50px;
-}
-textarea#text{
-  flex: 1;
-}
-hr.hrControlNote{
-  margin-top: 3px;
-  margin-bottom: 3px;
 }
 @media (max-width: 991.98px){
   hr{
@@ -68,37 +39,5 @@ hr.hrControlNote{
   }
   #padding-generate-top{
     padding-top:10px;
-  }
-}
-@media (min-height: 700px) {
-  #text{
-    height: 415px;
-  }
-  #delete{
-    height: 555px;
-  }
-}
-@media (min-height: 800px) {
-  #text{
-    height: 515px;
-  }
-  #delete{
-    height: 655px;
-  }
-}
-@media (min-height: 900px) {
-  #text{
-    height: 615px;
-  }
-  #delete{
-    height: 755px;
-  }
-}
-@media (min-height: 1000px) {
-  #text{
-    height: 715px;
-  }
-  #delete{
-    height: 855px;
   }
 }
