@@ -24,16 +24,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <title>DoNote Beta</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./css/style2.css?ver=1.9">
+    <link rel="stylesheet" type="text/css" href="./css/style2.css?ver=2018-07-12_3">
   	<link rel="stylesheet" type="text/css" href="./css/bg_style.css?ver=1.5">
   	<link rel="stylesheet" type="text/css" href="./css/master.css">
   	<link rel="stylesheet" type="text/css" href="./css/Normalize.css">
+    <style media="screen">
+      .fuller{
+        height: 100vh;
+      }
+      .indexTitle{
+        font-size: 6.2vw;
+      }
+      .img_location{
+        margin-bottom: 20vh;
+        font-size: 1vw;
+      }
+    </style>
   </head>
-  <body id="bge">
+  <body id='bge_img' class='fuller'>
     <div class="cover full-window">
-      <div class="col-sm-12">
+      <div class="col-sm-12 larger">
         <p class='text-center'>
-          <strong id='domi'>DoNote</strong>
+          <strong class="indexTitle" id='domi'>DoNote</strong>
         </p>
         <div id="control">
           <p class='text-center'>
@@ -61,6 +73,9 @@
                   }
               }
             ?>
+            <p class="img_location">
+              Gardens By the Bay, Singapore, ⓒ 2018 DoNote
+            </p>
           </p>
         </div>
       </div>

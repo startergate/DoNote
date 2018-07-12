@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <?php
   require("../lib/logchk2.php");
-  require("./lib/db.php");
-  require("./lib/sidUnified.php");
-  require("./config/config.php");
-  require("./config/config_aco.php");
+  require("../lib/db.php");
+  require("../lib/sidUnified.php");
+  require("../config/config.php");
+  require("../config/config_aco.php");
   $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
   $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
   $id = $_GET['id'];
@@ -15,7 +15,7 @@
   $text = $row['text'];
 
   //Select Profile Image
-  $profileImg = profileGet($_SESSION['pid'], $conn_n, ".");
+  $profileImg = profileGet($_SESSION['pid'], $conn_n, "..");
 ?>
 <html lang="ko">
   <head>

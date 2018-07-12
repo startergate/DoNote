@@ -17,10 +17,18 @@
 @media (max-width: 991.98px) {
   #bgiOptional{
     background-color: #3d414d;
-    background-size: auto;
+    background-size: contain;
     background-repeat:no-repeat;
     background-position: right top;
     min-width: 100%;
     min-height: 50px;
   }
+}
+#bge_img{
+  background-image: url('../static/img/background/bg2018SUMMER_BETA.jpg');
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-position: right top;
+  min-width: 100%;
+  min-height: 100%;
 }

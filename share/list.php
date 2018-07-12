@@ -100,7 +100,6 @@
                     $resulte = mysqli_query($conn, $sqle);
                     $rowe = mysqli_fetch_assoc($resulte);
                     echo '<li><a href="./shared-stat.php?shareID='.$row['shareID'] .'">'.$rowe['name']."<div class='text-right'>".$shareStat."</div>".'</li></a><hr class="hrControlNote">';
-                    echo "<hr>";
                 } while ($row = mysqli_fetch_assoc($result));
             }
           ?>

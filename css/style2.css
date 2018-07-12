@@ -21,11 +21,12 @@
 #domi {
   font-family: Noto Sans KR;
   font-style: black;
-  font-size: 100px;
   color: #ffffff
 }
+.larger{
+  width: 100%;
+}
 #control {
-  padding-bottom: 50px;
   text-align: center;
   bottom: 8px;
 }
@@ -40,10 +41,9 @@
   width: 100%;
 }
 .cover.full-window {
-  margin-top: 15%;
-  margin-left: 25%;
+  padding-top: 35vh;
   text-align: center;
-  width: 50%;
+  width: 100%;
 }
 .cover-image {
   min-height: 500px;

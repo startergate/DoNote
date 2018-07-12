@@ -13,7 +13,7 @@
               $pid = $_SESSION['pid'];
 
               $rand = $name.generateRenStr(10);
-              $rand = md5($rand, true);
+              $rand = md5($rand, false);
               $udb = 'notedb_'.$pid;
               $sql = "INSERT INTO $udb (name,text,edittime,id) VALUES ('$name','$text',now(),'$rand')";
               $result = mysqli_query($conn, $sql);
