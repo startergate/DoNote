@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <title>DoNote Beta</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./css/style2.css?ver=2018-07-12_3">
+    <link rel="stylesheet" type="text/css" href="./css/style2.css?ver=2018-07-13_1">
   	<link rel="stylesheet" type="text/css" href="./css/bg_style.css?ver=1.5">
   	<link rel="stylesheet" type="text/css" href="./css/master.css">
   	<link rel="stylesheet" type="text/css" href="./css/Normalize.css">
@@ -35,13 +35,21 @@
       .indexTitle{
         font-size: 6.2vw;
       }
-      .img_location{
-        margin-bottom: 20vh;
-        font-size: 1vw;
+      .imgLocation{
+        position: relative;
+        /*margin-bottom: 20vh;*/
+        font-size: 10px;
+        background-color:rgba(255,255,255,0.5);
+        width:171px;
+        top: 10px;
+        left: 10px;
       }
     </style>
   </head>
   <body id='bge_img' class='fuller'>
+    <p class="imgLocation">
+    Image by Unsplash, ⓒ 2018 DoNote
+    </p>
     <div class="cover full-window">
       <div class="col-sm-12 larger">
         <p class='text-center'>
@@ -56,7 +64,8 @@
                   echo "<script type=\"text/javascript\">setTimeout(\"location.href = './note.php'\", 5000);</script>";
                   echo "<div style='color:white'>곧 리다이렉트됩니다.</div>";
               } else {
-                  echo "<a href='./login.html' class='btn btn-default btn-lg'>로그인</a>";
+                  //echo "<a href='./login.html' class='btn btn-default btn-lg'>로그인</a>";
+                  echo "<button class='btn btn-default btn-lg' id='loginBtn'>로그인</button>";
               }
               if (!empty($_COOKIE['donoteAutorizeRikka'])) {
                   require('./config/config_aco.php');
@@ -73,9 +82,12 @@
                   }
               }
             ?>
-            <p class="img_location">
-              Gardens By the Bay, Singapore, ⓒ 2018 DoNote
-            </p>
+            <script type="text/javascript">
+              var target = document.getElementById('loginBtn');
+              target.addEventListener('click', function(event) {
+                alert('test');
+              });
+            </script>
           </p>
         </div>
       </div>

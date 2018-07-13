@@ -25,6 +25,14 @@
   }
 }
 #bge_img{
+  background-image: url('https://source.unsplash.com/random');
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-position: right top;
+  min-width: 100%;
+  min-height: 100%;
+}
+#bge_img_static{
   background-image: url('../static/img/background/bg2018SUMMER_BETA.jpg');
   background-size: cover;
   background-repeat:no-repeat;
