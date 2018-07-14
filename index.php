@@ -24,14 +24,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <title>DoNote Beta</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./css/style2.css?ver=2018-07-13_1">
+    <link rel="stylesheet" type="text/css" href="./css/style2.css?ver=2018-07-13_2">
   	<link rel="stylesheet" type="text/css" href="./css/bg_style.css?ver=1.5">
   	<link rel="stylesheet" type="text/css" href="./css/master.css">
   	<link rel="stylesheet" type="text/css" href="./css/Normalize.css">
     <style media="screen">
-      .fuller{
-        height: 100vh;
-      }
       .indexTitle{
         font-size: 6.2vw;
       }
@@ -46,16 +43,16 @@
       }
     </style>
   </head>
-  <body id='bge_img' class='fuller'>
+  <body id='bge_img' class='bg'>
     <p class="imgLocation">
     Image by Unsplash, ⓒ 2018 DoNote
     </p>
-    <div class="cover full-window">
+    <div id="index" class="cover full-window">
       <div class="col-sm-12 larger">
         <p class='text-center'>
-          <strong class="indexTitle" id='domi'>DoNote</strong>
+          <strong class="indexTitle domi">DoNote</strong>
         </p>
-        <div id="control">
+        <div class="control">
           <p class='text-center'>
             <?php
               session_start();
@@ -64,8 +61,7 @@
                   echo "<script type=\"text/javascript\">setTimeout(\"location.href = './note.php'\", 5000);</script>";
                   echo "<div style='color:white'>곧 리다이렉트됩니다.</div>";
               } else {
-                  //echo "<a href='./login.html' class='btn btn-default btn-lg'>로그인</a>";
-                  echo "<button class='btn btn-default btn-lg' id='loginBtn'>로그인</button>";
+                  echo "<button class='btn btn-light btn-lg' id='loginBtn1'>로그인</button>";
               }
               if (!empty($_COOKIE['donoteAutorizeRikka'])) {
                   require('./config/config_aco.php');
@@ -82,16 +78,70 @@
                   }
               }
             ?>
-            <script type="text/javascript">
-              var target = document.getElementById('loginBtn');
-              target.addEventListener('click', function(event) {
-                alert('test');
-              });
-            </script>
           </p>
         </div>
       </div>
     </div>
+    <div id="login_form" class="covra covraLogin text-center" style="display:none">
+      <div align="center">
+        <div id="login">로그인 | DoNote</div>
+        <div id="lotext" class="text-center">
+          <br />
+          <div align="center">
+            <form id="form" action="./function/process_log.php" method="post">
+              <input type="text" id="form" class="form-control" name="id" placeholder="아이디">
+              <input type="password" id="form" class="form-control" name="pw" placeholder="비밀번호">
+              <div class="checkbox">
+                <input type="checkbox" name="auto"> 자동 로그인<br>자동 로그인 기능은 쿠키를 사용합니다.
+              </div>
+              <br />
+              <input type="submit" name="confirm_login" class="btn btn-light" value="로그인">
+              <button class='btn btn-light' id="registerBtn">회원가입</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="register" class="covra covraRegister text-center" style="display:none">
+      <div align="center">
+        <div id="login">회원가입 | DoNote</div>
+        <div id="lotext">
+          <br />
+          <div align="center">
+            <form id="form" action="./function/process_reg.php" method="post">
+              <input type="text" id="form" class="form-control" name="id" placeholder="아이디">
+              <input type="password" id="form" class="form-control" name="pw" placeholder="비밀번호">
+              <input type="password" id="form" class="form-control" name="pwr" placeholder="비밀번호 확인">
+              <input type="text" id="form" class="form-control" name="id" placeholder="닉네임">
+              <br />
+              <input type="submit" name="confirm_register" class="btn btn-light" value="회원가입">
+              <button class='btn btn-light' id="loginBtn2">로그인</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    <script type="text/javascript">
+      var logTarget1 = document.getElementById('loginBtn1');
+      logTarget1.addEventListener('click', function(event) {
+        $("#login_form").css('display', 'block');
+        $("#register").css('display', 'none');
+        $("#index").css('display', 'none');
+      });
+      var logTarget2 = document.getElementById('loginBtn2');
+      logTarget2.addEventListener('click', function(event) {
+        event.preventDefault()
+        $("#login_form").css('display', 'block');
+        $("#register").css('display', 'none');
+        $("#index").css('display', 'none');
+      });
+      var regTarget = document.getElementById('registerBtn');
+      regTarget.addEventListener('click', function(event) {
+        event.preventDefault()
+        $("#register").css('display', 'block');
+        $("#index").css('display', 'none');
+        $("#login_form").css('display', 'none');
+      });
+    </script>
 		<script src="./lib/jquery-3.3.1.min.js"></script>
     <script src="./bootstrap/js/bootstrap.min.js"></script>
   </body>

@@ -5,20 +5,41 @@
   width: 300px;
 }
 #login {
-  font-size: 50px;
   font-weight: bold;
   font-family: Noto Sans KR;
-  text-align: left;
   color: #ffffff;
+}
+@media (min-width: 1000px){
+  #login{
+    font-size: 3.76vw;
+  }
+}
+@media (max-width: 999.82px) {
+  @media(min-width: 540px) {
+    #login{
+      font-size: 37.6px;
+    }
+  }
+}
+@media (max-width: 539.92px) {
+  #login{
+    font-size: 1.43617vw;
+  }
 }
 #lotext {
-  text-align: left;
   color: #ffffff;
 }
-#form {
-  width: 300px;
+@media(min-width: 600px) {
+  #form {
+    width: 300px;
+  }
 }
-#domi {
+@media(max-width: 599.82px){
+  #form {
+    width: 50vw;
+  }
+}
+.domi {
   font-family: Noto Sans KR;
   font-style: black;
   color: #ffffff
@@ -26,12 +47,9 @@
 .larger{
   width: 100%;
 }
-#control {
+.control {
   text-align: center;
   bottom: 8px;
-}
-#container {
-  position: relative;
 }
 .cover {
   position: relative;
@@ -50,52 +68,11 @@
 }
 .covra{
   position: absolute;
-  margin-left: 40px;
   width: 50%;
+  left: 25%;
+  top: 25%;
 }
 #white{
   font-size: 40px;
   color: white;
-}
-@media (max-height: 550px) {
-  .covra{
-    display: none;
-  }
-}
-@media (min-height: 550px) {
-  .covraLogin {
-    margin-top: 7%;
-  }
-  .unable{
-    display: none;
-  }
-  .covraRegister {
-    margin-top: 7%;
-  }
-}
-@media (min-height: 600px) {
-  .covraLogin {
-    margin-top: 10%;
-  }
-  .covraRegister {
-    margin-top: 10%;
-  }
-}
-@media (min-height: 700px) {
-  .covraLogin {
-    margin-top: 150px;
-  }
-  .covraRegister {
-    margin-top: 15%;
-  }
-}
-@media (min-height: 800px) {
-  .covraLogin {
-    margin-top: 200px;
-  }
-}
-@media (min-height: 900px) {
-  .covraLogin {
-    margin-top: 250px;
-  }
 }

@@ -1,4 +1,8 @@
-#bge{
+.bg {
+  width:100vw;
+  height:100vh
+}
+.bge{
   background-color: #3d414d;
   background-size: auto;
   background-repeat:no-repeat;
@@ -7,10 +11,10 @@
   min-height: 100%;
 }
 #bgi{
-  background-color: #3d414d;
-  background-size: auto;
+  background-image: url('https://source.unsplash.com/random');
+  background-size: cover;
   background-repeat:no-repeat;
-  background-position: right top;
+  background-position: center top;
   min-width: 100%;
   min-height: 50px;
 }
