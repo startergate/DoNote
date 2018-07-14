@@ -1,15 +1,16 @@
 .bg {
   background-repeat:no-repeat;
+  background-position-y: top;
   min-width: 100%;
   min-height: 100%;
   width:100vw;
   height:100vh;
 }
 .bge{
-  background-position: right top;
+  background-position-x: right;
 }
 .bgi{
-    background-position: center top;
+    background-position-x: center;
 }
 @media (min-width: 992px) {
   .bgi{
