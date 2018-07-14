@@ -5,6 +5,7 @@
   require("../lib/sidUnified.php");
   require("../config/config.php");
   require("../config/config_aco.php");
+  //Select Note Database
   if (empty($_GET['id'])) {
       $id = 'startergatedonotedefaultregister';
   } else {
@@ -12,14 +13,28 @@
   }
   $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
   $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
-  //Select Note Database
+
+  //Select Note Text
+  $sql = "SELECT name,text,edittime FROM notedb_".$_SESSION['pid']." WHERE id LIKE '".$id."'";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+  $name = $row['name'];
+  $text = $row['text'];
+  $edittime = $row['edittime'];
+
+  //Select Wheater to Share
+  $sql = "SELECT shareTF, shareMod FROM sharedb_".$_SESSION['pid']." WHERE shareTable LIKE '".$id."_".$_SESSION['pid']."'";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+  $sTF = $row['shareTF'];
+  $sMod = $row['shareMod'];
 
   //Select Profile Image
   $profileImg = profileGet($_SESSION['pid'], $conn_n, "..");
 
-  $sql = "SELECT shareTable,shareID,shareMod FROM sharedb_".$_SESSION['pid']." WHERE shareTF LIKE 1";
-  $result = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_assoc($result);
+  $sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
+  $results = mysqli_query($conn, $sqls);
+  $rows = mysqli_fetch_assoc($results);
 ?>
 <html lang="ko">
   <head>
@@ -37,28 +52,29 @@
     <link rel="apple-touch-icon" sizes="144x144" href="../static/img/favicon/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="../static/img/favicon/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../static/img/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="../static/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/favicon/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../static/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="../static/img/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../static/img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./manifest.json">
+    <link rel="manifest" href="../manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="../static/img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="../css/style.css?v=7">
+    <link rel="stylesheet" type="text/css" href="../css/master.css">
+  	<link rel="stylesheet" type="text/css" href="../css/style.css?v=8">
     <link rel="stylesheet" type="text/css" href="../css/bg_style.css?v=1">
   	<link rel="stylesheet" type="text/css" href="../css/top.css">
   	<link rel="stylesheet" type="text/css" href="../css/list.css">
-  	<link rel="stylesheet" type="text/css" href="../css/master.css">
+  	<link rel="stylesheet" type="text/css" href="../css/text.css">
   	<link rel="stylesheet" type="text/css" href="../css/Normalize.css">
-    <title>공유된 노트 | DoNote Beta</title>
+    <title><?php echo $name;?> | DoNote Beta</title>
   </head>
   <body>
     <div class="container-fluid" id='padding-erase'>
       <div class="fixed layer1 bg bgi bgImg">
-        <div class="col-md-3" style="font-size: 30px">
-          <a href="../note.php" id='white'><img src="../static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='DoNote' style='margin-top: -5px' \> Share!</a>
+        <div class="col-md-3">
+          <a href="../note.php"><img src="../static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
         </div>
         <div class="col-md-9 text-right">
           <div class="btn-group dropdown">
@@ -67,7 +83,7 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
               <li><a class="dropdown-item" id="black" href="../user/confirm.php"><strong><span class='glyphicon glyphicon-cog' aria-hidden='true'></span> 정보 수정</strong></a></li>
-              <li><a class="dropdown-item selected" id="black" href="./list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
+              <li><a class="dropdown-item" id="black" href="./list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
               <li><a class="dropdown-item" id="black" href="../function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
               <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
@@ -77,33 +93,51 @@
       </div>
     </div>
     <div class="container-fluid layer2" id="padding-generate-top">
-      <div class="col-md-12">
+      <div class="col-md-2">
         <ol class="nav" nav-stacked="" nav-pills="">
+          <div class="donoteIdentifier" style="">노트</div><hr class='hrControlNote'>
           <?php
-            if (!$row) {
-                echo '<li>아직 공유한 항목이 없습니다.</li><hr class="hrControlNote">';
+            $result = mysqli_query($conn, "SELECT id,name FROM notedb_".$_SESSION['pid']);
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '<li><a href="../note.php?id='.$row['id'].'">'.$row["name"].'</li></a><hr class="hrControlNote">';
+            }
+          ?>
+          <li><a href="./write.php">페이지 추가하기</li></a><hr class="hrControlNote">
+          <div class="donoteIdentifier" style="">공유받은 페이지</div><hr class="hrControlNote">
+          <?php
+            if (!$rows) {
+                echo '<li>공유 받은 항목이 없습니다.</li><hr class="hrControlNote">';
             } else {
-                do {
-                    $sMd = $row['shareMod'];
-                    if ($sMd == 0) {
-                        $shareStat = '링크를 가진 모든 유저에게 공유';
-                    } elseif ($sMd == 1) {
-                        $shareStat = '지정된 유저에게만 공유';
-                    } elseif ($sMd == 2) {
-                        $shareStat = '공유 받음';
-                    } else {
-                        continue;
-                    }
-                    $sTab = $row['shareTable'];
-                    $noteData = explode('_', $sTab);
+                $noteData = explode('_', $rows['shareTable']);
+                $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
+                $resulte = mysqli_query($conn, $sqle);
+                $rowe = mysqli_fetch_assoc($resulte);
+                echo '<li><a href="./view.php?shareID='.$rows['shareID'].'">'.$rowe["name"].'</li></a><hr class="hrControlNote">';
+                while ($rows = mysqli_fetch_assoc($results)) {
+                    $noteData = explode('_', $rows['shareTable']);
                     $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
                     $resulte = mysqli_query($conn, $sqle);
                     $rowe = mysqli_fetch_assoc($resulte);
-                    echo '<li><a href="./shared-stat.php?shareID='.$row['shareID'] .'">'.$rowe['name']."<div class='text-right'>".$shareStat."</div>".'</li></a><hr class="hrControlNote">';
-                } while ($row = mysqli_fetch_assoc($result));
+                    echo '<li><a href="./view.php?shareID='.$rows['shareID'].'">'.$rowe["name"].'</li></a><hr class="hrControlNote">';
+                }
             }
           ?>
+          <li><a href="./accept.php">코드 추가하기</li></a><hr class="hrControlNote">
         </ol>
+      </div>
+      <hr class="displayOptionMobile" />
+      <div class="col-md-10">
+        <form action="../process/edit.php?id=<?php echo $id?>" method="post">
+          <input type="submit" name="confirm_edit" value="저장" class="btn btn-default">
+          <div class="text-right edittime">최근 수정 일자: <?php echo $edittime?></div>
+          <div class="form-group">
+            <textarea type='text' class='form-control' name='name' id='title' placeholder='제목을 작성하세요.'><?php echo $name?></textarea>
+          </div>
+          <div class="form-group form-text">
+            <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.'><?php echo $text?></textarea>
+          </div>
+          <input type="submit" name="confirm_edit" value="저장" class="btn btn-default">
+        </form>
       </div>
       <div id="padding-generate-bottom"></div>
     </div>

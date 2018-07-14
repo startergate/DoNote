@@ -53,11 +53,11 @@
   </head>
   <body>
     <div class="container-fluid" id='padding-erase'>
-      <div class="fixed layer1" id="bgi" style="z-index: 2">
+      <div class="fixed layer1 bg bgi bgImg">
         <div class="col-md-3" style="font-size: 30px">
           <a href="../note.php" id='white'><img src="../static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='DoNote' style='margin-top: -5px' \> Share!</a>
         </div>
-        <div class="col-md-9 text-right" id="bgiOptional">
+        <div class="col-md-9 text-right">
           <div class="btn-group dropdown">
             <button class="full-erase btn btn-link dropdown-toggle" type="button" id="white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src='<?php echo $profileImg."' alt='".$_SESSION['nickname']?>' id='profile' class='img-circle' />

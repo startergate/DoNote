@@ -43,7 +43,7 @@
       }
     </style>
   </head>
-  <body id='bge_img' class='bg'>
+  <body class='bg bge bgImg'>
     <p class="imgLocation">
     Image by Unsplash, ⓒ 2018 DoNote
     </p>
