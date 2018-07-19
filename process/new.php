@@ -8,15 +8,15 @@
       $_POST['confirm_write'] = "";
       if (!empty($_POST['name'])) {
           if (!empty($_POST['text'])) {
-              $name = $_POST['name'];
-              $text = $_POST['text'];
+              $name = $conn -> real_escape_string($_POST['name']);
+              $text = $conn -> real_escape_string($_POST['text']);
               $pid = $_SESSION['pid'];
 
               $rand = $name.generateRenStr(10);
               $rand = md5($rand, false);
               $udb = 'notedb_'.$pid;
               $sql = "INSERT INTO $udb (name,text,edittime,id) VALUES ('$name','$text',now(),'$rand')";
-              $result = mysqli_query($conn, $sql);
+              $result = $conn -> query($sql);
               $_SESSION['name'] = $name;
               $_SESSION['confirm'] = 'confirm';
               header('Location: ../complete/write.php?pid='.$rand);

@@ -16,7 +16,6 @@
   //$sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
   //$results = mysqli_query($conn, $sqls);
   //$rows = mysqli_fetch_assoc($results);
-  ?>
 ?>
 <html lang="ko">
   <head>

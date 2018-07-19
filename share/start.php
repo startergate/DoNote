@@ -9,8 +9,8 @@
   $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
   $id = $_GET['id'];
   $sqli = "SELECT name FROM notedb_".$_SESSION['pid']." WHERE id = '".$id."'";
-  $resulti = mysqli_query($conn, $sqli);
-  $row = mysqli_fetch_assoc($resulti);
+  $resulti = $conn -> query($conn, $sqli);
+  $row = $resulti -> fetch_assoc();
   $name = $row['name'];
   $text = $row['text'];
 
@@ -18,8 +18,8 @@
   $profileImg = profileGet($_SESSION['pid'], $conn_n, "..");
 
   $sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
-  $results = mysqli_query($conn, $sqls);
-  $rows = mysqli_fetch_assoc($results);
+  $results = $conn -> query($sqls);
+  $rows = $results -> fetch_assoc();
 ?>
 <html lang="ko">
   <head>
@@ -82,8 +82,8 @@
         <ol class="nav" nav-stacked="" nav-pills="">
           <div class="donoteIdentifier" style="">노트</div><hr class='hrControlNote'>
           <?php
-            $result = mysqli_query($conn, "SELECT id,name FROM notedb_".$_SESSION['pid']);
-            while ($row = mysqli_fetch_assoc($result)) {
+            $result = $conn -> query("SELECT id,name FROM notedb_".$_SESSION['pid']);
+            while ($row = $result -> fetch_assoc()) {
                 echo '<li><a href="../note.php?id='.$row['id'].'">'.$row["name"].'</li></a><hr class="hrControlNote">';
             }
           ?>
@@ -95,14 +95,14 @@
             } else {
                 $noteData = explode('_', $rows['shareTable']);
                 $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
-                $resulte = mysqli_query($conn, $sqle);
-                $rowe = mysqli_fetch_assoc($resulte);
+                $resulte = $conn -> query($sqle);
+                $rowe = $resulte -> fetch_assoc();
                 echo '<li><a href="./view.php?shareID='.$rows['shareID'].'">'.$rowe["name"].'</li></a><hr class="hrControlNote">';
-                while ($rows = mysqli_fetch_assoc($results)) {
+                while ($rows = $results -> fetch_assoc()) {
                     $noteData = explode('_', $rows['shareTable']);
                     $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
-                    $resulte = mysqli_query($conn, $sqle);
-                    $rowe = mysqli_fetch_assoc($resulte);
+                    $resulte = $conn -> query($sqle);
+                    $rowe = $resulte -> fetch_assoc();
                     echo '<li><a href="./view.php?shareID='.$rows['shareID'].'">'.$rowe["name"].'</li></a><hr class="hrControlNote">';
                 }
             }

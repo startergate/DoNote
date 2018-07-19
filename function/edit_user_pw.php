@@ -4,9 +4,7 @@
   require("../lib/db.php");
   if ($_POST['confirm_user_edit']) {
       $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
-      $pw_temp = $_POST['pw'];
-      $password = hash("sha256", $pw_temp);
-      $pw = mysqli_real_escape_string($conn_n, $password);
+      $pw = hash("sha256", $_POST['pw']);
       $pid = $_SESSION['pid'];
       if (empty($_POST['pw'])) {
           echo "<script>window.alert('변경 사항이 없습니다.');</script>";

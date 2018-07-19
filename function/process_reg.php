@@ -2,7 +2,7 @@
   require("../config/config.php");
   require("../config/config_aco.php");
   require("../lib/db.php");
-    session_start();
+  session_start();
   if ($_POST['confirm_register'] === '회원가입') {
       if (!empty($_POST['id'])) {
           if (!empty($_POST['pw'])) {
@@ -13,16 +13,14 @@
               }
               $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
               $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
-              $pw_temp = $_POST['pw'];
-              $pwr = $_POST['pwr'];
-              if ($pw_temp === $pwr) {
+              if ($_POST['pw'] === $_POST['pwr']) {
+                  $_SESSION['temp'] = $_POST['id'];
+                  $pw = hash("sha256", $_POST['pw']);
                   $id = $_POST['id'];
-                  $_SESSION['temp'] = $id;
-                  $pw = hash("sha256", $pw_temp);
-                  $pid_temp = $id.$pwr.$id;
-                  $pid = md5($pid_temp);
+                  $pid = $_POST['id'].$_POST['pwr'].$_POST['id'];
+                  $pid = md5($pid);
 
-                  $sql = 'INSERT INTO userdata (id,pw,nickname,register_date,pid) VALUES("'.$id.'","'.$pw.'", "'.$nickname.'",now(),"'.$pid.'")';
+                  $sql = 'INSERT INTO userdata (id,pw,nickname,register_date,pid) VALUES("$id","$pw", "$nickname",now(),"$pid")';
                   $result = mysqli_query($conn_n, $sql);
                   $udb = 'notedb_'.$pid;
                   $sdb = 'sharedb_'.$pid;
@@ -41,21 +39,21 @@
                   $result = mysqli_query($conn, $sql);
 
                   echo "<script>window.alert('회원가입이 완료되었습니다. 로그인 해주세요.');</script>";
-                  echo "<script>window.location=('../login.html');</script>";
+                  echo "<script>window.location=('../index.php');</script>";
                   exit;
               } else {
                   echo "<script>window.alert('비밀번호를 정확히 재입력해주세요.');</script>";
-                  echo "<script>window.location=('../register.php');</script>";
+                  echo "<script>window.location=('../index.php');</script>";
                   exit;
               }
           } else {
               echo "<script>window.alert('비밀번호가 입력되지 않았습니다.');</script>";
-              echo "<script>window.location=('../register.php');</script>";
+              echo "<script>window.location=('../index.php');</script>";
               exit;
           }
       } else {
           echo "<script>window.alert('아이디가 입력되지 않았습니다.');</script>";
-          echo "<script>window.location=('../register.php');</script>";
+          echo "<script>window.location=('../index.php');</script>";
           exit;
       }
   } else {
