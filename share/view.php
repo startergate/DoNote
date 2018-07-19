@@ -102,8 +102,8 @@
                 echo '<li><a href="../note.php?id='.$row['id'].'">'.$row["name"].'</li></a><hr class="hrControlNote">';
             }
           ?>
-          <li><a href="./write.php">페이지 추가하기</li></a><hr class="hrControlNote">
-          <div class="donoteIdentifier" style="">공유받은 페이지</div><hr class="hrControlNote">
+          <li><a href="../write.php">페이지 추가하기</li></a><hr class="hrControlNote">
+          <<div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">
           <?php
             if (!$rows) {
                 echo '<li>공유 받은 항목이 없습니다.</li><hr class="hrControlNote">';
