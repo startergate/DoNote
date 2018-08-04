@@ -13,7 +13,7 @@
           $result = mysqli_query($conn_n, $sql);
           $row = mysqli_fetch_assoc($result);
 
-          if ($password === $hash) {
+          if ($password === $row['pw']) {
               $_SESSION['confirm'] = "confirm";
               header('Location: ../user/edit_info.php');
           } else {

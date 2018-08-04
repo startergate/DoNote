@@ -70,6 +70,7 @@
   	<link rel="stylesheet" type="text/css" href="./css/text.css">
   	<link rel="stylesheet" type="text/css" href="./css/Normalize.css">
     <title><?php echo $name;?> | DoNote Beta</title>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
   <body>
     <div class="container-fluid" id='padding-erase'>
@@ -131,16 +132,16 @@
         <form action="./process/edit.php?id=<?php echo $id?>" method="post">
           <input type="submit" name="confirm_edit" value="저장" class="btn btn-default">
           <a href='./delete.php?id=<?php echo $id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
-            <?php
-              /*if ($sTF) {
-                  if ($sMod == 2) {
-                      echo "<a href='./share/add.php?id=".$id." class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
-                  }
-                  echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
-              } else {
-                  echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
-              }*/
-            ?>
+          <?php
+            /*if ($sTF) {
+                if ($sMod == 2) {
+                    echo "<a href='./share/add.php?id=".$id." class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
+                }
+                echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
+            } else {
+                echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
+            }*/
+          ?>
           <div class="text-right edittime">최근 수정 일자: <?php echo $edittime?></div>
           <div class="form-group">
             <textarea type='text' class='form-control' name='name' id='title' placeholder='제목을 작성하세요.'><?php echo $name?></textarea>
@@ -150,7 +151,17 @@
           </div>
           <input type="submit" name="confirm_edit" value="저장" class="btn btn-default">
           <a href='./delete.php?id=<?php echo $id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
-          <!--<a href='./share/start.php?id=<?php echo $id?>' class='btn btn-info'><span class="glyphicon glyphicon-link" aria-hidden="true"></span> 공유</a>-->
+          <?php
+            /*if ($sTF) {
+                if ($sMod == 2) {
+                    echo "<a href='./share/add.php?id=".$id." class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
+                }
+                echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
+            } else {
+                echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
+            }*/
+          ?>
+          <!--<div class="g-recaptcha" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>-->
         </form>
       </div>
       <div id="padding-generate-bottom"></div>

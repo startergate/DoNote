@@ -42,6 +42,7 @@
         left: 10px;
       }
     </style>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
   <body class='bg bge bgImg'>
     <p class="imgLocation">
@@ -56,26 +57,25 @@
           <p class='text-center'>
             <?php
               session_start();
+              if (!empty($_COOKIE['donoteAutorizeRikka'])) {
+                  require('./config/config_aco.php');
+                  require('./lib/db.php');
+                  $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
+                  $sql = "SELECT pw,nickname,pid FROM userdata WHERE autorize_tag = '".$_COOKIE["donoteAutorizeRikka"]."'";
+                  $result = $conn_n -> query($sql);
+                  $row = $result -> fetch_assoc($result);
+                  $pw_hash = hash('sha256', $row['pw']);
+                  if ($pw_hash === $_COOKIE['donoteAutorizeYuuta']) {
+                      $_SESSION['nickname'] = $row['nickname'];
+                      $_SESSION['pid'] = $row['pid'];
+                  }
+              }
               if (!empty($_SESSION['pid'])) {
                   echo "<div id='white'>".$_SESSION['nickname']."님, 돌아오신 것을 환영합니다.</div>";
                   echo "<script type=\"text/javascript\">setTimeout(\"location.href = './note.php'\", 5000);</script>";
                   echo "<div style='color:white'>곧 리다이렉트됩니다.</div>";
               } else {
                   echo "<button class='btn btn-light btn-lg' id='loginBtn1'>로그인</button>";
-              }
-              if (!empty($_COOKIE['donoteAutorizeRikka'])) {
-                  require('./config/config_aco.php');
-                  require('./lib/db.php');
-                  $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
-                  $sql = "SELECT pw,nickname,pid FROM userdata WHERE autorize_tag = '".$_COOKIE["donoteAutorizeRikka"]."'";
-                  $result = mysqli_query($conn_n, $sql);
-                  $row = mysqli_fetch_assoc($result);
-                  $pw_hash = hash('sha256', $row['pw']);
-                  if ($pw_hash === $_COOKIE['donoteAutorizeYuuta']) {
-                      $_SESSION['nickname'] = $row['nickname'];
-                      $_SESSION['pid'] = $row['pid'];
-                      header("Location: ./note.php");
-                  }
               }
             ?>
           </p>
@@ -94,6 +94,7 @@
               <div class="checkbox">
                 <input type="checkbox" name="auto"> 자동 로그인<br>자동 로그인 기능은 쿠키를 사용합니다.
               </div>
+              <div class="g-recaptcha" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
               <br />
               <input type="submit" name="confirm_login" class="btn btn-light" value="로그인">
               <button class='btn btn-light' id="registerBtn">회원가입</button>

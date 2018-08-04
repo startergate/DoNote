@@ -24,7 +24,6 @@
                             $cookie_data = hash("sha256", $pw);
                             $sql = "UPDATE userdata SET autorize_tag='$cookie_raw' WHERE pid = '$sqlpid'";
                             $result = $conn_n -> query($sql);
-                            $row = $result -> fetch_assoc();
                             $cookieTest1 = setcookie("donoteAutorizeRikka", $cookie_raw, time() + 86400 * 30, '/donote');
                             $cookieTest2 = setcookie("donoteAutorizeYuuta", $cookie_data, time() + 86400 * 30, '/donote');
                         }
@@ -34,24 +33,17 @@
                         exit;
                     } else {
                         echo "<script>window.alert('가입되지 않은 아이디이거나 틀린 비밀번호를 입력하셨습니다. 다시 로그인 해주세요.');</script>";
-                        echo "<script>window.location=('../index.php');</script>";
-                        exit;
                     }
                 } else {
                     echo "<script>window.alert('가입되지 않은 아이디이거나 틀린 비밀번호를 입력하셨습니다. 다시 로그인 해주세요.');</script>";
-                    echo "<script>window.location=('../index.php');</script>";
                 }
             } else {
                 echo "<script>window.alert('비밀번호가 입력되지 않았습니다.');</script>";
-                echo "<script>window.location=('../index.php');</script>";
-                exit;
             }
         } else {
             echo "<script>window.alert('아이디가 입력되지 않았습니다.');</script>";
-            echo "<script>window.location=('../index.php');</script>";
-            exit;
         }
     } else {
         header('Location: ./error_confirm.php');
-        exit;
     }
+    echo "<script>window.location=('../index.php');</script>";
