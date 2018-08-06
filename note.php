@@ -33,9 +33,9 @@
   $profileImg = profileGet($_SESSION['pid'], $conn_n, ".");
 
   // DoNote Share Function
-  //$sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
-  //$results = mysqli_query($conn, $sqls);
-  //$rows = mysqli_fetch_assoc($results);
+  $sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
+  $results = mysqli_query($conn, $sqls);
+  $rows = mysqli_fetch_assoc($results);
 ?>
 <html lang="ko">
   <head>
@@ -71,6 +71,18 @@
   	<link rel="stylesheet" type="text/css" href="./css/Normalize.css">
     <title><?php echo $name;?> | DoNote Beta</title>
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script type="text/javascript">
+      var saveEnable = function(res) {
+        if (res) {
+          $("#saveBtnTop").removeAttr("disabled", "none");
+          $("#saveBtnBottom").removeAttr("disabled", "none");
+        }
+      }
+      var saveDisable = function() {
+        $("#saveBtnTop").attr("disabled", "disabled");
+        $("#saveBtnBottom").attr("disabled", "disabled");
+      }
+    </script>
   </head>
   <body>
     <div class="container-fluid" id='padding-erase'>
@@ -85,7 +97,7 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
               <li><a class="dropdown-item" id="black" href="./user/confirm.php"><strong><span class='glyphicon glyphicon-cog' aria-hidden='true'></span> 정보 수정</strong></a></li>
-              <!--<li><a class="dropdown-item" id="black" href="./share/list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>-->
+              <li><a class="dropdown-item" id="black" href="./share/list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
               <li><a class="dropdown-item" id="black" href="./function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
               <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
@@ -105,9 +117,9 @@
             }
           ?>
           <li><a href="./write.php">페이지 추가하기</li></a><hr class="hrControlNote">
-          <!--<div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">-->
+          <div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">
           <?php
-            /*if (!$rows) {
+            if (!$rows) {
                 echo '<li>공유 받은 항목이 없습니다.</li><hr class="hrControlNote">';
             } else {
                 $noteData = explode('_', $rows['shareTable']);
@@ -122,25 +134,25 @@
                     $rowe = mysqli_fetch_assoc($resulte);
                     echo '<li><a href="./share/view.php?shareID='.$rows['shareID'].'">'.$rowe["name"].'</li></a><hr class="hrControlNote">';
                 }
-            }*/
+            }
           ?>
-          <!--<li><a href="./share/accept.php">코드 추가하기</li></a><hr class="hrControlNote">-->
+          <li><a href="./share/accept.php">코드 추가하기</li></a><hr class="hrControlNote">
         </ol>
       </div>
       <hr class="displayOptionMobile" />
       <div class="col-md-10">
         <form action="./process/edit.php?id=<?php echo $id?>" method="post">
-          <input type="submit" name="confirm_edit" value="저장" class="btn btn-default">
+          <input type="submit" id="saveBtnTop" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
           <a href='./delete.php?id=<?php echo $id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
-            /*if ($sTF) {
+            if ($sTF) {
                 if ($sMod == 2) {
                     echo "<a href='./share/add.php?id=".$id." class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
                 }
                 echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
             } else {
                 echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
-            }*/
+            }
           ?>
           <div class="text-right edittime">최근 수정 일자: <?php echo $edittime?></div>
           <div class="form-group">
@@ -149,19 +161,20 @@
           <div class="form-group form-text">
             <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.'><?php echo $text?></textarea>
           </div>
-          <input type="submit" name="confirm_edit" value="저장" class="btn btn-default">
+          <input type="submit" id="saveBtnBottom" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
           <a href='./delete.php?id=<?php echo $id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
-            /*if ($sTF) {
+            if ($sTF) {
                 if ($sMod == 2) {
                     echo "<a href='./share/add.php?id=".$id." class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
                 }
                 echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
             } else {
                 echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
-            }*/
+            }
           ?>
-          <!--<div class="g-recaptcha" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>-->
+          <hr>
+          <div class="g-recaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
         </form>
       </div>
       <div id="padding-generate-bottom"></div>
