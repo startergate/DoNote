@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <?php
-  require("./lib/logchk.php");
   require("./lib/sidUnified.php");
   require("./config/config.php");
   require("./config/config_aco.php");
   require("./lib/db.php");
+  loginCheck("./");
   $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
   $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
   //Select Note Database
@@ -43,7 +43,7 @@
     <title>새 노트 | DoNote Beta</title>
     <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="./css/style.css">
-    <link rel="stylesheet" type="text/css" href="./css/bg_style.css?v=1">
+    <link rel='stylesheet' type="text/css" href="./css/bg_style.css?v=1">
   	<link rel="stylesheet" type="text/css" href="./css/top.css">
   	<link rel="stylesheet" type="text/css" href="./css/list.css">
   	<link rel="stylesheet" type="text/css" href="./css/text.css">

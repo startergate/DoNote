@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <?php
-  require("../lib/logchk2.php");
   require("../lib/userchk.php");
   require("../lib/sidUnified.php");
   require("../config/config_aco.php");
   require("../lib/db.php");
+  loginCheck("../");
   $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
   //Select Profile Image
 

@@ -1,7 +1,8 @@
 <?php
-  require("../lib/logchk2.php");
   require("../config/config_aco.php");
+  require("../lib/sidUnified.php");
   require("../lib/db.php");
+  loginCheck("../");
   if ($_POST['confirm_user_edit']) {
       $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
       $nk = mysqli_real_escape_string($conn_n, $_POST['nickname']);

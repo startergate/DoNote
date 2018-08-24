@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <?php
-  require("./lib/logchk.php");
   require("./lib/db.php");
   require("./lib/sidUnified.php");
   require("./config/config.php");
   require("./config/config_aco.php");
+  loginCheck("./");
   //Select Note Database
   if (empty($_GET['id'])) {
       $id = 'startergatedonotedefaultregister';
@@ -33,9 +33,9 @@
   $profileImg = profileGet($_SESSION['pid'], $conn_n, ".");
 
   // DoNote Share Function
-  $sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
-  $results = mysqli_query($conn, $sqls);
-  $rows = mysqli_fetch_assoc($results);
+  //$sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
+  //$results = mysqli_query($conn, $sqls);
+  ///$rows = mysqli_fetch_assoc($results);
 ?>
 <html lang="ko">
   <head>
@@ -117,9 +117,9 @@
             }
           ?>
           <li><a href="./write.php">페이지 추가하기</li></a><hr class="hrControlNote">
-          <div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">
+          <!--<div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">-->
           <?php
-            if (!$rows) {
+            /*if (!$rows) {
                 echo '<li>공유 받은 항목이 없습니다.</li><hr class="hrControlNote">';
             } else {
                 $noteData = explode('_', $rows['shareTable']);
@@ -134,9 +134,9 @@
                     $rowe = mysqli_fetch_assoc($resulte);
                     echo '<li><a href="./share/view.php?shareID='.$rows['shareID'].'">'.$rowe["name"].'</li></a><hr class="hrControlNote">';
                 }
-            }
+            }*/
           ?>
-          <li><a href="./share/accept.php">코드 추가하기</li></a><hr class="hrControlNote">
+          <!--<li><a href="./share/accept.php">코드 추가하기</li></a><hr class="hrControlNote">-->
         </ol>
       </div>
       <hr class="displayOptionMobile" />

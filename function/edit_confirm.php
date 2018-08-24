@@ -1,7 +1,7 @@
 <?php
-  require("../lib/logchk2.php");
   require('../config/config_aco.php');
   require('../lib/db.php');
+  loginCheck("../");
   if ($_POST['confirm_user'] === '확인') {
       if (!empty($_POST['pw'])) {
           $pw_temp = $_POST['pw'];

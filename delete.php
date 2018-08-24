@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <?php
-  require("./lib/logchk.php");
   require("./lib/db.php");
   require("./lib/sidUnified.php");
   require("./config/config.php");
   require("./config/config_aco.php");
+  loginCheck("./");
   if (empty($_GET['id'])) {
       if (!$_GET['id'] == 0) {
           header('Location: ./function/error_confirm.php');

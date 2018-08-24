@@ -2,6 +2,8 @@
     require('../config/config_aco.php');
     require('../lib/db.php');
     require('../lib/codegen.php');
+    require('../lib/sidUnified.php');
+
     session_start();
 
     if ($_POST['confirm_login']) {
@@ -18,14 +20,7 @@
                 if ($_POST['id'] === $row['id']) {
                     if ($pw === $row['pw']) {
                         if ($_POST['auto'] === "on") {
-                            unset($_COOKIE['donoteAutorizeRikka']);
-                            unset($_COOKIE['donoteAutorizeYuuta']);
-                            $cookie_raw = generateRenStr(10);
-                            $cookie_data = hash("sha256", $pw);
-                            $sql = "UPDATE userdata SET autorize_tag='$cookie_raw' WHERE pid = '$sqlpid'";
-                            $result = $conn_n -> query($sql);
-                            $cookieTest1 = setcookie("donoteAutorizeRikka", $cookie_raw, time() + 86400 * 30, '/donote');
-                            $cookieTest2 = setcookie("donoteAutorizeYuuta", $cookie_data, time() + 86400 * 30, '/donote');
+                            loginCookie($pw, $sqlpid, $conn_n, "/donote");
                         }
                         $_SESSION['pid'] = $row['pid'];
                         $_SESSION['nickname'] = $row['nickname'];
