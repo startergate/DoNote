@@ -121,6 +121,7 @@
           </div>
         </div>
       </div>
+    </div>
     <script type="text/javascript">
       var logTarget1 = document.getElementById('loginBtn1');
       logTarget1.addEventListener('click', function(event) {

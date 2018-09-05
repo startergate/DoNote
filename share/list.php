@@ -4,7 +4,8 @@
   require("../lib/sidUnified.php");
   require("../config/config.php");
   require("../config/config_aco.php");
-  loginCheck("../");
+  $SID = new SID;
+  $SID -> loginCheck("../");
   if (empty($_GET['id'])) {
       $id = 'startergatedonotedefaultregister';
   } else {
@@ -14,12 +15,14 @@
   $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
   //Select Note Database
 
-  //Select Profile Image
-  $profileImg = profileGet($_SESSION['pid'], $conn_n, "..");
+  $pid = $_SESSION['pid'];
 
-  $sql = "SELECT shareTable,shareID,shareMod FROM sharedb_".$_SESSION['pid']." WHERE shareTF LIKE 1";
-  $result = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_assoc($result);
+  //Select Profile Image
+  $profileImg = $SID -> profileGet($pid, $conn_n, "..");
+
+  $sql = "SELECT shareTable,shareID,shareMod FROM sharedb_$pid WHERE shareTF LIKE 1";
+  $result = $conn -> query($sql);
+  $row = $result -> fetch_assoc();
 ?>
 <html lang="ko">
   <head>
@@ -97,10 +100,10 @@
                     $sTab = $row['shareTable'];
                     $noteData = explode('_', $sTab);
                     $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
-                    $resulte = mysqli_query($conn, $sqle);
-                    $rowe = mysqli_fetch_assoc($resulte);
+                    $resulte = $conn -> query($conn, $sqle);
+                    $rowe = $resulte -> fetch_assoc();
                     echo '<li><a href="./shared-stat.php?shareID='.$row['shareID'] .'">'.$rowe['name']."<div class='text-right'>".$shareStat."</div>".'</li></a><hr class="hrControlNote">';
-                } while ($row = mysqli_fetch_assoc($result));
+                } while ($row = $result -> fetch_assoc());
             }
           ?>
         </ol>

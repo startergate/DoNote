@@ -1,5 +1,7 @@
 <?php
-  loginCheck("../");
+  require("../lib/sidUnified.php");
+  $SID = new SID;
+  $SID -> loginCheck("../");
   session_start();
   if ($_SESSION['reconfirm'] = 'confirm') {
       $_SESSION['confirm'] = 'confirm2';

@@ -1,8 +1,7 @@
 <?php
   require("../lib/sidUnified.php");
-  loginCheck("../");
-  session_start();
-  session_unset();
+  $SID = new SID;
+  $SID -> loginCheck("../");
   session_destroy();
 
   $cookieTest1 = setcookie("donoteAutorizeRikka", 0, time() - 3600, '/donote');

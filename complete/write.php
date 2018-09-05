@@ -1,6 +1,7 @@
 <?php
   require("../lib/sidUnified.php");
-  loginCheck("../");
+  $SID = new SID;
+  $SID -> loginCheck("../");
   if ($_SESSION['confirm'] === 'confirm') {
       unset($_SESSION['confirm']);
       echo "<script>window.alert('수정이 완료되었습니다.');</script>";

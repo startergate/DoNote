@@ -4,7 +4,8 @@
   require("./lib/sidUnified.php");
   require("./config/config.php");
   require("./config/config_aco.php");
-  loginCheck("./");
+  $SID = new SID;
+  $SID -> loginCheck("./");
   if (empty($_GET['id'])) {
       if (!$_GET['id'] == 0) {
           header('Location: ./function/error_confirm.php');
@@ -20,7 +21,7 @@
   $name = $row['name'];
   $text = $row['text'];
   //Select Profile Image
-  $profileImg = profileGet($_SESSION['pid'], $conn_n, ".");
+  $profileImg = $SID -> profileGet($_SESSION['pid'], $conn_n, ".");
 
   // DoNote Share Function
   //$sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = AND shareMod = 2";

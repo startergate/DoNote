@@ -4,7 +4,8 @@
   require("../lib/sidUnified.php");
   require("../config/config.php");
   require("../config/config_aco.php");
-  loginCheck("../");
+  $SID = new SID;
+  $SID -> loginCheck("../");
   $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
   $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
   $id = $_GET['id'];
@@ -15,7 +16,7 @@
   $text = $row['text'];
 
   //Select Profile Image
-  $profileImg = profileGet($_SESSION['pid'], $conn_n, "..");
+  $profileImg = $SID -> profileGet($_SESSION['pid'], $conn_n, "..");
 
   $sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
   $results = $conn -> query($sqls);

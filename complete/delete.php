@@ -1,6 +1,7 @@
 <?php
   require("../lib/sidUnified.php");
-  loginCheck("../");
+  $SID = new SID;
+  $SID -> loginCheck("../");
   ob_start();
   session_start();
   if ($_SESSION['confirm_delete'] === 'confirm') {

@@ -9,9 +9,9 @@
     if ($_POST['confirm_login']) {
         if (!empty($_POST['id'])) {
             if (!empty($_POST['pw'])) {
+                $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
                 $id = $_POST['id'];
                 $pw = hash("sha256", $_POST['pw']);
-                $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
 
                 $sql = "SELECT id,pw,nickname,pid FROM userdata WHERE id LIKE '$id'";	//user data select
                 $result = $conn_n -> query($sql);

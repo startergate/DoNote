@@ -4,12 +4,13 @@
   require("../config/config.php");
   require("../config/config_aco.php");
   require("../lib/db.php");
-  loginCheck("../");
+  $SID = new SID;
+  $SID -> loginCheck("../");
   $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
   $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
 
   //Select Profile Image
-  $profileImg = profileGet($_SESSION['pid'], $conn_n, "..");
+  $profileImg = $SID -> profileGet($_SESSION['pid'], $conn_n, "..");
 ?>
 <html lang="ko">
   <head>
