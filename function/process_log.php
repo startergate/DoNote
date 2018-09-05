@@ -3,6 +3,7 @@
     require('../lib/db.php');
     require('../lib/codegen.php');
     require('../lib/sidUnified.php');
+    $SID = new SID;
 
     session_start();
 
@@ -20,7 +21,7 @@
                 if ($_POST['id'] === $row['id']) {
                     if ($pw === $row['pw']) {
                         if ($_POST['auto'] === "on") {
-                            loginCookie($pw, $sqlpid, $conn_n, "/donote");
+                            $SID -> loginCookie($pw, $sqlpid, $conn_n, "/donote");
                         }
                         $_SESSION['pid'] = $row['pid'];
                         $_SESSION['nickname'] = $row['nickname'];
