@@ -56,10 +56,11 @@
               <img src='<?php echo $profileImg."' alt='".$_SESSION['nickname']?>' id='profile' class='img-circle' />
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
-              <li><a class="dropdown-item" id="black" href="../user/confirm.php"><strong>정보 수정</strong></a></li>
-              <li><a class="dropdown-item" id="black" href="../function/logout.php"><strong>로그아웃</strong></a></li>
+              <li><a class="dropdown-item" id="black" href="./confirm.php"><strong><span class='glyphicon glyphicon-cog' aria-hidden='true'></span> 정보 수정</strong></a></li>
+              <li><a class="dropdown-item" id="black" href="../share/list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
+              <li><a class="dropdown-item" id="black" href="../function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
-              <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다.</strong></p></li>
+              <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
             </ul>
           </div>
         </div>

@@ -98,29 +98,24 @@
         <ol class="nav" nav-stacked="" nav-pills="">
           <div class="donoteIdentifier" style="">노트</div><hr class='hrControlNote'>
           <?php
-            $result = mysqli_query($conn, "SELECT id,name FROM notedb_".$_SESSION['pid']);
-            while ($row = mysqli_fetch_assoc($result)) {
+            $result = $conn -> query("SELECT id,name FROM notedb_".$_SESSION['pid']);
+            while ($row = $result -> fetch_assoc()) {
                 echo '<li><a href="../note.php?id='.$row['id'].'">'.$row["name"].'</li></a><hr class="hrControlNote">';
             }
           ?>
           <li><a href="../write.php">페이지 추가하기</li></a><hr class="hrControlNote">
-          <<div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">
+          <div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">
           <?php
             if (!$rows) {
-                echo '<li>공유 받은 항목이 없습니다.</li><hr class="hrControlNote">';
+                echo '<li style="margin-left: 15px">공유 받은 항목이 없습니다.</li><hr class="hrControlNote">';
             } else {
-                $noteData = explode('_', $rows['shareTable']);
-                $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
-                $resulte = mysqli_query($conn, $sqle);
-                $rowe = mysqli_fetch_assoc($resulte);
-                echo '<li><a href="./view.php?shareID='.$rows['shareID'].'">'.$rowe["name"].'</li></a><hr class="hrControlNote">';
-                while ($rows = mysqli_fetch_assoc($results)) {
+                do {
                     $noteData = explode('_', $rows['shareTable']);
                     $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
-                    $resulte = mysqli_query($conn, $sqle);
-                    $rowe = mysqli_fetch_assoc($resulte);
+                    $resulte = $conn -> query($sqle);
+                    $rowe = $resulte -> fetch_assoc();
                     echo '<li><a href="./view.php?shareID='.$rows['shareID'].'">'.$rowe["name"].'</li></a><hr class="hrControlNote">';
-                }
+                } while ($rows = $results -> fetch_assoc());
             }
           ?>
           <li><a href="./accept.php">코드 추가하기</li></a><hr class="hrControlNote">

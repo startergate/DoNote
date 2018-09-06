@@ -32,6 +32,9 @@
   #padding-generate-top{
     padding-top:60px;
   }
+  .noteList{
+    height: auto;
+  }
 }
 @media (min-width: 992px) {
   .displayOptionMobile{
@@ -39,5 +42,8 @@
   }
   #padding-generate-top{
     padding-top:10px;
+  }
+  .noteList{
+    height: calc(100vh - 100px);
   }
 }

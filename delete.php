@@ -13,20 +13,22 @@
   }
   $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
   $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
+
   //Select Note Database
   $id = $_GET['id'];
   $sqli = "SELECT name,text FROM notedb_".$_SESSION['pid']." WHERE id = '".$id."'";
-  $resulti = mysqli_query($conn, $sqli);
-  $row = mysqli_fetch_assoc($resulti);
+  $resulti = $conn -> query($sqli);
+  $row = $resulti -> fetch_assoc();
   $name = $row['name'];
   $text = $row['text'];
+
   //Select Profile Image
   $profileImg = $SID -> profileGet($_SESSION['pid'], $conn_n, ".");
 
   // DoNote Share Function
-  //$sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = AND shareMod = 2";
-  //$results = mysqli_query($conn, $sqls);
-  //$rows = mysqli_fetch_assoc($results);
+  $sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
+  $results = $conn -> query($sqls);
+  $rows = $results -> fetch_assoc();
 ?>
 <html lang="ko">
   <head>
@@ -58,8 +60,8 @@
   	<link rel="stylesheet" type="text/css" href="./css/select.css">
   	<link rel="stylesheet" type="text/css" href="./css/master.css">
   	<link rel="stylesheet" type="text/css" href="./css/Normalize.css">
-    <style media="screen">
-    </style>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src='./lib/reCaptchaEnabler.js'></script>
     <title><?php echo $name;?> 삭제 | DoNote Beta</title>
   </head>
   <body>
@@ -75,7 +77,7 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
               <li><a class="dropdown-item" id="black" href="./user/confirm.php"><strong><span class='glyphicon glyphicon-cog' aria-hidden='true'></span> 정보 수정</strong></a></li>
-              <!--<li><a class="dropdown-item" id="black" href="./share/list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>-->
+              <li><a class="dropdown-item" id="black" href="./share/list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
               <li><a class="dropdown-item" id="black" href="./function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
               <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
@@ -89,32 +91,27 @@
         <ol class="nav" nav-stacked="" nav-pills="">
           <div class="donoteIdentifier" style="">노트</div><hr class='hrControlNote'>
           <?php
-            $result = mysqli_query($conn, "SELECT id,name FROM notedb_".$_SESSION['pid']);
-            while ($row = mysqli_fetch_assoc($result)) {
+            $result = $conn -> query("SELECT id,name FROM notedb_".$_SESSION['pid']);
+            while ($row = $result -> fetch_assoc()) {
                 echo '<li><a href="./note.php?id='.$row['id'].'">'.$row["name"].'</li></a><hr class="hrControlNote">';
             }
           ?>
           <li><a href="./write.php">페이지 추가하기</li></a><hr class="hrControlNote">
-          <!--<div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">-->
+          <div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">
           <?php
-            /*if (!$rows) {
-                echo '<li>공유 받은 항목이 없습니다.</li><hr class="hrControlNote">';
+            if (!$rows) {
+                echo '<li style="margin-left: 15px">공유 받은 항목이 없습니다.</li><hr class="hrControlNote">';
             } else {
-                $noteData = explode('_', $rows['shareTable']);
-                $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
-                $resulte = mysqli_query($conn, $sqle);
-                $rowe = mysqli_fetch_assoc($resulte);
-                echo '<li><a href="./share/view.php?shareID='.$rows['shareID'].'">'.$rowe["name"].'</li></a><hr class="hrControlNote">';
-                while ($rows = mysqli_fetch_assoc($results)) {
+                do {
                     $noteData = explode('_', $rows['shareTable']);
                     $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
-                    $resulte = mysqli_query($conn, $sqle);
-                    $rowe = mysqli_fetch_assoc($resulte);
+                    $resulte = $conn -> query($sqle);
+                    $rowe = $resulte -> fetch_assoc();
                     echo '<li><a href="./share/view.php?shareID='.$rows['shareID'].'">'.$rowe["name"].'</li></a><hr class="hrControlNote">';
-                }
-            }*/
+                } while ($rows = $results -> fetch_assoc());
+            }
           ?>
-          <!--<li><a href="./share/accept.php">코드 추가하기</li></a><hr class="hrControlNote">-->
+          <li><a href="./share/accept.php">코드 추가하기</li></a><hr class="hrControlNote">
         </ol>
       </div>
       <hr class="displayOptionMobile" />
@@ -127,6 +124,8 @@
             <form class='margin_42_gen' action='./process/delete.php?id=<?php echo $id;?>' method='post'>
               <input type='submit' name='confirm_delete' class='btn btn-danger btn-lg' value='삭제!'>
               <a href='./note.php?id=<?php echo $id;?>' class='btn btn-success btn-lg'>취소!</a>
+              <hr>
+              <div class="g-recaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
             </form>
           </div>
         </header>

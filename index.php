@@ -89,8 +89,8 @@
           <br />
           <div align="center">
             <form id="form" action="./function/process_log.php" method="post">
-              <input type="text" id="form" class="form-control" name="id" placeholder="아이디">
-              <input type="password" id="form" class="form-control" name="pw" placeholder="비밀번호">
+              <input type="text" id="form" class="form-control" name="id" placeholder="아이디" required>
+              <input type="password" id="form" class="form-control" name="pw" placeholder="비밀번호" required>
               <div class="checkbox">
                 <input type="checkbox" name="auto"> 자동 로그인<br>자동 로그인 기능은 쿠키를 사용합니다.
               </div>
@@ -110,9 +110,9 @@
           <br />
           <div align="center">
             <form id="form" action="./function/process_reg.php" method="post">
-              <input type="text" id="form" class="form-control" name="id" placeholder="아이디">
-              <input type="password" id="form" class="form-control" name="pw" placeholder="비밀번호">
-              <input type="password" id="form" class="form-control" name="pwr" placeholder="비밀번호 확인">
+              <input type="text" id="form" class="form-control" name="id" placeholder="아이디" required>
+              <input type="password" id="form" class="form-control" name="pw" placeholder="비밀번호" required>
+              <input type="password" id="form" class="form-control" name="pwr" placeholder="비밀번호 확인" required>
               <input type="text" id="form" class="form-control" name="id" placeholder="닉네임">
               <br />
               <input type="submit" name="confirm_register" class="btn btn-light" value="회원가입">

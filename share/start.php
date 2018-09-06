@@ -92,20 +92,15 @@
           <div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">
           <?php
             if (!$rows) {
-                echo '<li>공유 받은 항목이 없습니다.</li><hr class="hrControlNote">';
+                echo '<li style="margin-left: 15px">공유 받은 항목이 없습니다.</li><hr class="hrControlNote">';
             } else {
-                $noteData = explode('_', $rows['shareTable']);
-                $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
-                $resulte = $conn -> query($sqle);
-                $rowe = $resulte -> fetch_assoc();
-                echo '<li><a href="./view.php?shareID='.$rows['shareID'].'">'.$rowe["name"].'</li></a><hr class="hrControlNote">';
-                while ($rows = $results -> fetch_assoc()) {
+                do {
                     $noteData = explode('_', $rows['shareTable']);
                     $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
                     $resulte = $conn -> query($sqle);
                     $rowe = $resulte -> fetch_assoc();
                     echo '<li><a href="./view.php?shareID='.$rows['shareID'].'">'.$rowe["name"].'</li></a><hr class="hrControlNote">';
-                }
+                } while ($rows = $results -> fetch_assoc());
             }
           ?>
           <li><a href="./accept.php">코드 추가하기</li></a><hr class="hrControlNote">
