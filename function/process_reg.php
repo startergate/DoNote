@@ -21,7 +21,7 @@
                   $pid = md5($pid);
 
                   $sql = 'INSERT INTO userdata (id,pw,nickname,register_date,pid) VALUES("$id","$pw", "$nickname",now(),"$pid")';
-                  $result = $$conn_n -> query($sql);
+                  $result = $conn_n -> query($sql);
                   $udb = 'notedb_'.$pid;
                   $sdb = 'sharedb_'.$pid;
 

@@ -34,7 +34,6 @@
       }
       .imgLocation{
         position: relative;
-        /*margin-bottom: 20vh;*/
         font-size: 10px;
         background-color:rgba(255,255,255,0.5);
         width:171px;
@@ -43,6 +42,7 @@
       }
     </style>
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src='./lib/reCaptchaEnabler.js'></script>
   </head>
   <body class='bg bge bgImg'>
     <p class="imgLocation">
@@ -57,15 +57,14 @@
           <p class='text-center'>
             <?php
               session_start();
-              if (!empty($_COOKIE['donoteAutorizeRikka'])) {
+              if (!empty($_COOKIE['sidAutorizeRikka'])) {
                   require('./config/config_aco.php');
                   require('./lib/db.php');
                   $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
-                  $sql = "SELECT pw,nickname,pid FROM userdata WHERE autorize_tag = '".$_COOKIE["donoteAutorizeRikka"]."'";
+                  $sql = "SELECT pw,nickname,pid FROM userdata WHERE autorize_tag = '".$_COOKIE['sidAutorizeRikka']."'";
                   $result = $conn_n -> query($sql);
                   $row = $result -> fetch_assoc($result);
-                  $pw_hash = hash('sha256', $row['pw']);
-                  if ($pw_hash === $_COOKIE['donoteAutorizeYuuta']) {
+                  if ($row['pw'] === $_COOKIE['sidAutorizeYuuta']) {
                       $_SESSION['nickname'] = $row['nickname'];
                       $_SESSION['pid'] = $row['pid'];
                   }
@@ -94,9 +93,9 @@
               <div class="checkbox">
                 <input type="checkbox" name="auto"> 자동 로그인<br>자동 로그인 기능은 쿠키를 사용합니다.
               </div>
-              <div class="g-recaptcha" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
+              <div class="g-recaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
               <br />
-              <input type="submit" name="confirm_login" class="btn btn-light" value="로그인">
+              <input type="submit" name="confirm_login" disabled="disabled" id="saveBtnTop" class="btn btn-light" value="로그인">
               <button class='btn btn-light' id="registerBtn">회원가입</button>
             </form>
           </div>
@@ -115,7 +114,9 @@
               <input type="password" id="form" class="form-control" name="pwr" placeholder="비밀번호 확인" required>
               <input type="text" id="form" class="form-control" name="id" placeholder="닉네임">
               <br />
-              <input type="submit" name="confirm_register" class="btn btn-light" value="회원가입">
+              <div class="g-recaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
+              <br />
+              <input type="submit" name="confirm_register" disabled="disabled" id="saveBtnBottom" class="btn btn-light" value="회원가입">
               <button class='btn btn-light' id="loginBtn2">로그인</button>
             </form>
           </div>

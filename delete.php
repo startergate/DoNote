@@ -65,7 +65,7 @@
     <title><?php echo $name;?> 삭제 | DoNote Beta</title>
   </head>
   <body>
-    <div class="container-fluid" id='padding-erase'>
+    <div class="container-fluid padding-erase">
       <div class="fixed layer1 bg bgi bgImg">
         <div class="col-md-3">
           <a href="./note.php" ><img src="../static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>

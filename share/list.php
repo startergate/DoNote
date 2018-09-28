@@ -58,7 +58,7 @@
     <title>공유된 노트 | DoNote Beta</title>
   </head>
   <body>
-    <div class="container-fluid" id='padding-erase'>
+    <div class="container-fluid padding-erase">
       <div class="fixed layer1 bg bgi bgImg">
         <div class="col-md-3" style="font-size: 30px">
           <a href="../note.php" id='white'><img src="../static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='DoNote' style='margin-top: -5px' \> Share!</a>

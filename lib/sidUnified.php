@@ -9,8 +9,8 @@
      public function profileGet($pid, $conn, $locater)
      {
          $sql = "SELECT profile_img FROM userdata WHERE pid LIKE '".$pid."'";
-         $result = mysqli_query($conn, $sql);
-         $row = mysqli_fetch_assoc($result);
+         $result = $conn -> query($sql);
+         $row = $result -> fetch_assoc();
          if (empty($row['profile_img'])) {
              $profileImg = $locater."/static/img/common/donotepfo.png";
          } else {
@@ -37,7 +37,7 @@
          $returnRes = 0;
          if (!empty($_COOKIE['donoteAutorizeRikka'])) {
              $conn = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
-             $sql = "SELECT pw,nickname,pid FROM userdata WHERE autorize_tag = '".$_COOKIE["donoteAutorizeRikka"]."'";
+             $sql = "SELECT pw,nickname,pid FROM userdata WHERE autorize_tag = '".$_COOKIE["sidAutorizeRikka"]."'";
              $result = $conn -> query($sql);
              $row = $result -> fetch_assoc($result);
              $pw_hash = hash('sha256', $row['pw']);
@@ -70,7 +70,7 @@
          $sqlpid = $row['pid'];
          if ($id === $row['id'] && $pw === $row['pw']) {
              if ($auto === "on") {
-                 loginCookie($pw, $sqlpid, $conn_n, "/donote");
+                 $this -> loginCookie($pw, $sqlpid, $conn_n, "/donote");
              }
              $_SESSION['pid'] = $row['pid'];
              $_SESSION['nickname'] = $row['nickname'];

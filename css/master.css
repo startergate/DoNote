@@ -18,11 +18,11 @@ hr{
   margin-top: 10px;
   margin-bottom: 10px;
 }
-#padding-erase{
-  padding-left: 0px;
-  padding-right: 0px;
-  padding-top: 0px;
-  padding-bottom: 0px;
+.margin-erase{
+  margin: 0;
+}
+.padding-erase{
+  padding: 0;
 }
 #middle{
   vertical-align: middle;
@@ -31,9 +31,6 @@ hr{
   text-align: right;
 }
 .full-erase{
-  padding: 0px;
-  border: 0px;
-}
-.margin-erase{
-  margin: 0px;
+  padding: 0;
+  border: 0;
 }

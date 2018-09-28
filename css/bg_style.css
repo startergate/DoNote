@@ -1,13 +1,13 @@
 .bg {
-  background-repeat:no-repeat;
-  background-position-y: top;
-  min-width: 100%;
-  min-height: 100%;
-  width:100vw;
-  height:100vh;
+    background-repeat:no-repeat;
+    background-position-y: top;
+    min-width: 100%;
+    min-height: 100%;
+    width:100vw;
+    height:100vh;
 }
 .bge{
-  background-position-x: right;
+    background-position-x: right;
 }
 .bgi{
     background-position-x: center;
@@ -24,9 +24,6 @@
 }
 .bgImg{
     background-image: url('https://source.unsplash.com/random');
-    background-size: cover;
-}
-.bgSolid{
     background-color: #3d414d;
-    background-size: auto;
+    background-size: cover;
 }

@@ -71,7 +71,7 @@
     <script src='./lib/reCaptchaEnabler.js'></script>
   </head>
   <body>
-    <div class="container-fluid" id='padding-erase'>
+    <div class="container-fluid padding-erase">
       <div class="fixed layer1 bg bgi bgImg">
         <div class="col-md-3">
           <a href="./note.php"><img src="./static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
@@ -131,10 +131,9 @@
             }
           ?>
           <hr>
-          <di class="g-recaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
+          <div class="g-recaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
         </form>
       </div>
-      <div id="padding-generate-bottom"></div>
     </div>
     <script src="./lib/jquery-3.3.1.min.js"></script>
     <script src="./bootstrap/js/bootstrap.min.js"></script>
