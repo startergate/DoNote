@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php
-  require("../lib/userchk.php");
   require("../lib/sidUnified.php");
   require("../config/config_aco.php");
   $SID = new SID;

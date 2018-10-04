@@ -25,7 +25,7 @@
         $result = $conn -> query("SELECT id,name FROM notedb_".$_SESSION['pid']);
         $row = $result -> fetch_assoc();
         if (!$row) {
-            echo '<li class="donoteLister" style="margin-left: 15px">작성된 노트가 없습니다.</li><hr class="hrControlNote">';
+            echo '<li class="donoteLister" style="padding-left: 15px;padding-top:10px;padding-bottom:10px">작성된 노트가 없습니다.</li><hr class="hrControlNote">';
         } else {
             do {
                 echo '<li><a class="donoteLister" href="../note.php?id='.$row['id'].'">'.$row["name"].'</li></a><hr class="hrControlNote">';
@@ -37,7 +37,7 @@
       <div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">
       <?php
         if (!$rows) {
-            echo '<li class="donoteLister" style="margin-left: 15px">공유 받은 항목이 없습니다.</li><hr class="hrControlNote">';
+            echo '<li class="donoteLister" style="padding-left: 15px;padding-top:10px;padding-bottom:10px">공유 받은 항목이 없습니다.</li><hr class="hrControlNote">';
         } else {
             do {
                 $noteData = explode('_', $rows['shareTable']);
