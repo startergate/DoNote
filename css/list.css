@@ -5,3 +5,8 @@
   margin-bottom: 3px;
   margin-top: 3px;
 }
+.donoteLister{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

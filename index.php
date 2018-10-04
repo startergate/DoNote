@@ -36,7 +36,7 @@
         position: relative;
         font-size: 10px;
         background-color:rgba(255,255,255,0.5);
-        width:171px;
+        width:170px;
         top: 10px;
         left: 10px;
       }

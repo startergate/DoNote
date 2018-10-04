@@ -22,7 +22,7 @@
         $rows = $results -> fetch_assoc();
         $result = $conn -> query("SELECT id,name FROM notedb_".$_SESSION['pid']);
         while ($row = $result -> fetch_assoc()) {
-            echo '<li><a href="../note.php?id='.$row['id'].'">'.$row["name"].'</li></a><hr class="hrControlNote">';
+            echo '<li><a class="donoteLister" href="../note.php?id='.$row['id'].'">'.$row["name"].'</li></a><hr class="hrControlNote">';
         }
       ?>
       <li><a href="../write.php">페이지 추가하기</li></a><hr class="hrControlNote">
@@ -36,7 +36,7 @@
                 $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
                 $resulte = $conn -> query($sqle);
                 $rowe = $resulte -> fetch_assoc();
-                echo '<li><a href="../share/view.php?shareID='.$rows['shareID'].'">'.$rowe["name"].'</li></a><hr class="hrControlNote">';
+                echo '<li><a class="donoteLister" href="../share/view.php?shareID='.$rows['shareID'].'">'.$rowe["name"].'</li></a><hr class="hrControlNote">';
             } while ($rows = $results -> fetch_assoc());
         }
       ?>

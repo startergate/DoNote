@@ -94,7 +94,7 @@
     </div>
     <div class="container-fluid layer2" id="padding-generate-top">
       <div class="col-md-2 noteList">
-        <iframe src="./frontend/list.php" style="border:0" width="100%" height="100%"></iframe>
+        <iframe src="./frontend/list.php?v=2018-10-04_1" style="border:0" width="100%" height="100%"></iframe>
       </div>
       <hr class="displayOptionMobile" />
       <div class="col-md-10">

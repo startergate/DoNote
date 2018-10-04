@@ -68,32 +68,8 @@
       </div>
     </div>
     <div class="container-fluid layer2" id="padding-generate-top" style="margin-top: 50px; z-index: 1">
-      <div class="col-md-2">
-        <ol class="nav" nav-stacked="" nav-pills="">
-          <div class="donoteIdentifier" style="">노트</div><hr class='hrControlNote'>
-          <?php
-            $result = $conn -> query("SELECT id,name FROM notedb_".$_SESSION['pid']);
-            while ($row = $result -> fetch_assoc()) {
-                echo '<li><a href="../note.php?id='.$row['id'].'">'.$row["name"].'</li></a><hr class="hrControlNote">';
-            }
-          ?>
-          <li><a href="../write.php">페이지 추가하기</li></a><hr class="hrControlNote">
-          <div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">
-          <?php
-            if (!$rows) {
-                echo '<li style="margin-left: 15px">공유 받은 항목이 없습니다.</li><hr class="hrControlNote">';
-            } else {
-                do {
-                    $noteData = explode('_', $rows['shareTable']);
-                    $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
-                    $resulte = $conn -> query($sqle);
-                    $rowe = $resulte -> fetch_assoc();
-                    echo '<li><a href="../share/view.php?shareID='.$rows['shareID'].'">'.$rowe["name"].'</li></a><hr class="hrControlNote">';
-                } while ($rows = $results -> fetch_assoc());
-            }
-          ?>
-          <li><a href="../share/accept.php">코드 추가하기</li></a><hr class="hrControlNote">
-        </ol>
+      <div class="col-md-2 noteList">
+          <iframe src="../frontend/list.php?v=2018-10-04_1" style="border:0" width="100%" height="100%"></iframe>
       </div>
       <hr class="displayOptionMobile" />
       <div class="col-md-10">
