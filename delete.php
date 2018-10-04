@@ -56,7 +56,7 @@
     <link rel="stylesheet" type="text/css" href="./css/bg_style.css">
   	<link rel="stylesheet" type="text/css" href="./css/top.css">
   	<link rel="stylesheet" type="text/css" href="./css/list.css">
-  	<link rel="stylesheet" type="text/css" href="./css/select.css">
+  	<link rel="stylesheet" type="text/css" href="./css/select.css?v=2018-10-04_1">
   	<link rel="stylesheet" type="text/css" href="./css/master.css">
   	<link rel="stylesheet" type="text/css" href="./css/Normalize.css">
     <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -100,7 +100,7 @@
               <input type='submit' name='confirm_delete' class='btn btn-danger btn-lg' value='삭제!'>
               <a href='./note.php?id=<?php echo $id;?>' class='btn btn-success btn-lg'>취소!</a>
               <hr>
-              <div class="g-recaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
+              <div class="g-recaptcha selectRecaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
             </form>
           </div>
         </header>

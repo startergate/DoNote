@@ -15,11 +15,10 @@
               if ($_POST['pw'] === $_POST['pwr']) {
                   $_SESSION['temp'] = $_POST['id'];
                   $pw = hash("sha256", $_POST['pw']);
-                  $id = $_POST['id'];
                   $pid = $_POST['id'].$_POST['pwr'].$_POST['id'];
                   $pid = md5($pid);
 
-                  $sql = "INSERT INTO userdata (id,pw,nickname,register_date,pid) VALUES('".$id."','".$pw."','".$nickname."',now(),'".$pid."')";
+                  $sql = "INSERT INTO userdata (id,pw,nickname,register_date,pid) VALUES('".$_POST['id']."','".$pw."','".$nickname."',now(),'".$pid."')";
                   $result = $conn_n -> query($sql);
                   $udb = 'notedb_'.$pid;
                   $sdb = 'sharedb_'.$pid;

@@ -30,3 +30,6 @@
     height: 855px;
   }
 }
+.selectRecaptcha {
+  padding-left: calc(50% - 152px);
+}

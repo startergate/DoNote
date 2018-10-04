@@ -18,6 +18,9 @@
   $sql = "SELECT name,text,edittime FROM notedb_".$_SESSION['pid']." WHERE id LIKE '".$id."'";
   $result = $conn -> query($sql);
   $row = $result -> fetch_assoc();
+  if (!$row) {
+      header("Location: ./write.php");
+  }
   $name = $row['name'];
   $text = $row['text'];
   $edittime = $row['edittime'];
