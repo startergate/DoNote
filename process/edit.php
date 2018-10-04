@@ -1,10 +1,9 @@
 <?php
   require("../config/config.php");
-  require("../lib/db.php");
   require("../lib/sidUnified.php");
   $SID = new SID;
   $SID -> loginCheck("../");
-  $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
+  $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
   if ($_POST['confirm_edit'] !== '수정한 내용을 저장!') {
       header('Location: ../function/error_confirm.php');
   }

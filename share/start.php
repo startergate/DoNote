@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <?php
-  require("../lib/db.php");
   require("../lib/sidUnified.php");
   require("../config/config.php");
   require("../config/config_aco.php");
   $SID = new SID;
   $SID -> loginCheck("../");
-  $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
-  $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
+  $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
+  $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
+
   $id = $_GET['id'];
   $sql = "SELECT name FROM notedb_".$_SESSION['pid']." WHERE id = '".$id."'";
   $result = $conn -> query($sql);

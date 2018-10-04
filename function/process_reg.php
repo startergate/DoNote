@@ -1,7 +1,6 @@
 <?php
   require("../config/config.php");
   require("../config/config_aco.php");
-  require("../lib/db.php");
   session_start();
   if ($_POST['confirm_register'] === '회원가입') {
       if (!empty($_POST['id'])) {
@@ -11,8 +10,8 @@
               } else {
                   $nickname = $_POST['nickname'];
               }
-              $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
-              $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
+              $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
+              $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
               if ($_POST['pw'] === $_POST['pwr']) {
                   $_SESSION['temp'] = $_POST['id'];
                   $pw = hash("sha256", $_POST['pw']);
@@ -20,7 +19,7 @@
                   $pid = $_POST['id'].$_POST['pwr'].$_POST['id'];
                   $pid = md5($pid);
 
-                  $sql = 'INSERT INTO userdata (id,pw,nickname,register_date,pid) VALUES("$id","$pw", "$nickname",now(),"$pid")';
+                  $sql = "INSERT INTO userdata (id,pw,nickname,register_date,pid) VALUES('".$id."','".$pw."','".$nickname."',now(),'".$pid."')";
                   $result = $conn_n -> query($sql);
                   $udb = 'notedb_'.$pid;
                   $sdb = 'sharedb_'.$pid;

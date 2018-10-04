@@ -36,7 +36,7 @@
         position: relative;
         font-size: 10px;
         background-color:rgba(255,255,255,0.5);
-        width:170px;
+        width:171px;
         top: 10px;
         left: 10px;
       }
@@ -59,8 +59,7 @@
               session_start();
               if (!empty($_COOKIE['sidAutorizeRikka'])) {
                   require('./config/config_aco.php');
-                  require('./lib/db.php');
-                  $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
+                  $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
                   $sql = "SELECT pw,nickname,pid FROM userdata WHERE autorize_tag = '".$_COOKIE['sidAutorizeRikka']."'";
                   $result = $conn_n -> query($sql);
                   $row = $result -> fetch_assoc($result);

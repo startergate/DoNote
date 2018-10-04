@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php
-  require("../lib/db.php");
   require("../lib/sidUnified.php");
   require("../config/config.php");
   require("../config/config_aco.php");
@@ -12,21 +11,21 @@
   } else {
       $id = $_GET['id'];
   }
-  $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
-  $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
+  $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
+  $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
 
   //Select Note Text
   $sql = "SELECT name,text,edittime FROM notedb_".$_SESSION['pid']." WHERE id LIKE '".$id."'";
-  $result = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_assoc($result);
+  $result = $conn -> query($sql);
+  $row = $result -> fetch_assoc();
   $name = $row['name'];
   $text = $row['text'];
   $edittime = $row['edittime'];
 
   //Select Wheater to Share
   $sql = "SELECT shareTF, shareMod FROM sharedb_".$_SESSION['pid']." WHERE shareTable LIKE '".$id."_".$_SESSION['pid']."'";
-  $result = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_assoc($result);
+  $result = $conn -> query($sql);
+  $row = $result -> fetch_assoc();
   $sTF = $row['shareTF'];
   $sMod = $row['shareMod'];
 
@@ -34,8 +33,8 @@
   $profileImg = $SID -> profileGet($_SESSION['pid'], $conn_n, "..");
 
   $sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
-  $results = mysqli_query($conn, $sqls);
-  $rows = mysqli_fetch_assoc($results);
+  $results = $conn -> query($sqls);
+  $rows = $result -> fetch_assoc();
 ?>
 <html lang="ko">
   <head>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php
-  require("./lib/db.php");
   require("./lib/sidUnified.php");
   require("./config/config.php");
   require("./config/config_aco.php");
@@ -11,14 +10,14 @@
           header('Location: ./function/error_confirm.php');
       }
   }
-  $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
-  $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
+  $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
+  $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
 
   //Select Note Database
   $id = $_GET['id'];
-  $sqli = "SELECT name,text FROM notedb_".$_SESSION['pid']." WHERE id = '".$id."'";
-  $resulti = $conn -> query($sqli);
-  $row = $resulti -> fetch_assoc();
+  $sql = "SELECT name,text FROM notedb_".$_SESSION['pid']." WHERE id = '".$id."'";
+  $result = $conn -> query($sql);
+  $row = $result -> fetch_assoc();
   $name = $row['name'];
   $text = $row['text'];
 

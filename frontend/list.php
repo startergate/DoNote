@@ -12,18 +12,26 @@
     <ol class="nav" nav-stacked="" nav-pills="">
       <div class="donoteIdentifier" style="">노트</div><hr class='hrControlNote'>
       <?php
-        require("../lib/db.php");
         require("../config/config.php");
-        $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
+        $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
         session_start();
+
+
         // DoNote Share(list) Function
         $sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
         $results = $conn -> query($sqls);
         $rows = $results -> fetch_assoc();
+
         $result = $conn -> query("SELECT id,name FROM notedb_".$_SESSION['pid']);
-        while ($row = $result -> fetch_assoc()) {
-            echo '<li><a class="donoteLister" href="../note.php?id='.$row['id'].'">'.$row["name"].'</li></a><hr class="hrControlNote">';
+        $row = $result -> fetch_assoc();
+        if (!$row) {
+            // code...
+        } else {
+            do {
+                echo '<li><a class="donoteLister" href="../note.php?id='.$row['id'].'">'.$row["name"].'</li></a><hr class="hrControlNote">';
+            } while ($row = $result -> fetch_assoc());
         }
+
       ?>
       <li><a href="../write.php">페이지 추가하기</li></a><hr class="hrControlNote">
       <div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">

@@ -1,10 +1,9 @@
 <?php
   require("../../config/config.php");
-  require("../../lib/db.php");
   require("../../lib/sidUnified.php");
   require("../../lib/codegen.php");
   $SID -> loginCheck("../../");
-  $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
+  $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
   if ($_POST['confirm_write'] === '새로운 내용을 저장!') {
       $_POST['confirm_write'] = "";
       $name = $_POST['name'];

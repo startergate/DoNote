@@ -1,6 +1,5 @@
 <?php
     require('../config/config_aco.php');
-    require('../lib/db.php');
     require('../lib/codegen.php');
     require('../lib/sidUnified.php');
     $SID = new SID;
@@ -10,7 +9,7 @@
     if ($_POST['confirm_login']) {
         if (!empty($_POST['id'])) {
             if (!empty($_POST['pw'])) {
-                $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
+                $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
                 $id = $_POST['id'];
                 $pw = hash("sha256", $_POST['pw']);
 

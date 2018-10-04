@@ -3,11 +3,10 @@
   require("../lib/sidUnified.php");
   require("../config/config.php");
   require("../config/config_aco.php");
-  require("../lib/db.php");
   $SID = new SID;
   $SID -> loginCheck("../");
-  $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
-  $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
+  $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
+  $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
 
   //Select Profile Image
   $profileImg = $SID -> profileGet($_SESSION['pid'], $conn_n, "..");

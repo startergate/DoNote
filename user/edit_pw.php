@@ -3,10 +3,9 @@
   require("../lib/userchk.php");
   require("../lib/sidUnified.php");
   require("../config/config_aco.php");
-  require("../lib/db.php");
   $SID = new SID;
   $SID -> loginCheck("../");
-  $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
+  $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
   //Select Profile Image
 
   $profileImg = $SID -> profileGet($_SESSION['pid'], $conn_n, "..");

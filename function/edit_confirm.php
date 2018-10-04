@@ -1,6 +1,5 @@
 <?php
   require('../config/config_aco.php');
-  require('../lib/db.php');
   require('../lib/sidUnified.php');
   $SID = new SID;
   $SID -> loginCheck("../");
@@ -9,7 +8,7 @@
           $pw_temp = $_POST['pw'];
           $password = hash("sha256", $pw_temp);
           $pid = $_SESSION['pid'];
-          $conn_n = db_init($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
+          $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
 
           $sql = "SELECT pw FROM userdata WHERE pid LIKE '$pid'";	//user data select
           $result = $conn_n -> query($sql);
