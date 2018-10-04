@@ -111,7 +111,7 @@
               <input type="text" id="form" class="form-control" name="id" placeholder="아이디" required>
               <input type="password" id="form" class="form-control" name="pw" placeholder="비밀번호" required>
               <input type="password" id="form" class="form-control" name="pwr" placeholder="비밀번호 확인" required>
-              <input type="text" id="form" class="form-control" name="id" placeholder="닉네임">
+              <input type="text" id="form" class="form-control" name="nickname" placeholder="닉네임">
               <br />
               <div class="g-recaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
               <br />
