@@ -74,8 +74,8 @@
       <div class="col-md-10">
         <form action="./function/add.php" method="post" class="text-center">
           <div class="form-group">
-            <label for="pw"><h2>공유 코드를 입력해주세요.</h2></label>
-            <input type='shareCode' class='form-control' name='pw' id='form-title' placeholder='코드 입력' style="width: 50%; margin-left: 25%" />
+            <label for="shareCode"><h2>공유 코드를 입력해주세요.</h2></label>
+            <input class='form-control' name='shareCode' id='form-title' placeholder='코드 입력' style="width: 50%; margin-left: 25%" />
           </div>
           <input type="submit" name="confirm_code" value="확인" class="btn btn-default btn-lg" />
         </form>
