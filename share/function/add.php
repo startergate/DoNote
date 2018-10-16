@@ -20,7 +20,8 @@
       $result = $conn -> query($sql);
       $row = $result -> fetch_assoc();
       if ($row['shareTF' = 0]) {
-        // 공유되지 않음 코드 추가
+        echo "<script>window.alert('올바르지 않은 코드입니다.');</script>";
+        echo "<script>window.location=('../accept.php');</script>";
         exit;
       } else {
         $sdb = 'sharedb_'.$pid;

@@ -6,11 +6,14 @@
   $SID = new SID;
   $SID -> loginCheck("./");
   // Select Note Database
-  if (empty($_GET['id'])) {
+  if (empty($_GET['id']) && $_COOKIE['donoteYuuta']) {
+      $id = $_COOKIE['donoteYuuta'];
+  } elseif (empty($_GET['id'])) {
       $id = 'startergatedonotedefaultregister';
   } else {
       $id = $_GET['id'];
   }
+  setcookie("donoteYuuta", $id, time() + 86400 * 30, '/donote');
   $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
   $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
 
