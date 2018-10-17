@@ -59,9 +59,8 @@
          }
      }
 
-     public function login($id, $pw, $auto, $conn)
+     public function login($id, $pw, $conn)
      {
-         $id = $_POST['id'];
          $pw = hash("sha256", $pw);
          $sql = "SELECT id,pw,nickname,pid FROM userdata WHERE id LIKE '$id'";	//user data select
          $result = $conn -> query($sql);

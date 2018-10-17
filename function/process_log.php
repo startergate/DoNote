@@ -10,7 +10,7 @@
         if (!empty($_POST['id'])) {
             if (!empty($_POST['pw'])) {
                 $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
-                if (login()) {
+                if ($SID -> login($_POST['id'], $_POST['pw'], $conn_n)) {
                     if ($auto === "on") {
                         $SID -> loginCookie($pw, $sqlpid, $conn_n, "/donote");
                     }
