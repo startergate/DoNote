@@ -10,25 +10,11 @@
         if (!empty($_POST['id'])) {
             if (!empty($_POST['pw'])) {
                 $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
-                $id = $_POST['id'];
-                $pw = hash("sha256", $_POST['pw']);
-
-                $sql = "SELECT id,pw,nickname,pid FROM userdata WHERE id LIKE '$id'";	//user data select
-                $result = $conn_n -> query($sql);
-                $row = $result -> fetch_assoc();
-                $sqlpid = $row['pid'];
-                if ($_POST['id'] === $row['id']) {
-                    if ($pw === $row['pw']) {
-                        if ($_POST['auto'] === "on") {
-                            $SID -> loginCookie($pw, $sqlpid, $conn_n, "/donote");
-                        }
-                        $_SESSION['pid'] = $row['pid'];
-                        $_SESSION['nickname'] = $row['nickname'];
-                        header('Location: ../note.php');
-                        exit;
-                    } else {
-                        echo "<script>window.alert('가입되지 않은 아이디이거나 틀린 비밀번호를 입력하셨습니다. 다시 로그인 해주세요.');</script>";
+                if (login()) {
+                    if ($auto === "on") {
+                        $SID -> loginCookie($pw, $sqlpid, $conn_n, "/donote");
                     }
+                    header('Location: ../note.php');
                 } else {
                     echo "<script>window.alert('가입되지 않은 아이디이거나 틀린 비밀번호를 입력하셨습니다. 다시 로그인 해주세요.');</script>";
                 }

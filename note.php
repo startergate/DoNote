@@ -6,7 +6,7 @@
   $SID = new SID;
   $SID -> loginCheck("./");
   // Select Note Database
-  if (empty($_GET['id']) && $_COOKIE['donoteYuuta']) {
+  if (empty($_GET['id']) && !empty($_COOKIE['donoteYuuta'])) {
       $id = $_COOKIE['donoteYuuta'];
   } elseif (empty($_GET['id'])) {
       $id = 'startergatedonotedefaultregister';

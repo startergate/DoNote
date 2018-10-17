@@ -1,8 +1,7 @@
 <?php
   // SID LIBRARY
-  // This library requires Custom DB Library( https://gist.github.com/startergate/df8893a2088e3d8b4a0dca570fb3344a )
-  // Please link db.php to target page.
-  // Copyright by 2018 STARTERGATE
+  // ------------------------------------------------------
+  // Copyright by 2017 ~ 2018 STARTERGATE
   // This library follows CC BY-SA 4.0. Please refer to ( https://creativecommons.org/licenses/by-sa/4.0/ )
  class SID
  {
@@ -62,16 +61,13 @@
 
      public function login($id, $pw, $auto, $conn)
      {
+         $id = $_POST['id'];
          $pw = hash("sha256", $pw);
-
          $sql = "SELECT id,pw,nickname,pid FROM userdata WHERE id LIKE '$id'";	//user data select
          $result = $conn -> query($sql);
          $row = $result -> fetch_assoc();
          $sqlpid = $row['pid'];
          if ($id === $row['id'] && $pw === $row['pw']) {
-             if ($auto === "on") {
-                 $this -> loginCookie($pw, $sqlpid, $conn_n, "/donote");
-             }
              $_SESSION['pid'] = $row['pid'];
              $_SESSION['nickname'] = $row['nickname'];
              $output = 1;

@@ -98,17 +98,13 @@
       </div>
       <hr class="displayOptionMobile" />
       <div class="col-md-10">
-        <form action="../process/edit.php?id=<?php echo $id?>" method="post">
-          <input type="submit" name="confirm_edit" value="저장" class="btn btn-default">
           <div class="text-right edittime">최근 수정 일자: <?php echo $edittime?></div>
           <div class="form-group">
-            <textarea type='text' class='form-control' name='name' id='title' placeholder='제목을 작성하세요.'><?php echo $name?></textarea>
+            <textarea type='text' class='form-control' name='name' id='title' placeholder='제목을 작성하세요.' disabled><?php echo $name?></textarea>
           </div>
           <div class="form-group form-text">
-            <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.'><?php echo $text?></textarea>
+            <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.' disabled><?php echo $text?></textarea>
           </div>
-          <input type="submit" name="confirm_edit" value="저장" class="btn btn-default">
-        </form>
       </div>
       <div id="padding-generate-bottom"></div>
     </div>
