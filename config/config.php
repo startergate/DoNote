@@ -1,8 +1,7 @@
 <?php
   $config = array(
-    "host" => 'localhost',
+    "host" => 'db.donote.co',
     "duser" => 'root',
     "dpw" => "Wb4H9nn542",
     "dname" => "donote_beta",
   );
-?>
