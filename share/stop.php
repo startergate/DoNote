@@ -5,36 +5,22 @@
   require("../config/config_aco.php");
   $SID = new SID;
   $SID -> loginCheck("../");
-  //Select Note Database
-  if (empty($_GET['id'])) {
-      $id = 'startergatedonotedefaultregister';
-  } else {
-      $id = $_GET['id'];
-  }
   $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
   $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
 
-  //Select Note Text
-  $sql = "SELECT name,text,edittime FROM notedb_".$_SESSION['pid']." WHERE id LIKE '".$id."'";
+  $id = $_GET['id'];
+  $sql = "SELECT name FROM notedb_".$_SESSION['pid']." WHERE id = '".$id."'";
   $result = $conn -> query($sql);
   $row = $result -> fetch_assoc();
   $name = $row['name'];
   $text = $row['text'];
-  $edittime = $row['edittime'];
-
-  //Select Wheater to Share
-  $sql = "SELECT shareTF, shareMod FROM sharedb_".$_SESSION['pid']." WHERE shareTable LIKE '".$id."_".$_SESSION['pid']."'";
-  $result = $conn -> query($sql);
-  $row = $result -> fetch_assoc();
-  $sTF = $row['shareTF'];
-  $sMod = $row['shareMod'];
 
   //Select Profile Image
   $profileImg = $SID -> profileGet($_SESSION['pid'], $conn_n, "..");
 
   $sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
   $results = $conn -> query($sqls);
-  $rows = $result -> fetch_assoc();
+  $rows = $results -> fetch_assoc();
 ?>
 <html lang="ko">
   <head>
@@ -52,7 +38,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="../static/img/favicon/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="../static/img/favicon/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../static/img/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="../static/img/favicon/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../static/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="../static/img/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../static/img/favicon/favicon-16x16.png">
@@ -60,21 +46,21 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="../static/img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+    <title>공유 시작 | DoNote Beta</title>
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/master.css">
-  	<link rel="stylesheet" type="text/css" href="../css/style.css?v=8">
+  	<link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/bg_style.css?v=1">
   	<link rel="stylesheet" type="text/css" href="../css/top.css">
   	<link rel="stylesheet" type="text/css" href="../css/list.css">
-  	<link rel="stylesheet" type="text/css" href="../css/text.css">
+  	<link rel="stylesheet" type="text/css" href="../css/select.css">
+  	<link rel="stylesheet" type="text/css" href="../css/master.css">
   	<link rel="stylesheet" type="text/css" href="../css/Normalize.css">
-    <title><?php echo $name;?> | DoNote Beta</title>
   </head>
   <body>
     <div class="container-fluid padding-erase">
       <div class="fixed layer1 bg bgi bgImg">
-        <div class="col-md-3">
-          <a href="../note.php"><img src="../static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
+        <div class="col-md-3" style="font-size: 30px">
+          <a href="../note.php" id='white'><img src="../static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='DoNote' style='margin-top: -5px' \> Share!</a>
         </div>
         <div class="col-md-9 text-right">
           <div class="btn-group dropdown">
@@ -86,29 +72,34 @@
               <li><a class="dropdown-item" id="black" href="./list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
               <li><a class="dropdown-item" id="black" href="../function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
-              <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
+              <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다.</strong></p></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-    <div class="container-fluid layer2" id="padding-generate-top">
+    <div class="container-fluid layer2" id="padding-generate-top" style="margin-top: 50px; z-index: 1">
       <div class="col-md-2 noteList">
           <iframe src="../frontend/list.php?v=2018-10-04_1" style="border:0" width="100%" height="100%"></iframe>
       </div>
       <hr class="displayOptionMobile" />
       <div class="col-md-10">
-          <div class="text-right edittime">최근 수정 일자: <?php echo $edittime?></div>
-          <div class="form-group">
-            <textarea type='text' disabled><?php echo $name?></textarea>
+        <header class="jumbotron text-center" id="delete">
+          <div class="deleteMiddle">
+            <h1><?php echo $name;?></h1>
+            <h2>공유를 종료합니다.</h2>
+            <br />
+            <br />
+            <form class='margin_42_gen' action='./function/start.php?id=<?php echo $id;?>' method='post'>
+              <input type='submit' name='confirm_start' class='btn btn-success btn-lg' value='확인!'>
+              <a href='./note.php?id=<?php echo $id;?>' class='btn btn-danger btn-lg'>취소!</a>
+            </form>
           </div>
-          <div class="form-group form-text">
-            <textarea disabled><?php echo $text?></textarea>
-          </div>
+        </header>
       </div>
       <div id="padding-generate-bottom"></div>
     </div>
-    <script src="../lib/jquery-3.3.1.min.js"></script>
+		<script src="../lib/jquery-3.3.1.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
