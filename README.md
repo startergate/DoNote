@@ -39,3 +39,8 @@ DoNote Neo is language change of DoNote Server.<br />
 With this project, DoNote Server-Side program will be changed to node.js.<br />
 The project will be start after v1.0 Release.<br />
 If result of the project provides better performance and requires lower resources, this will lead the whole project.
+
+DoNote Desktop<br />
+Desktop version of DoNote will be developed after DoNote Neo.<br />
+The program will be developed on Electron based on DoNote Server-Side script.<br />
+Few functions included in DoNote Share!(v0.4b Release) won't be supported.<br />
