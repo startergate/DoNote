@@ -3,7 +3,7 @@
   require("../lib/sidUnified.php");
   require("../config/config.php");
   require("../config/config_aco.php");
-  $SID = new SID;
+  $SID = new SID("donote");
   $SID -> loginCheck("../");
   if (empty($_GET['id'])) {
       $id = 'startergatedonotedefaultregister';
@@ -17,7 +17,7 @@
   $pid = $_SESSION['pid'];
 
   //Select Profile Image
-  $profileImg = $SID -> profileGet($pid, $conn_n, "..");
+  $profileImg = $SID -> profileGet($pid, "..");
 
   $sql = "SELECT shareTable,shareID,shareMod FROM sharedb_$pid WHERE shareTF LIKE 1";
   $result = $conn -> query($sql);

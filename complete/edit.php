@@ -1,6 +1,6 @@
 <?php
   require("../lib/sidUnified.php");
-  $SID = new SID;
+  $SID = new SID("donote");
   $SID -> loginCheck("../");
   ob_start();
   session_start();

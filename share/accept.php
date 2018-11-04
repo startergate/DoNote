@@ -3,13 +3,13 @@
   require("../lib/sidUnified.php");
   require("../config/config.php");
   require("../config/config_aco.php");
-  $SID = new SID;
+  $SID = new SID("donote");
   $SID -> loginCheck("../");
   $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
   $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
 
   //Select Profile Image
-  $profileImg = $SID -> profileGet($_SESSION['pid'], $conn_n, "..");
+  $profileImg = $SID -> profileGet($_SESSION['pid'], "..");
 ?>
 <html lang="ko">
   <head>

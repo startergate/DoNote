@@ -2,15 +2,13 @@
 <?php
   require("./lib/sidUnified.php");
   require("./config/config.php");
-  require("./config/config_aco.php");;
-  $SID = new SID;
+  $SID("donote") = new SID("donote");
   $SID -> loginCheck("./");
   $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
-  $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
   //Select Note Database
 
   //Select Profile Image
-  $profileImg = $SID -> profileGet($_SESSION['pid'], $conn_n, ".");
+  $profileImg = $SID -> profileGet($_SESSION['pid'], ".");
 
   // DoNote Share Function
   $sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";

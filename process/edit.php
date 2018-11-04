@@ -1,7 +1,7 @@
 <?php
   require("../config/config.php");
   require("../lib/sidUnified.php");
-  $SID = new SID;
+  $SID = new SID("donote");
   $SID -> loginCheck("../");
   $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
   if ($_POST['confirm_edit'] !== '수정한 내용을 저장!') {

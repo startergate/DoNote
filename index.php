@@ -58,15 +58,8 @@
             <?php
               session_start();
               if (!empty($_COOKIE['sidAutorizeRikka'])) {
-                  require('./config/config_aco.php');
-                  $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
-                  $sql = "SELECT pw,nickname,pid FROM userdata WHERE autorize_tag = '".$_COOKIE['sidAutorizeRikka']."'";
-                  $result = $conn_n -> query($sql);
-                  $row = $result -> fetch_assoc($result);
-                  if ($row['pw'] === $_COOKIE['sidAutorizeYuuta']) {
-                      $_SESSION['nickname'] = $row['nickname'];
-                      $_SESSION['pid'] = $row['pid'];
-                  }
+                  $sid = new SID('donote');
+                  $sid -> authCheck();
               }
               if (!empty($_SESSION['pid'])) {
                   echo "<div id='white'>".$_SESSION['nickname']."님, 돌아오신 것을 환영합니다.</div>";

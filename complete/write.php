@@ -1,6 +1,6 @@
 <?php
   require("../lib/sidUnified.php");
-  $SID = new SID;
+  $SID = new SID("donote");
   $SID -> loginCheck("../");
   if ($_SESSION['confirm'] === 'confirm') {
       unset($_SESSION['confirm']);

@@ -12,7 +12,10 @@
     <ol class="nav" nav-stacked="" nav-pills="">
       <div class="donoteIdentifier" style="">노트</div><hr class='hrControlNote'>
       <?php
+        require("../lib/sidUnified.php");
         require("../config/config.php");
+        $SID = new SID('donote');
+        $SID -> loginCheck('../');
         $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
         session_start();
 

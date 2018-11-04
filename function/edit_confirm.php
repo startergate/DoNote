@@ -1,20 +1,10 @@
 <?php
-  require('../config/config_aco.php');
   require('../lib/sidUnified.php');
-  $SID = new SID;
+  $SID = new SID("donote");
   $SID -> loginCheck("../");
   if ($_POST['confirm_user'] === '확인') {
       if (!empty($_POST['pw'])) {
-          $pw_temp = $_POST['pw'];
-          $password = hash("sha256", $pw_temp);
-          $pid = $_SESSION['pid'];
-          $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
-
-          $sql = "SELECT pw FROM userdata WHERE pid LIKE '$pid'";	//user data select
-          $result = $conn_n -> query($sql);
-          $row = $result -> fetch_assoc();
-
-          if ($password === $row['pw']) {
+          if ($SID -> passwordCheck($_POST['pw'], $_SESSION['pid'])) {
               $_SESSION['confirm'] = "confirm";
               header('Location: ../user/edit_info.php');
           } else {
@@ -25,3 +15,4 @@
       }
   }
   echo "<script>window.location=('../user/confirm.php');</script>";
+// TODO: 분리 필요

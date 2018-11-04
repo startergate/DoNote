@@ -2,17 +2,16 @@
     require('../config/config_aco.php');
     require('../lib/codegen.php');
     require('../lib/sidUnified.php');
-    $SID = new SID;
+    $SID = new SID("donote");
 
     session_start();
 
     if ($_POST['confirm_login']) {
         if (!empty($_POST['id'])) {
             if (!empty($_POST['pw'])) {
-                $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
-                if ($SID -> login($_POST['id'], $_POST['pw'], $conn_n)) {
-                    if ($auto === "on") {
-                        $SID -> loginCookie($pw, $sqlpid, $conn_n, "/donote");
+                if ($SID -> login($_POST['id'], $_POST['pw'])) {
+                    if ($_POST['auto'] === "on") {
+                        $SID -> loginCookie($pw, $sqlpid, "/");
                     }
                     header('Location: ../note.php');
                 } else {

@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <?php
   require("../lib/sidUnified.php");
-  require("../config/config_aco.php");
-  $SID = new SID;
+  $SID = new SID("donote");
   $SID -> loginCheck("../");
-  $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);
   //Select Profile Image
 
-  $profileImg = $SID -> profileGet($_SESSION['pid'], $conn_n, "..");
+  $profileImg = $SID -> profileGet($_SESSION['pid'], "..");
   $_SESSION['confirm'] = 'refresh';
 ?>
 <html lang="ko">

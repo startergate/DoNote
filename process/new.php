@@ -2,7 +2,7 @@
   require("../config/config.php");
   require("../lib/sidUnified.php");
   require("../lib/codegen.php");
-  $SID = new SID;
+  $SID = new SID("donote");
   $SID -> loginCheck("../");
   $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
   if ($_POST['confirm_write'] === '새로운 내용을 저장!') {
