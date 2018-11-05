@@ -153,7 +153,7 @@
          if ($nickname === $currentNickname) {
              return 0;
          } elseif ($nickname === '') {
-             $nk = '사용자';
+             $nickname = '사용자';
          }
          $sql = "UPDATE userdata SET nickname='$nickname' WHERE pid='$pid'";
          $conn -> query($sql);
