@@ -1,14 +1,15 @@
 <?php
+  require("../lib/sidUnified.php");
   require("../config/config.php");
   session_start();
   if ($_POST['confirm_register'] === '회원가입') {
       if (!empty($_POST['id'])) {
           if (!empty($_POST['pw'])) {
               $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
-              $sid = new SID("donote");
+              $SID = new SID("donote");
               if ($_POST['pw'] === $_POST['pwr']) {
                   $_SESSION['temp'] = $_POST['id'];
-                  $pid = $sid -> register($_POST['id'], $_POST['pw'], $_POST['nickname']);
+                  $pid = $SID -> register($_POST['id'], $_POST['pw'], $_POST['nickname']);
 
                   $udb = 'notedb_'.$pid;
                   $sdb = 'sharedb_'.$pid;

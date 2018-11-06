@@ -2,7 +2,6 @@
 <?php
   require("../lib/sidUnified.php");
   require("../config/config.php");
-  require("../config/config_aco.php");
   $SID = new SID("donote");
   $SID -> loginCheck("../");
   if (empty($_GET['id'])) {
@@ -11,7 +10,6 @@
       $id = $_GET['id'];
   }
   $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
-  $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
   //Select Note Database
 
   $pid = $_SESSION['pid'];

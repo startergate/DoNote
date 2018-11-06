@@ -1,6 +1,5 @@
 <?php
   require("../lib/sidUnified.php");
-  require("../config/config_aco.php");
   $SID = new SID("donote");
   $SID -> loginCheck("../");
   if ($_POST['confirm_user_edit']) {

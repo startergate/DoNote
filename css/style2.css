@@ -30,12 +30,12 @@
   color: #ffffff;
 }
 @media(min-width: 600px) {
-  #form {
+  .form {
     width: 300px;
   }
 }
 @media(max-width: 599.82px){
-  #form {
+  .form {
     width: 50vw;
   }
 }

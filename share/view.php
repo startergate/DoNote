@@ -2,7 +2,6 @@
 <?php
   require("../lib/sidUnified.php");
   require("../config/config.php");
-  require("../config/config_aco.php");
   $SID = new SID("donote");
   $SID -> loginCheck("../");
   //Select Note Database

@@ -1,5 +1,4 @@
 <?php
-  require("../config/config_aco.php");
   require("../lib/sidUnified.php");
   $SID = new SID("donote");
   $SID -> loginCheck("../");

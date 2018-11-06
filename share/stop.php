@@ -2,11 +2,9 @@
 <?php
   require("../lib/sidUnified.php");
   require("../config/config.php");
-  require("../config/config_aco.php");
   $SID = new SID("donote");
   $SID -> loginCheck("../");
   $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
-  $conn_n = new mysqli($confign["host"], $confign["duser"], $confign["dpw"], $confign["dname"]);  //User Database
 
   $id = $_GET['id'];
   $sql = "SELECT name FROM notedb_".$_SESSION['pid']." WHERE id = '".$id."'";

@@ -56,13 +56,14 @@
         <div class="control">
           <p class='text-center'>
             <?php
+              require('./lib/sidUnified.php');
               session_start();
               if (!empty($_COOKIE['sidAutorizeRikka'])) {
-                  $sid = new SID('donote');
-                  $sid -> authCheck();
+                  $SID = new SID('donote');
+                  $SID -> authCheck();
               }
               if (!empty($_SESSION['pid'])) {
-                  echo "<div id='white'>".$_SESSION['nickname']."님, 돌아오신 것을 환영합니다.</div>";
+                  echo "<div id='white'>".$_SESSION['nickname']."님, 돌아오셨군요!</div>";
                   echo "<script type=\"text/javascript\">setTimeout(\"location.href = './note.php'\", 5000);</script>";
                   echo "<div style='color:white'>곧 리다이렉트됩니다.</div>";
               } else {
@@ -74,23 +75,21 @@
       </div>
     </div>
     <div id="login_form" class="covra covraLogin text-center" style="display:none">
-      <div align="center">
+      <div class="center">
         <div id="login">로그인 | DoNote</div>
         <div id="lotext" class="text-center">
           <br />
-          <div align="center">
-            <form id="form" action="./function/process_log.php" method="post">
-              <input type="text" id="form" class="form-control" name="id" placeholder="아이디" required>
-              <input type="password" id="form" class="form-control" name="pw" placeholder="비밀번호" required>
-              <div class="checkbox">
-                <input type="checkbox" name="auto"> 자동 로그인<br>자동 로그인 기능은 쿠키를 사용합니다.
-              </div>
-              <div class="g-recaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
-              <br />
-              <input type="submit" name="confirm_login" disabled="disabled" id="saveBtnTop" class="btn btn-light" value="로그인">
-              <button class='btn btn-light' id="registerBtn">회원가입</button>
-            </form>
-          </div>
+          <form class="center form" action="./function/process_log.php" method="post">
+            <input type="text" class="form-control form"name="id" placeholder="아이디" required>
+            <input type="password" class="form-control form"name="pw" placeholder="비밀번호" required>
+            <div class="checkbox">
+              <input type="checkbox" name="auto"> 자동 로그인<br>자동 로그인 기능은 쿠키를 사용합니다.
+            </div>
+            <div class="g-recaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
+            <br />
+            <input type="submit" name="confirm_login" disabled="disabled" id="saveBtnTop" class="btn btn-light" value="로그인">
+            <button class='btn btn-light' id="registerBtn">회원가입</button>
+          </form>
         </div>
       </div>
     </div>
@@ -99,19 +98,17 @@
         <div id="login">회원가입 | DoNote</div>
         <div id="lotext">
           <br />
-          <div align="center">
-            <form id="form" action="./function/process_reg.php" method="post">
-              <input type="text" id="form" class="form-control" name="id" placeholder="아이디" required>
-              <input type="password" id="form" class="form-control" name="pw" placeholder="비밀번호" required>
-              <input type="password" id="form" class="form-control" name="pwr" placeholder="비밀번호 확인" required>
-              <input type="text" id="form" class="form-control" name="nickname" placeholder="닉네임">
-              <br />
-              <div class="g-recaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
-              <br />
-              <input type="submit" name="confirm_register" disabled="disabled" id="saveBtnBottom" class="btn btn-light" value="회원가입">
-              <button class='btn btn-light' id="loginBtn2">로그인</button>
-            </form>
-          </div>
+          <form class="center form" action="./function/process_reg.php" method="post">
+            <input type="text" class="form-control form" name="id" placeholder="아이디" required>
+            <input type="password" class="form-control form" name="pw" placeholder="비밀번호" required>
+            <input type="password" class="form-control form" name="pwr" placeholder="비밀번호 확인" required>
+            <input type="text" class="form-control form" name="nickname" placeholder="닉네임">
+            <br />
+            <div class="g-recaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
+            <br />
+            <input type="submit" name="confirm_register" disabled="disabled" id="saveBtnBottom" class="btn btn-light" value="회원가입">
+            <button class='btn btn-light' id="loginBtn2">로그인</button>
+          </form>
         </div>
       </div>
     </div>

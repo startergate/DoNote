@@ -114,7 +114,17 @@
                 echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
             }
           ?>
-          <div class="text-right edittime">최근 수정 일자: <?php echo $edittime?></div>
+          <div class="text-right edittime">
+            최근 수정 일자:
+            <script type="text/javascript">
+              var timeString = '<?php echo $edittime; ?>'.split(' ');
+              var dateS = timeString[0].split('-');
+              var timeS = timeString[1].split(':');
+              var time = new Date(Date.UTC(dateS[0], dateS[1]-1, dateS[2], timeS[0], timeS[1], timeS[2]));
+              var timeOut = time.toString().split(' ');
+              document.writeln(timeOut[3] + " " +  timeOut[1] + " " + timeOut[2] + " " + timeOut[4] + " ");
+            </script>
+          </div>
           <div class="form-group">
             <textarea type='text' class='form-control' name='name' id='title' placeholder='제목을 작성하세요.'><?php echo $name?></textarea>
           </div>
