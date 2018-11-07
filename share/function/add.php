@@ -19,17 +19,17 @@
       $sql = "SELECT shareTF FROM $targetSdb WHERE shareID = $code";
       $result = $conn -> query($sql);
       $row = $result -> fetch_assoc();
-      if ($row['shareTF' = 0]) {
-        echo "<script>window.alert('올바르지 않은 코드입니다.');</script>";
-        echo "<script>window.location=('../accept.php');</script>";
-        exit;
+      if ($row['shareTF'] = 0) {
+          echo "<script>window.alert('올바르지 않은 코드입니다.');</script>";
+          echo "<script>window.location=('../accept.php');</script>";
+          exit;
       } else {
-        $sdb = 'sharedb_'.$pid;
-        $sql = "INSERT INTO $sdb (shareTable,shareID,shareTF) VALUES ('$table','$code', 1)";
-        $result = $conn -> query($sql);
-        $_SESSION['confirm'] = 'confirm';
-        header('Location: ../../complete/shareAccept.php?pid='.$rand);
-        exit;
+          $sdb = 'sharedb_'.$pid;
+          $sql = "INSERT INTO $sdb (shareTable,shareID,shareTF) VALUES ('$table','$code', 1)";
+          $result = $conn -> query($sql);
+          $_SESSION['confirm'] = 'confirm';
+          header('Location: ../../complete/shareAccept.php?pid='.$rand);
+          exit;
       }
   } else {
       header('Location: ../../function/error_confirm.php');

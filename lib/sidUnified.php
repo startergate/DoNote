@@ -35,7 +35,7 @@
           if ($pw === $row['pw']) {
               $_SESSION['pid'] = $row['pid'];
               $_SESSION['nickname'] = $row['nickname'];
-              if ($this -> checkExist($this->clientName."_additional", "pid", $row['pid'])) {
+              if (!($this -> checkExist($this->clientName."_additional", "pid", $row['pid']))) {
                   $sql = "INSERT INTO ".$this->clientName."_additional (pid) VALUES(".$row['pid'].")";
                   $conn -> query($sql);
               }
@@ -50,8 +50,8 @@
       {
           $conn = new mysqli("sid.donote.co", "root", "Wb4H9nn542", "sid_userdata");
           $checkExist = $this -> checkExist("userdata", "id", $id);
-          if ($checkExist === -1) {
-              return $checkExist;
+          if ($checkExist === 1) {
+              return -1;
           }
           if (!$nickname) {
               $nickname = $_POST['id'];
@@ -61,19 +61,17 @@
           do {
               $pid = md5($pid);
               $checkExist = $this -> checkExist("userdata", "pid", $pid);
-          } while ($checkExist === -1);
-          $sql = "SELECT * FROM userdata WHERE id = $id";
-          $result = $conn -> query($sql);
-          if ($result -> num_rows()) {
-              return -1;
-          }
+          } while ($checkExist === 1);
           $sql = "INSERT INTO userdata (id,pw,nickname,register_date,pid) VALUES('".$id."','".$pw."','".$nickname."',now(),'".$pid."')";
-          $conn -> query($sql);
 
-          return $pid;
+          if ($conn -> query($sql)) {
+              return $pid;
+          } else {
+              return 0;
+          }
       }
 
-      //Auto login cookie functions
+      // Auto login cookie functions
       public function loginCookie($pw, $pid, $locater)
       {
           $conn = new mysqli("sid.donote.co", "root", "Wb4H9nn542", "sid_userdata");
@@ -106,7 +104,7 @@
           return $returnRes;
       }
 
-      //Information editor
+      // Information editor
       public function passwordEdit(String $pw, String $pwr, String $pid)
       {
           $conn = new mysqli("sid.donote.co", "root", "Wb4H9nn542", "sid_userdata");
@@ -155,9 +153,12 @@
       private function checkExist(String $targetDB, String $targetName, String $targetValue)
       {
           $conn = new mysqli("sid.donote.co", "root", "Wb4H9nn542", "sid_userdata");
-          $sql = "SELECT * FROM $targetDB WHERE $targetName = $targetValue";
-          if (!($conn -> query($sql))) {
-              return -1;
+          $sql = "SELECT * FROM $targetDB WHERE $targetName = '$targetValue'";
+          $result = $conn -> query($sql);
+          if ($result -> fetch_assoc()) {
+              return 1;
+          } else {
+              return 0;
           }
       }
 
@@ -177,8 +178,7 @@
           }
       }
 
-      //Editional Etc functions
-
+      // Editional Etc functions
       public function getClientName()
       {
           return $this->$clientName;

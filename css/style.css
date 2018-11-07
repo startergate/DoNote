@@ -33,7 +33,7 @@
     padding-top:60px;
   }
   .noteList{
-    height: auto;
+    height: 200px;
   }
 }
 @media (min-width: 992px) {
