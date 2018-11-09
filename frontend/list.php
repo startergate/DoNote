@@ -34,7 +34,6 @@
                 echo '<li><a class="donoteLister" href="../note.php?id='.$row['id'].'">'.$row["name"].'</li></a><hr class="hrControlNote">';
             } while ($row = $result -> fetch_assoc());
         }
-
       ?>
       <li><a href="../write.php">페이지 추가하기</li></a><hr class="hrControlNote">
       <div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">
@@ -51,7 +50,7 @@
             } while ($rows = $results -> fetch_assoc());
         }
       ?>
-      <li><a href="../share/accept.php">코드 추가하기</li></a><hr class="hrControlNote">
+      <li><a href="../share/add.php">코드 추가하기</li></a><hr class="hrControlNote">
     </ol>
 
   </body>
