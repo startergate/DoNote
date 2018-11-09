@@ -30,10 +30,6 @@
                       $sql = "INSERT INTO $udb (name,text,edittime,id) VALUES ('DoNote를 이용해주셔서 감사합니다.','이 웹앱은 Beta 상태입니다. 정상적으로 작동되지 않을 수 있습니다.',now(),'startergatedonotedefaultregister')";
                       $result = $conn -> query($sql);
 
-                      $shareTable = 'startergatedonotedefaultregister_'.$pid;
-                      $sql = "INSERT INTO $sdb (shareTable,shareTF) VALUES ('".$shareTable."',0)";
-                      $result = $conn -> query($sql);
-
                       echo "<script>window.alert('회원가입이 완료되었습니다. 로그인 해주세요.');</script>";
                       break;
                   }

@@ -98,10 +98,14 @@
       <div class="col-md-10">
           <div class="text-right edittime">최근 수정 일자: <?php echo $edittime?></div>
           <div class="form-group">
-            <textarea type='text' disabled><?php echo $name?></textarea>
+            <textarea type='text' <?php if ($sMod) {
+    echo "disabled";
+} ?>><?php echo $name?></textarea>
           </div>
           <div class="form-group form-text">
-            <textarea disabled><?php echo $text?></textarea>
+            <textarea <?php if ($sMod) {
+    echo "disabled";
+} ?>><?php echo $text?></textarea>
           </div>
       </div>
       <div id="padding-generate-bottom"></div>

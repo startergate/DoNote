@@ -25,8 +25,11 @@
           exit;
       } else {
           $sdb = 'sharedb_'.$pid;
-          $sql = "INSERT INTO $sdb (shareTable,shareID,shareTF) VALUES ('$table','$code', 1)";
-          $result = $conn -> query($sql);
+          $sql = "INSERT INTO $sdb (shareTable,shareID) VALUES ('$table','$code')";
+          $conn -> query($sql);
+          
+          $sql = "INSERT INTO _shared (shareTable,shareID) VALUES ('$table','$code')";
+          $conn -> query($sql);
           $_SESSION['confirm'] = 'confirm';
           header('Location: ../../complete/shareAccept.php?pid='.$rand);
           exit;

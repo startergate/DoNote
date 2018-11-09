@@ -88,7 +88,7 @@
             <h2>공유를 종료합니다.</h2>
             <br />
             <br />
-            <form class='margin_42_gen' action='./function/start.php?id=<?php echo $id;?>' method='post'>
+            <form class='margin_42_gen' action='./function/delete.php?id=<?php echo $id;?>' method='post'>
               <input type='submit' name='confirm_start' class='btn btn-success btn-lg' value='확인!'>
               <a href='./note.php?id=<?php echo $id;?>' class='btn btn-danger btn-lg'>취소!</a>
             </form>
