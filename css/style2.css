@@ -76,3 +76,9 @@
   font-size: 40px;
   color: white;
 }
+.btn-light {
+  transition: background 0.3s, transform 0.3s;
+}
+.btn-light:hover {
+  background-color: #949494;
+}

@@ -77,7 +77,7 @@
           $conn = new mysqli("sid.donote.co", "root", "Wb4H9nn542", "sid_userdata");
           unset($_COOKIE['sidAutorizeRikka']);
           unset($_COOKIE['sidAutorizeYuuta']);
-          $cookie_raw = generateRenStr(10);
+          $cookie_raw = $this -> generateRenStr(10);
           $cookie_data = hash("sha256", $pw);
           $sql = "UPDATE userdata SET autorize_tag='$cookie_raw' WHERE pid = '$pid'";
           $conn -> query($sql);
