@@ -46,3 +46,6 @@ DoNote Desktop<br />
 Desktop version of DoNote will be developed after DoNote Neo.<br />
 The program will be developed on Electron based on DoNote Server-Side script.<br />
 Few functions included in DoNote Share!(v0.4b Release) won't be supported.<br />
+
+DoNote in the SPA<br />
+DoNote in the SPA(a.k.a. DoNote SPA Update) is full functional change after DoNote NG.<br />
