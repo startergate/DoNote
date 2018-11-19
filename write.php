@@ -2,7 +2,7 @@
 <?php
   require("./lib/sidUnified.php");
   require("./config/config.php");
-  $SID("donote") = new SID("donote");
+  $SID = new SID("donote");
   $SID -> loginCheck("./");
   $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
   //Select Note Database

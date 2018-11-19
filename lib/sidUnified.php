@@ -198,7 +198,7 @@
           return $profileImg;
       }
 
-      public function generateRenStr(mixed $length)
+      public function generateRenStr($length)
       {
           $character = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
           $rendom_str = "";
