@@ -60,29 +60,32 @@
 
       public function register(String $id, String $pw, String $nickname = "User")
       {
-          $conn = new mysqli("sid.donote.co", "root", "Wb4H9nn542", "sid_userdata");
-          $id = $conn -> real_escape_string($id);
-          $nickname = $conn -> real_escape_string($nickname);
-          $checkExist = $this -> checkExist("userdata", "id", $id);
-          if ($checkExist === 1) {
-              return -1;
-          }
-          if ($nickname === "") {
-              $nickname = $_POST['id'];
-          }
-          $pid = $id.$pw.$id;
-          $pw = hash("sha256", $pw);
-          do {
-              $pid = md5($pid);
-              $checkExist = $this -> checkExist("userdata", "pid", $pid);
-          } while ($checkExist === 1);
-          $sql = "INSERT INTO userdata (id,pw,nickname,register_date,pid) VALUES('".$id."','".$pw."','".$nickname."',now(),'".$pid."')";
+          try {
+              $conn = new mysqli("sid.donote.co", "root", "Wb4H9nn542", "sid_userdata");
+              $id = $conn -> real_escape_string($id);
+              $nickname = $conn -> real_escape_string($nickname);
+              if ($this -> checkExist("userdata", "id", $id) === 1) {
+                  return -1;
+              }
+              if ($nickname === "") {
+                  $nickname = $_POST['id'];
+              }
+              $pid = $id.$pw.$id;
+              $pw = hash("sha256", $pw);
+              do {
+                  $pid = md5($pid);
+                  $checkExist = $this -> checkExist("userdata", "pid", $pid);
+              } while ($checkExist === 1);
+              $sql = "INSERT INTO userdata (id,pw,nickname,register_date,pid) VALUES('".$id."','".$pw."','".$nickname."',now(),'".$pid."')";
 
-          if ($conn -> query($sql)) {
-              $sql = "INSERT INTO ".$this->clientName."_additional (pid) VALUES ('".$pid."')";
-              $conn -> query($sql);
-              return $pid;
-          } else {
+              if ($conn -> query($sql)) {
+                  $sql = "INSERT INTO ".$this->clientName."_additional (pid) VALUES ('".$pid."')";
+                  $conn -> query($sql);
+                  return $pid;
+              } else {
+                  return 0;
+              }
+          } catch (\Exception $e) {
               return 0;
           }
       }
@@ -169,12 +172,16 @@
 
       private function checkExist(String $targetDB, String $targetName, String $targetValue)
       {
-          $conn = new mysqli("sid.donote.co", "root", "Wb4H9nn542", "sid_userdata");
-          $sql = "SELECT * FROM $targetDB WHERE $targetName = '$targetValue'";
-          $result = $conn -> query($sql);
-          if ($result -> fetch_assoc()) {
-              return 1;
-          } else {
+          try {
+              $conn = new mysqli("sid.donote.co", "root", "Wb4H9nn542", "sid_userdata");
+              $sql = "SELECT * FROM $targetDB WHERE $targetName = '$targetValue'";
+              $result = $conn -> query($sql);
+              if ($result -> fetch_assoc()) {
+                  return 1;
+              } else {
+                  return 0;
+              }
+          } catch (\Exception $e) {
               return 0;
           }
       }
