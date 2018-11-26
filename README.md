@@ -33,11 +33,6 @@ In v1.1 update, UI of DoNote will be changed.
 * Bootstrap will be customized. So No Bootstrap update required.
 * SID feature will be removed due to security reason and STARTERGATE IDENTITY project will take care.
 
-v1.2 DoNote of Prediction<br />
-DoNote of Prediction is Auto-Completion function based on deep learning.<br />
-* The server of prediction feature will be seperated.
-* Front-End will use Ajax to communicate with prediction server.
-
 DoNote Back-End Neo<br />
 DoNote Neo is language change of DoNote Server.<br />
 With this project, DoNote Server-Side program will be changed to node.js.<br />
@@ -51,3 +46,8 @@ Few functions included in DoNote Share!(v0.4b Release) won't be supported.<br />
 
 DoNote in the SPA<br />
 DoNote in the SPA(a.k.a. DoNote SPA Update) is full functional change after DoNote NG.<br />
+
+DoNote of Prediction<br />
+DoNote of Prediction is Auto-Completion function based on deep learning.<br />
+* The server of prediction feature will be seperated.
+* Front-End will use Ajax to communicate with prediction server.
