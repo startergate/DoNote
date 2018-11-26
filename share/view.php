@@ -3,14 +3,12 @@
   require("../lib/sidUnified.php");
   require("../config/config.php");
   $SID = new SID("donote");
-  $SID -> loginCheck("../");
   //Select Note Database
   if (empty($_GET['id'])) {
-      $id = 'startergatedonotedefaultregister';
-  } else {
-      $id = $_GET['id'];
+      header('Location: ../function/error_confirm.php');
   }
   $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
+  explode("_", $_GET['id']);
 
   //Select Note Text
   $sql = "SELECT name,text,edittime FROM notedb_".$_SESSION['pid']." WHERE id LIKE '".$id."'";
@@ -26,9 +24,6 @@
   $row = $result -> fetch_assoc();
   $sTF = $row['shareTF'];
   $sMod = $row['shareMod'];
-
-  //Select Profile Image
-  $profileImg = $SID -> profileGet($_SESSION['pid'], "..");
 
   $sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
   $results = $conn -> query($sqls);
@@ -72,40 +67,33 @@
     <div class="container-fluid padding-erase">
       <div class="fixed layer1 bg bgi bgImg">
         <div class="col-md-3">
-          <a href="../note.php"><img src="../static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
+          <img src="../static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \>
         </div>
         <div class="col-md-9 text-right">
           <div class="btn-group dropdown">
             <button class="full-erase btn btn-link dropdown-toggle" type="button" id="white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src='<?php echo $profileImg."' alt='".$_SESSION['nickname']?>' id='profile' class='img-circle' />
+              <img src='/static/img/common/donotepfo.png' alt='Hello!' id='profile' class='img-circle' />
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
               <li><a class="dropdown-item" id="black" href="../user/confirm.php"><strong><span class='glyphicon glyphicon-cog' aria-hidden='true'></span> 정보 수정</strong></a></li>
               <li><a class="dropdown-item" id="black" href="./list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
               <li><a class="dropdown-item" id="black" href="../function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
-              <li role="separator" class="divider"></li>
-              <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
     <div class="container-fluid layer2" id="padding-generate-top">
-      <div class="col-md-2 noteList">
-          <iframe src="../frontend/list.php?v=2018-10-04_1" style="border:0" width="100%" height="100%"></iframe>
-      </div>
       <hr class="displayOptionMobile" />
-      <div class="col-md-10">
-          <div class="text-right edittime">최근 수정 일자: <?php echo $edittime?></div>
+      <div class="col-md-12">
+          <div class="text-right edittime"><?php if ($sMod) {
+    echo "수정하려면 로그인하세요 | ";
+} ?>최근 수정 일자: <?php echo $edittime?></div>
           <div class="form-group">
-            <textarea type='text' <?php if ($sMod) {
-    echo "disabled";
-} ?>><?php echo $name?></textarea>
+            <textarea disabled><?php echo $name?></textarea>
           </div>
           <div class="form-group form-text">
-            <textarea <?php if ($sMod) {
-    echo "disabled";
-} ?>><?php echo $text?></textarea>
+            <textarea disabled><?php echo $text?></textarea>
           </div>
       </div>
       <div id="padding-generate-bottom"></div>

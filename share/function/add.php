@@ -1,12 +1,11 @@
 <?php
   require("../../config/config.php");
   require("../../lib/sidUnified.php");
-  require("../../lib/codegen.php");
   $SID = new SID('donote');
   $SID -> loginCheck("../../");
   $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
   if ($_POST['confirm_code'] === '확인') {
-      $code = $_POST['shareCode'];
+      $code = $conn -> real_escape_string($_POST['shareCode']);
       $pid = $_SESSION['pid'];
 
       $sql = "SELECT note FROM _shared WHERE id = $code";
