@@ -1,3 +1,4 @@
+<title>Redirecting...</title>
 <?php
   require("../lib/sidUnified.php");
   $SID = new SID("donote");
@@ -13,3 +14,4 @@
       unset($_SESSION['confirm_delete']);
       header('Location: ../function/error_confirm.php');
   }
+?>

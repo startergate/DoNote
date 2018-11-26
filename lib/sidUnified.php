@@ -14,19 +14,21 @@
               $this->clientName = func_get_args()[0];
               return 1;
           } else {
-              self::__destruct();
-              return 0;
+              return self::__destruct();
           }
       }
 
       public function __destruct()
       {
+          $_SESSION['SID_DEBUG'] = 0x00;
+          return 0;
       }
 
       // Login functions
       public function login($id, $pw)
       {
           $conn = new mysqli("sid.donote.co", "root", "Wb4H9nn542", "sid_userdata");
+          $id = $conn -> real_escape_string($id);
           $pw = hash("sha256", $pw);
           $sql = "SELECT pw,nickname,pid FROM userdata WHERE id LIKE '$id'";	//user data select
           $result = $conn -> query($sql);
@@ -36,7 +38,7 @@
               $_SESSION['pid'] = $row['pid'];
               $_SESSION['nickname'] = $row['nickname'];
               if (!($this -> checkExist($this->clientName."_additional", "pid", $row['pid']))) {
-                  $sql = "INSERT INTO ".$this->clientName."_additional (pid) VALUES(".$row['pid'].")";
+                  $sql = "INSERT INTO ".$this->clientName."_additional (pid) VALUES ('".$row['pid']."')";
                   $conn -> query($sql);
               }
               $output = 1;
@@ -46,14 +48,26 @@
           return $output;
       }
 
-      public function register(String $id, String $pw, String $nickname = "")
+      public function logout()
+      {
+          session_destroy();
+
+          setcookie("sidAutorizeRikka", 0, time() - 3600, '/');
+          setcookie("sidAutorizeYuuta", 0, time() - 3600, '/');
+
+          return 1;
+      }
+
+      public function register(String $id, String $pw, String $nickname = "User")
       {
           $conn = new mysqli("sid.donote.co", "root", "Wb4H9nn542", "sid_userdata");
+          $id = $conn -> real_escape_string($id);
+          $nickname = $conn -> real_escape_string($nickname);
           $checkExist = $this -> checkExist("userdata", "id", $id);
           if ($checkExist === 1) {
               return -1;
           }
-          if (!$nickname) {
+          if ($nickname === "") {
               $nickname = $_POST['id'];
           }
           $pid = $id.$pw.$id;
@@ -65,6 +79,8 @@
           $sql = "INSERT INTO userdata (id,pw,nickname,register_date,pid) VALUES('".$id."','".$pw."','".$nickname."',now(),'".$pid."')";
 
           if ($conn -> query($sql)) {
+              $sql = "INSERT INTO ".$this->clientName."_additional (pid) VALUES ('".$pid."')";
+              $conn -> query($sql);
               return $pid;
           } else {
               return 0;
@@ -77,6 +93,7 @@
           $conn = new mysqli("sid.donote.co", "root", "Wb4H9nn542", "sid_userdata");
           unset($_COOKIE['sidAutorizeRikka']);
           unset($_COOKIE['sidAutorizeYuuta']);
+          $pid = $conn -> real_escape_string($pid);
           $cookie_raw = $this -> generateRenStr(10);
           $cookie_data = hash("sha256", $pw);
           $sql = "UPDATE userdata SET autorize_tag='$cookie_raw' WHERE pid = '$pid'";
@@ -107,14 +124,14 @@
       // Information editor
       public function passwordEdit(String $pw, String $pwr, String $pid)
       {
-          $conn = new mysqli("sid.donote.co", "root", "Wb4H9nn542", "sid_userdata");
-          $pwh = hash("sha256", $pw);
-          $pid = $_SESSION['pid'];
           if (!$pw) {
               return -1;
               exit;
           } elseif ($pw === $pwr) {
-              $sql = "UPDATE userdata SET pw='$pwh' WHERE pid='$pid'";
+              $conn = new mysqli("sid.donote.co", "root", "Wb4H9nn542", "sid_userdata");
+              $pw = hash("sha256", $pw);
+              $pid = $_SESSION['pid'];
+              $sql = "UPDATE userdata SET pw='$pw' WHERE pid='$pid'";
               $conn -> query($sql);
               return 1;
           } else {
@@ -130,7 +147,7 @@
           if ($nickname === $currentNickname) {
               return 0;
           } elseif ($nickname === '') {
-              $nickname = '사용자';
+              $nickname = 'User';
           }
           $sql = "UPDATE userdata SET nickname='$nickname' WHERE pid='$pid'";
           $conn -> query($sql);
@@ -164,14 +181,14 @@
 
 
 
-      public function passwordCheck(String $password, String $pid)
+      public function passwordCheck(String $pw, String $pid)
       {
           $conn = new mysqli("sid.donote.co", "root", "Wb4H9nn542", "sid_userdata");
-          $password = hash("sha256", $password);
+          $pw = hash("sha256", $pw);
           $sql = "SELECT pw FROM userdata WHERE pid LIKE '$pid'";	//user data select
           $result = $conn -> query($sql);
           $row = $result -> fetch_assoc();
-          if ($password === $row['pw']) {
+          if ($pw === $row['pw']) {
               return 1;
           } else {
               return 0;

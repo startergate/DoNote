@@ -1,3 +1,4 @@
+<title>Redirecting...</title>
 <?php
   require("../lib/sidUnified.php");
   $SID = new SID("donote");
@@ -10,3 +11,4 @@
   } else {
       header('Location: ../function/error_confirm.php');
   }
+?>
