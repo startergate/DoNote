@@ -6,12 +6,10 @@
   $SID -> loginCheck("../");
   $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
 
-  $id = $_GET['id'];
-  $sql = "SELECT name FROM notedb_".$_SESSION['pid']." WHERE id = '".$id."'";
+  $sql = "SELECT name FROM notedb_".$_SESSION['pid']." WHERE id = '".$_GET['id']."'";
   $result = $conn -> query($sql);
   $row = $result -> fetch_assoc();
   $name = $row['name'];
-  $text = $row['text'];
 
   //Select Profile Image
   $profileImg = $SID -> profileGet($_SESSION['pid'], "..");
