@@ -33,10 +33,11 @@
         font-size: 6.2vw;
       }
       .imgLocation{
-        position: relative;
+        position: fixed;
         font-size: 10px;
         background-color:rgba(255,255,255,0.5);
-        width:171px;
+        width:100px;
+        padding: 5px;
         top: 10px;
         left: 10px;
       }
@@ -45,9 +46,7 @@
     <script src='./lib/reCaptchaEnabler.js'></script>
   </head>
   <body class='bg bge bgImg'>
-    <p class="imgLocation">
-    Image by Unsplash, ⓒ 2018 DoNote
-    </p>
+    <p class="imgLocation">Image by Unsplash</p>
     <div id="index" class="cover full-window">
       <div class="col-sm-12 larger">
         <p class='text-center'>
