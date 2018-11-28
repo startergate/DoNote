@@ -84,7 +84,7 @@
           <div class="deleteMiddle">
             <h1><?php echo $name;?></h1>
             <h2>공유를 시작합니다.</h2>
-            <form class='margin_42_gen' action='./function/start.php?id=<?php echo $id;?>' method='post'>
+            <form class='margin_42_gen' action='./function/start.php?id=<?php echo $_GET['id'];?>' method='post'>
               <input type="checkbox" name="link"> 링크를 가진 모든 사람에게 공유
               <input type="checkbox" name="edit"> 편집 허용
               <br />

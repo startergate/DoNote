@@ -27,11 +27,14 @@
   $edittime = $row['edittime'];
 
   // Select Wheater to Share
-  $sql = "SELECT shareTF, shareMod FROM sharedb_".$_SESSION['pid']." WHERE shareTable LIKE '".$id."_".$_SESSION['pid']."'";
-  $result = $conn -> query($sql);
-  $row = $result -> fetch_assoc();
-  $sTF = $row['shareTF'];
-  $sMod = $row['shareMod'];
+  try {
+      $sql = "SELECT * FROM sharedb_".$_SESSION['pid']." WHERE shareTable LIKE '".$_SESSION['pid']."_".$id."'";
+      $result = $conn -> query($sql);
+      $row = $result -> fetch_assoc();
+  } catch (\Exception $e) {
+      $row = null;
+  }
+
 
   // Select Profile Image
   $profileImg = $SID -> profileGet($_SESSION['pid'], ".");
@@ -105,10 +108,7 @@
           <input type="submit" id="saveBtnTop" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
           <a href='./delete.php?id=<?php echo $id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
-            if ($sTF) {
-                if ($sMod == 2) {
-                    echo "<a href='./share/add.php?id=".$id." class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
-                }
+            if ($row) {
                 echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
             } else {
                 echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
@@ -134,10 +134,7 @@
           <input type="submit" id="saveBtnBottom" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
           <a href='./delete.php?id=<?php echo $id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
-            if ($sTF) {
-                if ($sMod == 2) {
-                    echo "<a href='./share/add.php?id=".$id." class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
-                }
+            if ($row) {
                 echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
             } else {
                 echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
