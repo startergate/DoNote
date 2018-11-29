@@ -12,7 +12,7 @@
   } else {
       $id = $_GET['id'];
   }
-  setcookie("donoteYuuta", $id, time() + 86400 * 30, '/donote');
+  setcookie("donoteYuuta", $id, time() + 86400 * 30, '/');
   $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
 
   // Select Note Text
