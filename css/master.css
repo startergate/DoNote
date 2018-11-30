@@ -2,6 +2,7 @@
 body{
   font-family:Noto Sans KR;
   font-style:black;
+  height: 100vh;
 }
 .container{
   padding-top: 20px;
