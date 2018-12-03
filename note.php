@@ -92,7 +92,7 @@
               <li><a class="dropdown-item" id="black" href="./share/list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
               <li><a class="dropdown-item" id="black" href="./function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
-              <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
+              <li><p class="dropdown-item text-center" id="black"><strong><?=$_SESSION['nickname']?>님, 환영합니다</strong></p></li>
             </ul>
           </div>
         </div>
@@ -104,9 +104,9 @@
       </div>
       <hr class="displayOptionMobile" />
       <div class="col-md-10">
-        <form action="./process/edit.php?id=<?php echo $id?>" method="post">
+        <form action="./process/edit.php?id=<?=$id?>" method="post">
           <input type="submit" id="saveBtnTop" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
-          <a href='./delete.php?id=<?php echo $id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
+          <a href='./delete.php?id=<?=$id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
             if ($row) {
                 echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
@@ -117,7 +117,7 @@
           <div class="text-right edittime">
             최근 수정 일자:
             <script type="text/javascript">
-              var timeString = '<?php echo $edittime; ?>'.split(' ');
+              var timeString = '<?=$edittime?>'.split(' ');
               var dateS = timeString[0].split('-');
               var timeS = timeString[1].split(':');
               var time = new Date(Date.UTC(dateS[0], dateS[1]-1, dateS[2], timeS[0], timeS[1], timeS[2]));
@@ -126,13 +126,13 @@
             </script>
           </div>
           <div class="form-group">
-            <textarea type='text' class='form-control' name='name' id='title' placeholder='제목을 작성하세요.'><?php echo $name?></textarea>
+            <textarea type='text' class='form-control' name='name' id='title' placeholder='제목을 작성하세요.'><?=$name?></textarea>
           </div>
           <div class="form-group form-text">
-            <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.'><?php echo $text?></textarea>
+            <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.'><?=$text?></textarea>
           </div>
           <input type="submit" id="saveBtnBottom" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
-          <a href='./delete.php?id=<?php echo $id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
+          <a href='./delete.php?id=<?=$id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
             if ($row) {
                 echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";

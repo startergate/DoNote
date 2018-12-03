@@ -61,7 +61,7 @@
   	<link rel="stylesheet" type="text/css" href="../css/list.css">
   	<link rel="stylesheet" type="text/css" href="../css/text.css">
   	<link rel="stylesheet" type="text/css" href="../css/Normalize.css">
-    <title><?php echo $name;?> | DoNote Beta</title>
+    <title><?=$name?> | DoNote Beta</title>
   </head>
   <body>
     <div class="container-fluid padding-erase">
@@ -88,12 +88,12 @@
       <div class="col-md-12">
           <div class="text-right edittime"><?php if ($sMod) {
     echo "수정하려면 로그인하세요 | ";
-} ?>최근 수정 일자: <?php echo $edittime?></div>
+} ?>최근 수정 일자: <?=$edittime?></div>
           <div class="form-group">
-            <textarea disabled><?php echo $name?></textarea>
+            <textarea disabled><?=$name?></textarea>
           </div>
           <div class="form-group form-text">
-            <textarea disabled><?php echo $text?></textarea>
+            <textarea disabled><?=$text?></textarea>
           </div>
       </div>
       <div id="padding-generate-bottom"></div>

@@ -59,7 +59,7 @@
   	<link rel="stylesheet" type="text/css" href="./css/Normalize.css">
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src='./lib/reCaptchaEnabler.js'></script>
-    <title><?php echo $name;?> 삭제 | DoNote Beta</title>
+    <title><?=$name?> 삭제 | DoNote Beta</title>
   </head>
   <body>
     <div class="container-fluid padding-erase">
@@ -77,7 +77,7 @@
               <li><a class="dropdown-item" id="black" href="./share/list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
               <li><a class="dropdown-item" id="black" href="./function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
-              <li><p class="dropdown-item text-center" id="black"><strong><?php echo $_SESSION['nickname']?>님, 환영합니다</strong></p></li>
+              <li><p class="dropdown-item text-center" id="black"><strong><?=$_SESSION['nickname']?>님, 환영합니다</strong></p></li>
             </ul>
           </div>
         </div>
@@ -91,12 +91,12 @@
       <div class="col-md-10">
         <header class="jumbotron text-center" id="delete">
           <div class="deleteMiddle">
-            <h1><?php echo $name;?></h1>
+            <h1><?=$name?></h1>
             <h2>위 내용을 삭제하시겠습니까?</h2>
             <br />
-            <form class='margin_42_gen' action='./process/delete.php?id=<?php echo $id;?>' method='post'>
+            <form class='margin_42_gen' action='./process/delete.php?id=<?=$id?>' method='post'>
               <input type='submit' name='confirm_delete' class='btn btn-danger btn-lg' value='삭제!'>
-              <a href='./note.php?id=<?php echo $id;?>' class='btn btn-success btn-lg'>취소!</a>
+              <a href='./note.php?id=<?=$id?>' class='btn btn-success btn-lg'>취소!</a>
               <hr>
               <div class="g-recaptcha selectRecaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
             </form>
