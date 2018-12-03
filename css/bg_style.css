@@ -23,7 +23,7 @@
   }
 }
 .bgImg{
-    background-image: url('https://source.unsplash.com/random');
+    background-image: url('https://source.unsplash.com/random/1280x720');
     background-color: #3d414d;
     background-size: cover;
 }

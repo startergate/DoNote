@@ -66,7 +66,7 @@
                   echo "<script type=\"text/javascript\">setTimeout(\"location.href = './note.php'\", 5000);</script>";
                   echo "<div style='color:white'>곧 리다이렉트됩니다.</div>";
               } else {
-                  echo "<button class='btn btn-light btn-lg' id='loginBtn1'>로그인</button>";
+                  echo "<button class='btn btn-light btn-lg' id='loginBtn1'>SID로 로그인</button>";
               }
             ?>
           </p>
