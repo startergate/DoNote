@@ -1,5 +1,6 @@
 <?php
   require("../config/config.php");
+  header('Content-Type: application/json');
   $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
   if (empty($_POST['name'])) {
       $name = "제목없는 노트";
