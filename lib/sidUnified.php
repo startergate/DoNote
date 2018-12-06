@@ -36,13 +36,15 @@
               $row = $result -> fetch_assoc();
               $sqlpid = $row['pid'];
               if ($pw === $row['pw']) {
+                  $output = 1;
                   $_SESSION['pid'] = $row['pid'];
                   $_SESSION['nickname'] = strip_tags($row['nickname']);
                   if (!($this -> checkExist($this->clientName."_additional", "pid", $row['pid']))) {
                       $sql = "INSERT INTO ".$this->clientName."_additional (pid) VALUES ('".$row['pid']."')";
                       $conn -> query($sql);
+                      $output++;
                   }
-                  $output = 1;
+                  return $output;
               } else {
                   $output = 0;
               }
