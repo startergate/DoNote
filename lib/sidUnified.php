@@ -123,7 +123,7 @@
           if (!empty($_COOKIE['sidAutorizeRikka'])) {
               $sql = "SELECT pw,nickname,pid FROM userdata WHERE autorize_tag = '".$_COOKIE["sidAutorizeRikka"]."'";
               $result = $conn -> query($sql);
-              $row = $result -> fetch_assoc($result);
+              $row = $result -> fetch_assoc();
               $pw_hash = hash('sha256', $row['pw']);
               if ($pw_hash === $_COOKIE['sidAutorizeYuuta']) {
                   $_SESSION['nickname'] = $row['nickname'];
