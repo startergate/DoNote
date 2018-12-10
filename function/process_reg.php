@@ -31,6 +31,7 @@
                       $conn -> query($sql);
 
                       echo "<script>window.alert('회원가입이 완료되었습니다. 로그인 해주세요.');</script>";
+                      echo "<script>window.location=('http://donote.co');</script>";
                       break;
                   }
               } else {
