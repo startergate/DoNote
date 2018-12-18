@@ -8,7 +8,9 @@
   if (empty($_GET['id']) && !empty($_COOKIE['donoteYuuta'])) {
       $id = $_COOKIE['donoteYuuta'];
   } elseif (empty($_GET['id'])) {
-      $id = 'startergatedonotedefaultregister';
+      $result = $conn -> query("SELECT id,name FROM notedb_".$_SESSION['pid']);
+      $row = $result -> fetch_assoc();
+      $id = $row['id'];
   } else {
       $id = $_GET['id'];
   }

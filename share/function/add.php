@@ -12,7 +12,9 @@
       $result = $conn -> query($sql);
       $row = $result -> fetch_assoc();
       $table = $row['note'];
-
+      if (!$row) {
+          header('Location: ../../function/error_confirm.php');
+      }
       $sdb = 'sharedb_'.$pid;
       $sql = "INSERT INTO $sdb (shareTable,shareID) VALUES ('$table','$code')";
       $conn -> query($sql);
