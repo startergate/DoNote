@@ -95,7 +95,7 @@
             <h2>위 내용을 삭제하시겠습니까?</h2>
             <br />
             <form class='margin_42_gen' action='./process/delete.php?id=<?=$id?>' method='post'>
-              <input type='submit' name='confirm_delete' class='btn btn-danger btn-lg' value='삭제!'>
+              <input type='submit' id='saveBtnTop' name='confirm_delete' class='btn btn-danger btn-lg' value='삭제!' disabled>
               <a href='./note.php?id=<?=$id?>' class='btn btn-success btn-lg'>취소!</a>
               <hr>
               <div class="g-recaptcha selectRecaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
