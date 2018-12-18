@@ -89,8 +89,11 @@
               <input type="checkbox" name="edit"> 편집 허용
               <br />
               <br />
-              <input type='submit' name='confirm_start' class='btn btn-success btn-lg' value='확인!'>
+              <input type='submit' id='saveBtnTop' name='confirm_start' class='btn btn-success btn-lg' value='확인!' disabled>
               <a href='./note.php?id=<?php echo $id;?>' class='btn btn-danger btn-lg'>취소!</a>
+              <hr>
+              <div class="g-recaptcha selectRecaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
+
             </form>
           </div>
         </header>

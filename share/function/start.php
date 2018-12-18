@@ -29,5 +29,5 @@
   $sql = "INSERT INTO $sdb (shareTable,shareID) VALUES ('$table','$rand')";
   $conn -> query($sql);
   $_SESSION['confirm'] = 'confirm';
-  header('Location: ../../complete/write.php?pid='.$rand);
+  header('Location: ../../complete/share_start.php?pid='.$id);
   exit;

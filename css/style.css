@@ -21,6 +21,9 @@
 .minfifty{
   min-height: 50px;
 }
+.donoteShareCode {
+  width: 350px;
+}
 @media (max-width: 991.98px){
   hr{
     margin-left: 15px;
