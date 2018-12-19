@@ -9,4 +9,23 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  padding: 0 !important;
+  border: 0;
+}
+.donoteLister:hover {
+  background-color: #ededed;
+}
+.donoteBigLister:hover {
+  background-color: #ededed;
+}
+.donoteListerA {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  display: block;
+  padding:10px 15px;
+}
+.donoteBadge {
+  margin: 10px 15px 10px 0px;
 }

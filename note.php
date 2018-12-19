@@ -11,8 +11,10 @@
       $result = $conn -> query("SELECT id,name FROM notedb_".$_SESSION['pid']);
       $row = $result -> fetch_assoc();
       $id = $row['id'];
-  } else {
+  } elseif (empty($_GET['mod'])) {
       $id = $_GET['id'];
+  } else {
+      // 공유 노트
   }
   setcookie("donoteYuuta", $id, time() + 86400 * 30, '/');
   $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
