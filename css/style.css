@@ -23,6 +23,7 @@
 }
 .donoteShareCode {
   width: 350px;
+  float: right;
 }
 @media (max-width: 991.98px){
   hr{

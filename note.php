@@ -137,7 +137,7 @@
           <?php
             if ($row) {
                 echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
-                echo "<br><span class='input-group donoteShareCode'><span class='input-group-addon'>공유 코드</span><input type='text' name='' class='form-control' value='".$row['shareID']."' disabled></span>";
+                echo "<span class='input-group donoteShareCode'><span class='input-group-addon'>공유 코드</span><input type='text' name='' class='form-control' value='".$row['shareID']."' disabled></span>";
             } else {
                 echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
             }
