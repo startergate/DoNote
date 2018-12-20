@@ -21,7 +21,7 @@
 
 
         // DoNote Share(list) Function
-        $sqls = "SELECT shareTable,shareID, shareMod FROM sharedb_".$_SESSION['pid']."";
+        $sqls = "SELECT shareTable,shareID,shareMod FROM sharedb_".$_SESSION['pid']."";
         $results = $conn -> query($sqls);
         $rows = $results -> fetch_assoc();
 
@@ -31,13 +31,14 @@
             echo '<li class="donoteLister list-group-item" style="padding-left: 15px;padding-top:10px;padding-bottom:10px">작성된 노트가 없습니다.</li><hr class="hrControlNote">';
         } else {
             do {
-                $resultsn = $conn -> query("SELECT * FROM sharedb_".$_SESSION['pid']." WHERE '".$_SESSION['pid']."_".$row['id']."'");
-                $rowsn = $result -> fetch_assoc();
+                $resultsn = $conn -> query("SELECT shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTable LIKE '".$_SESSION['pid']."_".$row['id']."'");
+                $rowsn = $resultsn -> fetch_assoc();
                 $isShared = "";
                 $isSharedBorder = "";
-                if ($rowsn) {
+                if ($rowsn['shareID']) {
                     $isShared = "<span class='badge donoteBadge' style='z-index:1'>공유중</span>";
                     $isSharedBorder = ' donoteBadgeBorder';
+                    $rowsn = null;
                 }
                 echo '<li class="donoteLister list-group-item">'.$isShared.'<div><a class="donoteListerA'.$isSharedBorder.'" style="z-index:0" href="../note.php?id='.$row['id'].'">'.$row["name"].'</div></li></a><hr class="hrControlNote">';
             } while ($row = $result -> fetch_assoc());

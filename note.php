@@ -39,11 +39,8 @@
       $row = null;
   }
 
-
   // Select Profile Image
   $profileImg = $SID -> profileGet($_SESSION['pid'], ".");
-
-
 ?>
 <html lang="ko">
   <head>
