@@ -28,7 +28,18 @@
                       $sql = "CREATE TABLE $mdb (datatype VARCHAR(8) NOT NULL, metadata VARCHAR(100) NOT NULL, metaid CHAR(32) NOT NULL, PRIMARY KEY (metaid));"
                       $conn -> query($sql);
 
-                      $sql = "INSERT INTO $mdb (datatype, metadata, metaid) VALUES ('assorter','미분류','')";
+                      $rand;
+                      do {
+                          $rand = $name.generateRenStr(10);
+                          $rand = md5($rand);
+                          $sql = "SELECT * FROM _meta WHERE metaid = '$rand'";
+                          $result = $conn -> query($sql);
+                      } while ($result -> fetch_assoc());
+
+
+                      $sql = "INSERT INTO _meta (metaid, userid) VALUES ($rand, $pid)";
+                      $conn -> query($sql);
+                      $sql = "INSERT INTO $mdb (datatype, metadata, metaid) VALUES ('assorter','미분류', $rand)";
                       $conn -> query($sql);
 
                       $sql = "CREATE TABLE $udb (name LONGTEXT NOT NULL,text LONGTEXT,edittime DATETIME NOT NULL,id CHAR(32) NOT NULL, align INT(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY (align))";
