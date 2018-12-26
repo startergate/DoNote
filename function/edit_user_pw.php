@@ -1,9 +1,9 @@
 <?php
-  require("../lib/sidUnified.php");
-  $SID = new SID("donote");
-  $SID -> loginCheck("../");
+  require '../lib/sidUnified.php';
+  $SID = new SID('donote');
+  $SID->loginCheck('../');
   if ($_POST['confirm_user_edit']) {
-      switch ($SID -> passwordEdit($_POST['pw'], $_POST['confirm'], $_SESSION['pid'])) {
+      switch ($SID->passwordEdit($_POST['pw'], $_POST['confirm'], $_SESSION['pid'])) {
         case -1:
           echo "<script>window.alert('변경 사항이 없습니다.');</script>";
           echo "<script>window.location=('../user/edit_pw.php');</script>";

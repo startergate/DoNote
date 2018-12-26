@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <?php
-  require("../lib/sidUnified.php");
-  $SID = new SID("donote");
-  $SID -> loginCheck("../");
+  require '../lib/sidUnified.php';
+  $SID = new SID('donote');
+  $SID->loginCheck('../');
   //Select Profile Image
 
-  $profileImg = $SID -> profileGet($_SESSION['pid'], "..");
+  $profileImg = $SID->profileGet($_SESSION['pid'], '..');
   $_SESSION['confirm'] = 'refresh';
 ?>
 <html lang="ko" dir="ltr">

@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <?php
-  require("../lib/sidUnified.php");
-  require("../config/config.php");
-  $SID = new SID("donote");
-  $SID -> loginCheck("../");
-  $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
+  require '../lib/sidUnified.php';
+  require '../config/config.php';
+  $SID = new SID('donote');
+  $SID->loginCheck('../');
+  $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);  //Note Database
 
   $id = $_GET['id'];
-  $sql = "SELECT name FROM notedb_".$_SESSION['pid']." WHERE id = '".$id."'";
-  $result = $conn -> query($sql);
-  $row = $result -> fetch_assoc();
+  $sql = 'SELECT name FROM notedb_'.$_SESSION['pid']." WHERE id = '".$id."'";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
   $name = $row['name'];
   $text = $row['text'];
 
   //Select Profile Image
-  $profileImg = $SID -> profileGet($_SESSION['pid'], "..");
+  $profileImg = $SID->profileGet($_SESSION['pid'], '..');
 
-  $sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
-  $results = $conn -> query($sqls);
-  $rows = $results -> fetch_assoc();
+  $sqls = 'SELECT shareTable,shareID FROM sharedb_'.$_SESSION['pid'].' WHERE shareTF = 1 AND shareMod = 2';
+  $results = $conn->query($sqls);
+  $rows = $results->fetch_assoc();
 ?>
 <html lang="ko" dir="ltr">
   <head>

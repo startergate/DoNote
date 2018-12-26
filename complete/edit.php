@@ -1,8 +1,8 @@
 <title>Redirecting...</title>
 <?php
-  require("../lib/sidUnified.php");
-  $SID = new SID("donote");
-  $SID -> loginCheck("../");
+  require '../lib/sidUnified.php';
+  $SID = new SID('donote');
+  $SID->loginCheck('../');
   ob_start();
   session_start();
   if ($_SESSION['confirm_edit'] === 'confirm') {

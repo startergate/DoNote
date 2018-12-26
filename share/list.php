@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <?php
-  require("../lib/sidUnified.php");
-  require("../config/config.php");
-  $SID = new SID("donote");
-  $SID -> loginCheck("../");
+  require '../lib/sidUnified.php';
+  require '../config/config.php';
+  $SID = new SID('donote');
+  $SID->loginCheck('../');
   if (empty($_GET['id'])) {
       $id = 'startergatedonotedefaultregister';
   } else {
       $id = $_GET['id'];
   }
-  $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
+  $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);  //Note Database
   //Select Note Database
 
   $pid = $_SESSION['pid'];
 
   //Select Profile Image
-  $profileImg = $SID -> profileGet($pid, "..");
+  $profileImg = $SID->profileGet($pid, '..');
 
   $sql = "SELECT shareTable,shareID,shareMod FROM sharedb_$pid WHERE shareTF LIKE 1";
-  $result = $conn -> query($sql);
-  $row = $result -> fetch_assoc();
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
 ?>
 <html lang="ko" dir="ltr">
   <head>
@@ -142,11 +142,11 @@
                     }
                     $sTab = $row['shareTable'];
                     $noteData = explode('_', $sTab);
-                    $sqle = "SELECT name FROM notedb_".$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
-                    $resulte = $conn -> query($conn, $sqle);
-                    $rowe = $resulte -> fetch_assoc();
-                    echo '<li><a href="./shared-stat.php?shareID='.$row['shareID'] .'">'.$rowe['name']."<div class='text-right'>".$shareStat."</div>".'</li></a><hr class="hrControlNote">';
-                } while ($row = $result -> fetch_assoc());
+                    $sqle = 'SELECT name FROM notedb_'.$noteData[1]." WHERE id LIKE '".$noteData[0]."'";
+                    $resulte = $conn->query($conn, $sqle);
+                    $rowe = $resulte->fetch_assoc();
+                    echo '<li><a href="./shared-stat.php?shareID='.$row['shareID'].'">'.$rowe['name']."<div class='text-right'>".$shareStat.'</div>'.'</li></a><hr class="hrControlNote">';
+                } while ($row = $result->fetch_assoc());
             }
           ?>
         </ol>

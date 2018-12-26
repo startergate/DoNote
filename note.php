@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <?php
-  require("./lib/sidUnified.php");
-  require("./config/config.php");
-  $SID = new SID("donote");
-  $SID -> loginCheck("./");
+  require './lib/sidUnified.php';
+  require './config/config.php';
+  $SID = new SID('donote');
+  $SID->loginCheck('./');
   // Select Note Database
   if (empty($_GET['id']) && !empty($_COOKIE['donoteYuuta'])) {
       $id = $_COOKIE['donoteYuuta'];
   } elseif (empty($_GET['id'])) {
-      $result = $conn -> query("SELECT id,name FROM notedb_".$_SESSION['pid']);
-      $row = $result -> fetch_assoc();
+      $result = $conn->query('SELECT id,name FROM notedb_'.$_SESSION['pid']);
+      $row = $result->fetch_assoc();
       $id = $row['id'];
   } elseif (empty($_GET['mod'])) {
       $id = $_GET['id'];
   } else {
       // 공유 노트
   }
-  setcookie("donoteYuuta", $id, time() + 86400 * 30, '/');
-  $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
+  setcookie('donoteYuuta', $id, time() + 86400 * 30, '/');
+  $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);  //Note Database
 
   // Select Note Text
-  $sql = "SELECT name,text,edittime FROM notedb_".$_SESSION['pid']." WHERE id LIKE '".$id."'";
-  $result = $conn -> query($sql);
-  $row = $result -> fetch_assoc();
+  $sql = 'SELECT name,text,edittime FROM notedb_'.$_SESSION['pid']." WHERE id LIKE '".$id."'";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
   if (!$row) {
-      header("Location: ./write.php");
+      header('Location: ./write.php');
   }
   $name = $row['name'];
   $text = $row['text'];
@@ -32,15 +32,15 @@
 
   // Select Wheater to Share
   try {
-      $sql = "SELECT * FROM sharedb_".$_SESSION['pid']." WHERE shareTable LIKE '".$_SESSION['pid']."_".$id."'";
-      $result = $conn -> query($sql);
-      $row = $result -> fetch_assoc();
+      $sql = 'SELECT * FROM sharedb_'.$_SESSION['pid']." WHERE shareTable LIKE '".$_SESSION['pid'].'_'.$id."'";
+      $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
   } catch (\Exception $e) {
       $row = null;
   }
 
   // Select Profile Image
-  $profileImg = $SID -> profileGet($_SESSION['pid'], ".");
+  $profileImg = $SID->profileGet($_SESSION['pid'], '.');
 ?>
 <html lang="ko" dir="ltr">
   <head>
@@ -118,7 +118,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="View/Edit Notes">
-    <title><?php echo $name;?> | DoNote Beta</title>
+    <title><?php echo $name; ?> | DoNote Beta</title>
   </head>
   <body>
     <!--[if IE]>
