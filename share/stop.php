@@ -37,6 +37,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
+    <!-- 보안 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'google.com'; script-src 'self'; style-src 'self'; ">
+
     <!-- 패비콘 관련 구문 -->
     <link rel="shortcut icon" href="../static/img/favicon/favicon-16x16.png" type="image/x-icon">
     <link rel="icon" href="../static/img/favicon/favicon-16x16.png" type="image/x-icon">
