@@ -1,0 +1,3 @@
+ser-agent: *
+Disallow: /
+Allow: /index.php
