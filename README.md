@@ -1,6 +1,7 @@
 DoNote
 ===============
 [![StyleCI](https://styleci.io/repos/128193346/shield?branch=master&style=flat)](https://styleci.io/repos/128193346)
+[![Build Status](https://travis-ci.org/startergate/DoNote.svg?branch=master)](https://travis-ci.org/startergate/DoNote)
 Celebrating 100th Contribution!<br />
 <br />
 DoNote is Simple Note App with PHP.<http://donote.co><br />
