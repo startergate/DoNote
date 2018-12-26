@@ -29,3 +29,17 @@
 .donoteBadge {
   margin: 10px 15px 10px 0px;
 }
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 5px
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #3d414d;
+}
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:start:decrement {
+  width: 5px;
+  height: 0px;
+}

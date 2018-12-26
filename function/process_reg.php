@@ -39,6 +39,7 @@
 
                       $sql = "INSERT INTO _meta (metaid, userid) VALUES ($rand, $pid)";
                       $conn -> query($sql);
+
                       $sql = "INSERT INTO $mdb (datatype, metadata, metaid) VALUES ('assorter','미분류', $rand)";
                       $conn -> query($sql);
 
