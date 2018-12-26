@@ -25,7 +25,7 @@
                       $sql = "CREATE TABLE $sdb (shareTable VARCHAR(65) NOT NULL, shareID CHAR(32) NOT NULL, shareEdit INT(1), PRIMARY KEY (shareID), UNIQUE INDEX shareTable_UNIQUE (shareTable ASC), UNIQUE INDEX shareID_UNIQUE (shareID ASC))";
                       $conn -> query($sql);
 
-                      $sql = "CREATE TABLE $mdb (datatype VARCHAR(8) NOT NULL, metadata VARCHAR(100) NOT NULL, metaid CHAR(32) NOT NULL, PRIMARY KEY (metaid));"
+                      $sql = "CREATE TABLE $mdb (datatype VARCHAR(8) NOT NULL, metadata VARCHAR(100) NOT NULL, metaid CHAR(32) NOT NULL, PRIMARY KEY (metaid));";
                       $conn -> query($sql);
 
                       $rand;
