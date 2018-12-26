@@ -64,6 +64,18 @@
     <meta name="msapplication-config" content="./browserconfig.xml" />
     <meta name="theme-color" content="#3d414d">
 
+    <!-- FB 호환성 -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://example.com/page.html">
+    <meta property="og:title" content="DoNote">
+    <meta property="og:image" content="./static/img/common/donoteico.jpg">
+    <meta property="og:description" content="DoNote는 간단하면서도 편리한 노트입니다.">
+    <meta property="og:site_name" content="DoNote">
+    <meta property="og:locale" content="ko_KR">
+    <!-- 다음의 태그는 필수는 아니지만, 포함하는 것을 추천함 -->
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="1000">
+
     <!-- CSS 관련 구문 -->
     <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="./css/style.css?ver=1">
