@@ -24,13 +24,13 @@ This Web Page is Pre-Release. It can be Vulnerable and Unstable.
 Roadmap
 ---------------
 v0.4b DoNote Share!<br />
-Estimated: December.<br />
+Estimated: January.<br />
 DoNote Share! is editable sharing option for DoNote.<br />
 Every updates about SID library has completed.<br />
 Watch <https://github.com/startergate/DoNote/projects/2>
 
 v1.0 Release<br />
-In 2018.<br />
+In 2019 Q1.<br />
 
 v1.1 DoNote NG<br />
 In v1.1 update, UI of DoNote will be changed.
