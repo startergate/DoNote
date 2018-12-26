@@ -28,6 +28,7 @@
 
     <!-- 보안 -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'google.com'; script-src 'self'; style-src 'self'; ">
+    <meta name="Cache-Control" content="public, max-age=60">
 
     <!-- 패비콘 관련 구문 -->
     <link rel="shortcut icon" href="../static/img/favicon/favicon-16x16.png" type="image/x-icon" />
