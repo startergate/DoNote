@@ -89,9 +89,15 @@
     <meta property="og:description" content="DoNote는 간단하면서도 편리한 노트입니다.">
     <meta property="og:site_name" content="DoNote">
     <meta property="og:locale" content="ko_KR">
-    <!-- 다음의 태그는 필수는 아니지만, 포함하는 것을 추천함 -->
     <meta property="og:image:width" content="1000">
     <meta property="og:image:height" content="1000">
+
+    <!-- 트위터 호환성 -->
+    <meta name="twitter:card" content="DoNote">
+    <meta name="twitter:url" content="http://donote.co/">
+    <meta name="twitter:title" content="DoNote">
+    <meta name="twitter:description" content="DoNote는 간단하면서도 편리한 노트입니다.">
+    <meta name="twitter:image" content="http://donote.co/static/img/common/donoteico.png">
 
     <!-- CSS 관련 구문 -->
     <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
