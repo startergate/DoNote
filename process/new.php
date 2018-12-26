@@ -1,26 +1,26 @@
 <?php
-  require("../config/config.php");
-  require("../lib/sidUnified.php");
-  require("../lib/codegen.php");
-  $SID = new SID("donote");
-  $SID -> loginCheck("../");
-  $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
+  require '../config/config.php';
+  require '../lib/sidUnified.php';
+  require '../lib/codegen.php';
+  $SID = new SID('donote');
+  $SID->loginCheck('../');
+  $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);
   if ($_POST['confirm_write'] === '새로운 내용을 저장!') {
-      $_POST['confirm_write'] = "";
+      $_POST['confirm_write'] = '';
       if (empty($_POST['name'])) {
-          $name = "제목 없는 노트";
+          $name = '제목 없는 노트';
       } else {
-          $name = $conn -> real_escape_string($_POST['name']);
+          $name = $conn->real_escape_string($_POST['name']);
       }
       if (!empty($_POST['text'])) {
-          $text = $conn -> real_escape_string($_POST['text']);
+          $text = $conn->real_escape_string($_POST['text']);
           $pid = $_SESSION['pid'];
 
           $rand = $name.generateRenStr(10);
           $rand = md5($rand, false);
           $udb = 'notedb_'.$pid;
           $sql = "INSERT INTO $udb (name,text,edittime,id) VALUES ('$name','$text',now(),'$rand')";
-          $result = $conn -> query($sql);
+          $result = $conn->query($sql);
           $_SESSION['name'] = $name;
           $_SESSION['confirm'] = 'confirm';
           header('Location: ../complete/write.php?pid='.$rand);
