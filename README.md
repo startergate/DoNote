@@ -1,5 +1,6 @@
 DoNote
 ===============
+[![StyleCI](https://styleci.io/repos/128193346/shield?branch=master&style=flat)](https://styleci.io/repos/128193346)
 Celebrating 100th Contribution!<br />
 <br />
 DoNote is Simple Note App with PHP.<http://donote.co><br />
