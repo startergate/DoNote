@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <?php
-  require("../lib/sidUnified.php");
-  require("../config/config.php");
-  $SID = new SID("donote");
+  require '../lib/sidUnified.php';
+  require '../config/config.php';
+  $SID = new SID('donote');
   //Select Note Database
   if (empty($_GET['id'])) {
       header('Location: ../function/error_confirm.php');
   }
-  $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
-  explode("_", $_GET['id']);
+  $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);  //Note Database
+  explode('_', $_GET['id']);
 
   //Select Note Text
-  $sql = "SELECT name,text,edittime FROM notedb_".$_SESSION['pid']." WHERE id LIKE '".$id."'";
-  $result = $conn -> query($sql);
-  $row = $result -> fetch_assoc();
+  $sql = 'SELECT name,text,edittime FROM notedb_'.$_SESSION['pid']." WHERE id LIKE '".$id."'";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
   $name = $row['name'];
   $text = $row['text'];
   $edittime = $row['edittime'];
 
   //Select Wheater to Share
-  $sql = "SELECT shareTF, shareMod FROM sharedb_".$_SESSION['pid']." WHERE shareTable LIKE '".$id."_".$_SESSION['pid']."'";
-  $result = $conn -> query($sql);
-  $row = $result -> fetch_assoc();
+  $sql = 'SELECT shareTF, shareMod FROM sharedb_'.$_SESSION['pid']." WHERE shareTable LIKE '".$id.'_'.$_SESSION['pid']."'";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
   $sTF = $row['shareTF'];
   $sMod = $row['shareMod'];
 
-  $sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
-  $results = $conn -> query($sqls);
-  $rows = $result -> fetch_assoc();
+  $sqls = 'SELECT shareTable,shareID FROM sharedb_'.$_SESSION['pid'].' WHERE shareTF = 1 AND shareMod = 2';
+  $results = $conn->query($sqls);
+  $rows = $result->fetch_assoc();
 ?>
 <html lang="ko" dir="ltr">
   <head>
@@ -133,7 +133,7 @@
       <hr class="displayOptionMobile" />
       <div class="col-md-12">
           <div class="text-right edittime"><?php if ($sMod) {
-    echo "수정하려면 로그인하세요 | ";
+    echo '수정하려면 로그인하세요 | ';
 } ?>최근 수정 일자: <?=$edittime?></div>
           <div class="form-group">
             <textarea disabled><?=$name?></textarea>

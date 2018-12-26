@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <?php
-  require("./lib/sidUnified.php");
-  require("./config/config.php");
-  $SID = new SID("donote");
-  $SID -> loginCheck("./");
+  require './lib/sidUnified.php';
+  require './config/config.php';
+  $SID = new SID('donote');
+  $SID->loginCheck('./');
   if (empty($_GET['id'])) {
       if (!$_GET['id'] == 0) {
           header('Location: ./function/error_confirm.php');
       }
   }
-  $conn = new mysqli($config["host"], $config["duser"], $config["dpw"], $config["dname"]);  //Note Database
+  $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);  //Note Database
 
   //Select Note Database
   $id = $_GET['id'];
-  $sql = "SELECT name,text FROM notedb_".$_SESSION['pid']." WHERE id = '".$id."'";
-  $result = $conn -> query($sql);
-  $row = $result -> fetch_assoc();
+  $sql = 'SELECT name,text FROM notedb_'.$_SESSION['pid']." WHERE id = '".$id."'";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
   $name = $row['name'];
   $text = $row['text'];
 
   //Select Profile Image
-  $profileImg = $SID -> profileGet($_SESSION['pid'], ".");
+  $profileImg = $SID->profileGet($_SESSION['pid'], '.');
 
   // DoNote Share Function
-  $sqls = "SELECT shareTable,shareID FROM sharedb_".$_SESSION['pid']." WHERE shareTF = 1 AND shareMod = 2";
-  $results = $conn -> query($sqls);
-  $rows = $results -> fetch_assoc();
+  $sqls = 'SELECT shareTable,shareID FROM sharedb_'.$_SESSION['pid'].' WHERE shareTF = 1 AND shareMod = 2';
+  $results = $conn->query($sqls);
+  $rows = $results->fetch_assoc();
 ?>
 <html lang="ko" dir="ltr">
   <head>
