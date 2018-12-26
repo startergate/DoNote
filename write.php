@@ -17,6 +17,16 @@
 ?>
 <html lang="ko">
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131397158-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-131397158-1');
+    </script>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="./static/img/favicon/favicon-16x16.png" type="image/x-icon">
     <link rel="icon" href="./static/img/favicon/favicon-16x16.png" type="image/x-icon">
