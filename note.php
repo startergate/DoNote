@@ -85,7 +85,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="http://donote.co">
     <meta property="og:title" content="DoNote">
-    <meta property="og:image" content="http://donote.co/static/img/common/donoteico.jpg">
+    <meta property="og:image" content="http://donote.co/static/img/common/donoteico.png">
     <meta property="og:description" content="DoNote는 간단하면서도 편리한 노트입니다.">
     <meta property="og:site_name" content="DoNote">
     <meta property="og:locale" content="ko_KR">
