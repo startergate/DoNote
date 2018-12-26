@@ -6,12 +6,12 @@
   $SID->loginCheck('../../');
   $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);
   if ($_POST['confirm_stop'] === '확인!') {
-      $code = $_POST['shareCode'];
+      $code = $_GET['id'];
 
-      $sdb = 'sharedb_'.$pid;
-      $sql = "DELETE FROM _shared WHERE id='$code'";
+      $sdb = 'sharedb_'.$_SESSION['pid'];
+      $sql = "DELETE FROM _shared WHERE note='".$_SESSION['pid'].'_'.$code."'";
       $conn->query($sql);
-      $sql = "DELETE FROM $sdb WHERE id='$code'";
+      $sql = "DELETE FROM $sdb WHERE shareTable='".$_SESSION['pid'].'_'.$code."'";
       $conn->query($sql);
       $_SESSION['confirm_delete'] = 'confirm';
       header('Location: ../../complete/share_stop.php');
