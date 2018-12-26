@@ -2,6 +2,7 @@ language: php
 php:
   - '5.6'
   - '7.1'
+script: phpunit *.php
 env:
-- SYMFONY_VERSION="2.0.*" DB=mysql
-- SYMFONY_VERSION="dev-master" DB=mysql
+  - SYMFONY_VERSION="2.0.*" DB=mysql
+  - SYMFONY_VERSION="dev-master" DB=mysql
