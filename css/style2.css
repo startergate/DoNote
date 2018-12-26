@@ -1,9 +1,3 @@
-#logo {
-  width: 1000px;
-}
-#articleimg {
-  width: 300px;
-}
 #login {
   font-weight: bold;
   font-family: Noto Sans KR;
@@ -63,18 +57,11 @@
   text-align: center;
   width: 100%;
 }
-.cover-image {
-  min-height: 500px;
-}
 .covra{
   position: absolute;
   width: 50%;
   left: 25%;
   top: 25%;
-}
-#white{
-  font-size: 40px;
-  color: white;
 }
 .btn-light {
   transition: background 0.3s, transform 0.3s;

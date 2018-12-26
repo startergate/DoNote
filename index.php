@@ -84,11 +84,11 @@
     <title>DoNote Beta</title>
   </head>
   <body class='bg bge bgImg'>
-    <!-- [if IE]-->
+    <!--[if IE]>
       <script type="text/javascript">
         alert("Internet Explorer is NOT Supported.")
       </script>
-    <!--[endif]-->
+    <![endif]-->
     <p class="imgLocation">Image by Unsplash</p>
     <div id="index" class="cover full-window">
       <div class="col-sm-12 larger">

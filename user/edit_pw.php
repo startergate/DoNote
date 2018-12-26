@@ -83,11 +83,11 @@
     <title>비밀번호 수정 | DoNote Beta</title>
   </head>
   <body>
-    <!-- [if IE]-->
+    <!--[if IE]>
       <script type="text/javascript">
         alert("Internet Explorer is NOT Supported.")
       </script>
-    <!--[endif]-->
+    <![endif]-->
     <div class="container-fluid padding-erase">
       <div class="fixed layer1 bg bgi bgImg">
         <div class="col-md-3">
