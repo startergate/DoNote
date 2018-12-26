@@ -21,7 +21,7 @@
   $result = $conn -> query($sql);
   $row = $result -> fetch_assoc();
 ?>
-<html lang="ko">
+<html lang="ko" dir="ltr">
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131397158-1"></script>
@@ -32,10 +32,13 @@
 
       gtag('config', 'UA-131397158-1');
     </script>
-    
+
+    <!-- 호환성 관련 구문 -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <!-- 패비콘 관련 구문 -->
     <link rel="shortcut icon" href="../static/img/favicon/favicon-16x16.png" type="image/x-icon">
     <link rel="icon" href="../static/img/favicon/favicon-16x16.png" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="57x57" href="../static/img/favicon/apple-icon-57x57.png">
@@ -52,9 +55,12 @@
     <link rel="icon" type="image/png" sizes="96x96" href="../static/img/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../static/img/favicon/favicon-16x16.png">
     <link rel="manifest" href="./manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#3d414d">
     <meta name="msapplication-TileImage" content="../static/img/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-config" content="../browserconfig.xml" />
+    <meta name="theme-color" content="#3d414d">
+
+    <!-- CSS 관련 구문 -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="../css/style.css?v=7">
     <link rel="stylesheet" type="text/css" href="../css/bg_style.css?v=1">
@@ -62,9 +68,17 @@
   	<link rel="stylesheet" type="text/css" href="../css/list.css">
   	<link rel="stylesheet" type="text/css" href="../css/master.css">
   	<link rel="stylesheet" type="text/css" href="../css/Normalize.css">
+
+    <!-- 페이지 설명 구문 -->
+    <meta name="description" content="Show List of Shared Pages. - DoNote">
     <title>공유된 노트 | DoNote Beta</title>
   </head>
   <body>
+    <!-- [if IE]-->
+      <script type="text/javascript">
+        alert("Internet Explorer is NOT Supported.")
+      </script>
+    <!--[endif]-->
     <div class="container-fluid padding-erase">
       <div class="fixed layer1 bg bgi bgImg">
         <div class="col-md-3" style="font-size: 30px">
