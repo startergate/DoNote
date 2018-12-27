@@ -8,7 +8,7 @@
       $code = $conn->real_escape_string($_POST['shareCode']);
       $pid = $_SESSION['pid'];
 
-      $sql = "SELECT note FROM _shared WHERE id = $code";
+      $sql = "SELECT note FROM _shared WHERE id = '$code'";
       $result = $conn->query($sql);
       $row = $result->fetch_assoc();
       $table = $row['note'];

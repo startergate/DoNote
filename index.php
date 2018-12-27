@@ -140,14 +140,14 @@
       </div>
     </div>
     <div id="register" class="covra covraRegister text-center" style="display:none">
-      <div align="center">
+      <div class="center">
         <div id="login">회원가입 | DoNote</div>
         <div id="lotext">
           <br />
           <form class="center form" action="./function/process_reg.php" method="post">
             <input type="text" class="form-control form" name="id" placeholder="아이디" required>
-            <input type="password" class="form-control form" name="pw" placeholder="비밀번호" required>
-            <input type="password" class="form-control form" name="pwr" placeholder="비밀번호 확인" required>
+            <input type="password" class="form-control form" autocomplete="password" name="pw" placeholder="비밀번호" required>
+            <input type="password" class="form-control form" autocomplete="password" name="pwr" placeholder="비밀번호 확인" required>
             <input type="text" class="form-control form" name="nickname" placeholder="닉네임">
             <br />
             <div class="g-recaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>

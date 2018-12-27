@@ -61,9 +61,9 @@
                 $resulte = $conn->query($sqle);
                 $rowe = $resulte->fetch_assoc();
                 if ($rows['shareMod']) {
-                    echo '<li class="donoteLister list-group-item"><a class="donoteLister" href="../note.php?id='.$rows['shareID'].'&mod=shareEdit">'.$rowe['name'].'</li></a><hr class="hrControlNote">';
+                    echo '<li class="donoteLister list-group-item"><a class="donoteListerA" href="../note.php?id='.$rows['shareID'].'&mod=shareEdit">'.$rowe['name'].'</li></a><hr class="hrControlNote">';
                 } else {
-                    echo '<li class="donoteLister list-group-item"><a class="donoteLister" href="../note.php?id='.$rows['shareID'].'&mod=shareView">'.$rowe['name'].'</li></a><hr class="hrControlNote">';
+                    echo '<li class="donoteLister list-group-item"><a class="donoteListerA" href="../note.php?id='.$rows['shareID'].'&mod=shareView">'.$rowe['name'].'</li></a><hr class="hrControlNote">';
                 }
             } while ($rows = $results->fetch_assoc());
             if ($counter === 0) {
