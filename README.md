@@ -19,7 +19,7 @@ The whole package of DoNote is including jQuery and Bootstrap.
 <br />
 The Copyright of This Web Page Follows GPL 3.0. Please Read LICENSE File for Copyright Information.
 
-This Web Page is Pre-Release. It can be Vulnerable and Unstable.
+This Web Page is Pre-Release.
 
 Roadmap
 ---------------
