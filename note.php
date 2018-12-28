@@ -48,7 +48,6 @@
       }
   }
 
-
   // Select Profile Image
   $profileImg = $SID->profileGet($_SESSION['pid'], '.');
 ?>
