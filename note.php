@@ -166,11 +166,13 @@
           <input type="submit" id="saveBtnTop" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
           <a href='./delete.php?id=<?=$id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
-            if ($row) {
-                echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
-            } else {
-                echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
-            }
+          if ($pid == $_SESSION['pid']) {
+              if ($row) {
+                  echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
+              } else {
+                  echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
+              }
+          }
           ?>
           <div class="text-right edittime">
             최근 수정 일자:
@@ -192,11 +194,13 @@
           <input type="submit" id="saveBtnBottom" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
           <a href='./delete.php?id=<?=$id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
-            if ($row) {
-                echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
-                echo "<span class='input-group donoteShareCode'><span class='input-group-addon'>공유 코드</span><input type='text' name='' class='form-control' value='".$row['shareID']."' disabled></span>";
-            } else {
-                echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
+            if ($pid == $_SESSION['pid']) {
+                if ($row) {
+                    echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' asria-hidden='true'></span> 공유 해제</a>";
+                    echo "<span class='input-group donoteShareCode'><span class='input-group-addon'>공유 코드</span><input type='text' name='' class='form-control' value='".$row['shareID']."' disabled></span>";
+                } else {
+                    echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
+                }
             }
           ?>
           <hr>

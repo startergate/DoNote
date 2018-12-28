@@ -14,9 +14,12 @@
   //Select Profile Image
   $profileImg = $SID->profileGet($_SESSION['pid'], '..');
 
-  $sqls = 'SELECT shareTable,shareID FROM sharedb_'.$_SESSION['pid'].' WHERE shareTF = 1 AND shareMod = 2';
+  $sqls = 'SELECT * FROM sharedb_'.$_SESSION['pid'].' WHERE shareTable = "'.$_SESSION['pid'].'_'.$_GET['id'].'"';
   $results = $conn->query($sqls);
   $rows = $results->fetch_assoc();
+  if ($rows) {
+      header('Location: ../note.php');
+  }
 ?>
 <html lang="ko" dir="ltr">
   <head>

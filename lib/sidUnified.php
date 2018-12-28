@@ -102,6 +102,24 @@
           }
       }
 
+      // User Info Getter
+      public function getUserNickname($pid)
+      {
+          $conn = new mysqli('sid.donote.co', 'root', 'Wb4H9nn542', 'sid_userdata');
+          try {
+              $sql = 'SELECT nickname FROM userdata WHERER pid = "'.$pid.'"';
+              $result = $conn->query($sql);
+              $row = $result->fetch_assoc();
+              if ($row) {
+                  return $row['nickname'];
+              } else {
+                  return '';
+              }
+          } catch (\Exception $e) {
+              return '';
+          }
+      }
+
       // Auto login cookie functions
       public function loginCookie($pw, $pid, $locater)
       {
