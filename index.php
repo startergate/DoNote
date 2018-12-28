@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
     <!-- 보안 -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'  ; script-src 'self' https://www.google.com https://www.gstatic.com https://www.google-analytics.com 'unsafe-inline'; style-src 'self' http://fonts.googleapis.com 'unsafe-inline'; img-src *; font-src 'self' https://fonts.gstatic.com ;frame-src 'self' https://www.google.com">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'  ; script-src 'self' https://www.google.com https://www.gstatic.com https://www.google-analytics.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' http://fonts.googleapis.com 'unsafe-inline'; img-src *; font-src 'self' https://fonts.gstatic.com ;frame-src 'self' https://www.google.com">
     <meta name="Cache-Control" content="public, max-age=60">
 
     <!-- 패비콘 관련 구문 -->
@@ -109,7 +109,7 @@
                   $SID->authCheck();
               }
               if (!empty($_SESSION['pid'])) {
-                  echo "<div id='white'>".$_SESSION['nickname'].'님, 돌아오셨군요!</div>';
+                  echo "<div class='white'>".$_SESSION['nickname'].'님, 돌아오셨군요!</div>';
                   echo "<script type=\"text/javascript\">setTimeout(\"location.href = './note.php'\", 5000);</script>";
                   echo "<div style='color:white'>곧 리다이렉트됩니다.</div>";
               } else {

@@ -4,6 +4,7 @@
   require './config/config.php';
   $SID = new SID('donote');
   $SID->loginCheck('./');
+  $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);  //Note Database
   // Select Note Database
   if (empty($_GET['id']) && !empty($_COOKIE['donoteYuuta'])) {
       $id = $_COOKIE['donoteYuuta'];
@@ -14,13 +15,19 @@
   } elseif (empty($_GET['mod'])) {
       $id = $_GET['id'];
   } else {
-      // 공유 노트
+      $result = $conn->query('SELECT note FROM _shared WHERE id = "'.$_GET['id'].'"');
+      $row = $result->fetch_assoc();
+      $id = explode('_', $row['note'])[1];
+  }
+  if (empty($_GET['mod'])) {
+      $pid = $_SESSION['pid'];
+  } else {
+      $pid = explode('_', $row['note'])[0];
   }
   setcookie('donoteYuuta', $id, time() + 86400 * 30, '/');
-  $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);  //Note Database
 
   // Select Note Text
-  $sql = 'SELECT name,text,edittime FROM notedb_'.$_SESSION['pid']." WHERE id LIKE '".$id."'";
+  $sql = 'SELECT name,text,edittime FROM notedb_'.$pid." WHERE id LIKE '".$id."'";
   $result = $conn->query($sql);
   $row = $result->fetch_assoc();
   if (!$row) {
@@ -31,13 +38,16 @@
   $edittime = $row['edittime'];
 
   // Select Wheater to Share
-  try {
-      $sql = 'SELECT * FROM sharedb_'.$_SESSION['pid']." WHERE shareTable LIKE '".$_SESSION['pid'].'_'.$id."'";
-      $result = $conn->query($sql);
-      $row = $result->fetch_assoc();
-  } catch (\Exception $e) {
-      $row = null;
+  if (empty($_GET['mod'])) {
+      try {
+          $sql = 'SELECT * FROM sharedb_'.$_SESSION['pid']." WHERE shareTable LIKE '".$_SESSION['pid'].'_'.$id."'";
+          $result = $conn->query($sql);
+          $row = $result->fetch_assoc();
+      } catch (\Exception $e) {
+          $row = null;
+      }
   }
+
 
   // Select Profile Image
   $profileImg = $SID->profileGet($_SESSION['pid'], '.');
@@ -60,7 +70,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
     <!-- 보안 -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'  ; script-src 'self' https://www.google.com https://www.gstatic.com https://www.google-analytics.com 'unsafe-inline'; style-src 'self' http://fonts.googleapis.com 'unsafe-inline'; img-src *; font-src 'self' https://fonts.gstatic.com ;frame-src 'self' https://www.google.com">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'  ; script-src 'self' https://www.google.com https://www.gstatic.com https://www.google-analytics.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' http://fonts.googleapis.com 'unsafe-inline'; img-src *; font-src 'self' https://fonts.gstatic.com ;frame-src 'self' https://www.google.com">
     <meta name="Cache-Control" content="public, max-age=60">
 
     <!-- 패비콘 관련 구문 -->
