@@ -9,11 +9,6 @@
 
   //Select Profile Image
   $profileImg = $SID->profileGet($_SESSION['pid'], '.');
-
-  // DoNote Share Function
-  $sqls = 'SELECT shareTable,shareID FROM sharedb_'.$_SESSION['pid'].' WHERE shareTF = 1 AND shareMod = 2';
-  $results = $conn->query($sqls);
-  $rows = $results->fetch_assoc();
 ?>
 <html lang="ko" dir="ltr">
   <head>

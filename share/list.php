@@ -16,10 +16,6 @@
 
   //Select Profile Image
   $profileImg = $SID->profileGet($pid, '..');
-
-  $sql = "SELECT shareTable,shareID,shareMod FROM sharedb_$pid WHERE shareTF LIKE 1";
-  $result = $conn->query($sql);
-  $row = $result->fetch_assoc();
 ?>
 <html lang="ko" dir="ltr">
   <head>

@@ -24,10 +24,6 @@
   $row = $result->fetch_assoc();
   $sTF = $row['shareTF'];
   $sMod = $row['shareMod'];
-
-  $sqls = 'SELECT shareTable,shareID FROM sharedb_'.$_SESSION['pid'].' WHERE shareTF = 1 AND shareMod = 2';
-  $results = $conn->query($sqls);
-  $rows = $result->fetch_assoc();
 ?>
 <html lang="ko" dir="ltr">
   <head>

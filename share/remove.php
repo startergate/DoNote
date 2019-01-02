@@ -4,17 +4,23 @@
   require '../config/config.php';
   $SID = new SID('donote');
   $SID->loginCheck('../');
+  if (empty($_GET['id'])) {
+      if (!$_GET['id'] == 0) {
+          header('Location: ../function/error_confirm.php');
+      }
+  }
   $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);  //Note Database
 
+  //Select Note Database
   $id = $_GET['id'];
-  $sql = 'SELECT name FROM notedb_'.$_SESSION['pid']." WHERE id = '".$id."'";
+  $sql = 'SELECT name,text FROM notedb_'.$_SESSION['pid']." WHERE id = '".$id."'";
   $result = $conn->query($sql);
   $row = $result->fetch_assoc();
   $name = $row['name'];
   $text = $row['text'];
 
   //Select Profile Image
-  $profileImg = $SID->profileGet($_SESSION['pid'], '..');
+  $profileImg = $SID->profileGet($_SESSION['pid'], '.');
 ?>
 <html lang="ko" dir="ltr">
   <head>
@@ -38,8 +44,6 @@
     <meta name="Cache-Control" content="public, max-age=60">
 
     <!-- 패비콘 관련 구문 -->
-    <link rel="shortcut icon" href="../static/img/favicon/favicon-16x16.png" type="image/x-icon">
-    <link rel="icon" href="../static/img/favicon/favicon-16x16.png" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="57x57" href="../static/img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../static/img/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="../static/img/favicon/apple-icon-72x72.png">
@@ -78,12 +82,12 @@
     <meta name="twitter:image" content="http://donote.co/static/img/common/donoteico.png">
 
     <!-- CSS 관련 구문 -->
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/bg_style.css?v=1">
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  	<link rel="stylesheet" type="text/css" href="../css/style.css?ver=1">
+    <link rel="stylesheet" type="text/css" href="../css/bg_style.css">
   	<link rel="stylesheet" type="text/css" href="../css/top.css">
   	<link rel="stylesheet" type="text/css" href="../css/list.css">
-  	<link rel="stylesheet" type="text/css" href="../css/select.css">
+  	<link rel="stylesheet" type="text/css" href="../css/select.css?v=2018-10-04_1">
   	<link rel="stylesheet" type="text/css" href="../css/master.css">
   	<link rel="stylesheet" type="text/css" href="../css/Normalize.css">
 
@@ -92,8 +96,8 @@
     <script src='../lib/reCaptchaEnabler.js'></script>
 
     <!-- 페이지 설명 구문 -->
-    <meta name="description" content="Stop Sharing - DoNote">
-    <title>공유 시작 | DoNote Beta</title>
+    <meta name="description" content="Delete Note - DoNote">
+    <title><?=$name?> 삭제 | DoNote Beta</title>
   </head>
   <body>
     <!--[if IE]>
@@ -103,8 +107,8 @@
     <![endif]-->
     <div class="container-fluid padding-erase">
       <div class="fixed layer1 bg bgi bgImg">
-        <div class="col-md-3" style="font-size: 30px">
-          <a href="../note.php" id='white'><img src="../static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='DoNote' style='margin-top: -5px' \> Share!</a>
+        <div class="col-md-3">
+          <a href="../note.php" ><img src="../static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
         </div>
         <div class="col-md-9 text-right">
           <div class="btn-group dropdown">
@@ -116,7 +120,7 @@
               <li><a class="dropdown-item" id="black" href="./list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
               <li><a class="dropdown-item" id="black" href="../function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
-              <li><p class="dropdown-item text-center" id="black"><strong><?=$_SESSION['nickname']?>님, 환영합니다.</strong></p></li>
+              <li><p class="dropdown-item text-center" id="black"><strong><?=$_SESSION['nickname']?>님, 환영합니다</strong></p></li>
             </ul>
           </div>
         </div>
@@ -131,12 +135,13 @@
         <header class="jumbotron text-center" id="delete">
           <div class="deleteMiddle">
             <h1><?=$name?></h1>
-            <h2>공유를 종료합니다.</h2>
+            <h2>내 공유 목록에서 삭제하시겠습니까?</h2>
             <br />
-            <br />
-            <form class='margin_42_gen' action='./function/delete.php?id=<?=$id?>' method='post'>
-              <input type='submit' name='confirm_stop' class='btn btn-success btn-lg' value='확인!'>
-              <a href='./note.php?id=<?=$id?>' class='btn btn-danger btn-lg'>취소!</a>
+            <form class='margin_42_gen' action='./function/remove.php?id=<?=$id?>' method='post'>
+              <input type='submit' id='saveBtnTop' name='confirm_delete' class='btn btn-danger btn-lg' value='삭제!' disabled>
+              <a href='./note.php?id=<?=$id?>' class='btn btn-success btn-lg'>취소!</a>
+              <hr>
+              <div class="g-recaptcha selectRecaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
             </form>
           </div>
         </header>
