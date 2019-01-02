@@ -106,6 +106,7 @@
       public function getUserNickname($pid)
       {
           $conn = new mysqli('sid.donote.co', 'root', 'Wb4H9nn542', 'sid_userdata');
+
           try {
               $sql = 'SELECT nickname FROM userdata WHERER pid = "'.$pid.'"';
               $result = $conn->query($sql);
