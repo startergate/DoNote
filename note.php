@@ -50,7 +50,7 @@
       $deleteid = $noteid;
   } else {
       $sharedDelete = "/share/remove.php";
-      $deleteid = $pid.'_'.$noteid
+      $deleteid = $pid.'_'.$noteid;
   }
 
   // Select Profile Image
