@@ -46,10 +46,10 @@
       } catch (\Exception $e) {
           $row = null;
       }
-      $sharedDelete = "delete.php";
+      $sharedDelete = 'delete.php';
       $deleteid = $noteid;
   } else {
-      $sharedDelete = "/share/remove.php";
+      $sharedDelete = '/share/remove.php';
       $deleteid = $pid.'_'.$noteid;
   }
 
