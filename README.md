@@ -5,7 +5,7 @@ DoNote
 ![Version](https://img.shields.io/github/release-pre/startergate/DoNote.svg)
 ![](https://img.shields.io/github/release-date-pre/startergate/DoNote.svg)
 ![license](https://img.shields.io/github/license/startergate/DoNote.svg)
-![](https://img.shields.io/github/repo-size/badges/shields.svg)
+![](https://img.shields.io/github/repo-size/startergate/DoNote.svg)
 ![](https://img.shields.io/github/commit-activity/y/startergate/DoNote.svg)
 ![](https://img.shields.io/github/last-commit/startergate/DoNote.svg)
 <br />
