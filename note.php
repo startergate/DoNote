@@ -27,8 +27,8 @@
   setcookie('donoteYuuta', $noteid, time() + 86400 * 30, '/');
 
   // Select Note Text
-  $sql = 'SELECT name,text,edittime FROM notedb_'.$pid." WHERE id LIKE '".$noteid."'";
-  $result = $conn->query($sql);
+  $sql = "SELECT name,text,edittime FROM notedb_$pid WHERE id LIKE '$noteid'";
+  $result = $conn->query($sql); // == mysqll_query($conn, $sql)
   $row = $result->fetch_assoc();
   if (!$row) {
       header('Location: ./write.php');
