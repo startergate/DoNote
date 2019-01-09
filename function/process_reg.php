@@ -11,7 +11,7 @@
               if ($_POST['pw'] === $_POST['pwr']) {
                   $_SESSION['temp'] = $_POST['id'];
                   $pid = $SID->register($_POST['id'], $_POST['pw'], $_POST['nickname']);
-                  echo "<br />".$pid;
+                  echo '<br />'.$pid;
                   if ($pid === 0) {
                       echo "<script>window.alert('오류가 발생했습니다.');</script>";
                   } else {
