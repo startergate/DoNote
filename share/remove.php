@@ -21,7 +21,7 @@
 
   //Select Profile Image
   $profileImg = $SID->profileGet($_SESSION['pid'], '..');
-  $noteData = explode('_', $_GET['id']);
+  $noteData = explode('_', $id);
   $sql = "SELECT name FROM notedb_$noteData[0] WHERE id LIKE '$noteData[1]'";
   $result = $conn->query($sql);
   $row = $result->fetch_assoc();

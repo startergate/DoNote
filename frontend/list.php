@@ -44,7 +44,7 @@
         }
       ?>
       <li class="donoteLister"><a href="../write.php">페이지 추가하기</li></a><hr class="hrControlNote">
-      <div class="donoteLister donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">
+      <div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">
       <?php
         if (!$rows) {
             NOSHARED:

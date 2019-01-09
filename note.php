@@ -177,7 +177,7 @@
           <?php if ($_GET['mod'] !== 'shareView'): ?>
             <input type="submit" id="saveBtnTop" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
           <?php endif; ?>
-          <a href='./<?=$sharedDelete?>?id=<?=$noteid?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
+          <a href='./<?=$sharedDelete?>?id=<?=$deleteid?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
           if ($pid == $_SESSION['pid']) {
               if ($row) {
