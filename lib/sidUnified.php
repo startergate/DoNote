@@ -88,8 +88,12 @@
 
           try {
               $sql = "INSERT INTO userdata (id,pw,nickname,register_date,pid) VALUES('".$id."','".$pw."','".$nickname."',now(),'".$pid."')";
+              $conn->query($sql);
 
-              if ($conn->query($sql)) {
+              $sql = "SELECT * FROM userdata WHERE pid LIKE '$pid'";
+              $result = $conn->query($sql);
+              $row = $result->fetch_assoc();
+              if ($row['pid']) {
                   $sql = 'INSERT INTO '.$this->clientName."_additional (pid) VALUES ('".$pid."')";
                   $conn->query($sql);
 

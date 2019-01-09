@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
   require './lib/sidUnified.php';
   require './config/config.php';
@@ -28,8 +27,10 @@
 
   // Select Note Text
   $sql = "SELECT name,text,edittime FROM notedb_$pid WHERE id LIKE '$noteid'";
-  $result = $conn->query($sql); // == mysqll_query($conn, $sql)
-  $row = $result->fetch_assoc();
+  $result = $conn->query($sql);
+  if ($result) {
+      $row = $result->fetch_assoc();
+  }
   if (!$row) {
       header('Location: ./write.php');
   }
@@ -38,6 +39,7 @@
   $edittime = $row['edittime'];
 
   // Select Wheater to Share
+  $sharedEditDisabler = '';
   if (empty($_GET['mod'])) {
       try {
           $sql = 'SELECT * FROM sharedb_'.$_SESSION['pid']." WHERE shareTable LIKE '".$_SESSION['pid'].'_'.$noteid."'";
@@ -51,11 +53,15 @@
   } else {
       $sharedDelete = '/share/remove.php';
       $deleteid = $pid.'_'.$noteid;
+      if ($_GET['mod'] === 'shareView') {
+          $sharedEditDisabler = ' disabled';
+      }
   }
 
   // Select Profile Image
   $profileImg = $SID->profileGet($_SESSION['pid'], '.');
 ?>
+<!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -168,7 +174,9 @@
       <hr class="displayOptionMobile" />
       <div class="col-md-10">
         <form action="./process/edit.php?id=<?=$noteid?>" method="post">
-          <input type="submit" id="saveBtnTop" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
+          <?php if ($_GET['mod'] !== 'shareView'): ?>
+            <input type="submit" id="saveBtnTop" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
+          <?php endif; ?>
           <a href='./<?=$sharedDelete?>?id=<?=$noteid?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
           if ($pid == $_SESSION['pid']) {
@@ -191,12 +199,15 @@
             </script>
           </div>
           <div class="form-group">
-            <textarea type='text' class='form-control' name='name' id='title' placeholder='제목을 작성하세요.'><?=$name?></textarea>
+            <textarea type='text' class='form-control' name='name' id='title' placeholder='제목을 작성하세요.' <?=$sharedEditDisabler?>><?=$name?></textarea>
           </div>
           <div class="form-group form-text">
-            <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.'><?=$text?></textarea>
+            <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.' <?=$sharedEditDisabler?>><?=$text?></textarea>
           </div>
-          <input type="submit" id="saveBtnBottom" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
+
+          <?php if ($_GET['mod'] !== 'shareView'): ?>
+            <input type="submit" id="saveBtnTop" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
+          <?php endif; ?>
           <a href='./<?=$sharedDelete?>?id=<?=$deleteid?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
             if ($pid == $_SESSION['pid']) {

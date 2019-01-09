@@ -20,7 +20,7 @@
         session_start();
 
         // DoNote Share(list) Function
-        $sqls = 'SELECT shareTable,shareID,shareMod FROM sharedb_'.$_SESSION['pid'].'';
+        $sqls = 'SELECT shareTable,shareID,shareEdit FROM sharedb_'.$_SESSION['pid'].'';
         $results = $conn->query($sqls);
         $rows = $results->fetch_assoc();
 
