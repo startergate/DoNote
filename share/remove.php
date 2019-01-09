@@ -20,7 +20,11 @@
   $text = $row['text'];
 
   //Select Profile Image
-  $profileImg = $SID->profileGet($_SESSION['pid'], '.');
+  $profileImg = $SID->profileGet($_SESSION['pid'], '..');
+  $noteData = explode('_', $_GET['id']);
+  $sql = "SELECT name FROM notedb_$noteData[0] WHERE id LIKE '$noteData[1]'";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
 ?>
 <html lang="ko" dir="ltr">
   <head>
@@ -82,7 +86,7 @@
     <meta name="twitter:image" content="http://donote.co/static/img/common/donoteico.png">
 
     <!-- CSS 관련 구문 -->
-    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="../css/style.css?ver=1">
     <link rel="stylesheet" type="text/css" href="../css/bg_style.css">
   	<link rel="stylesheet" type="text/css" href="../css/top.css">
@@ -134,7 +138,7 @@
       <div class="col-md-10">
         <header class="jumbotron text-center" id="delete">
           <div class="deleteMiddle">
-            <h1><?=$name?></h1>
+            <h1><?=$row['name']?></h1>
             <h2>내 공유 목록에서 삭제하시겠습니까?</h2>
             <br />
             <form class='margin_42_gen' action='./function/remove.php?id=<?=$id?>' method='post'>

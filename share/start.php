@@ -92,6 +92,10 @@
   	<link rel="stylesheet" type="text/css" href="../css/master.css">
   	<link rel="stylesheet" type="text/css" href="../css/Normalize.css">
 
+    <!-- JS 관련 구문 -->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src='../lib/reCaptchaEnabler.js'></script>
+
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="Start Sharing - DoNote">
     <title>공유 시작 | DoNote Beta</title>
@@ -131,7 +135,7 @@
       <div class="col-md-10">
         <header class="jumbotron text-center" id="delete">
           <div class="deleteMiddle">
-            <h1><?php echo $name; ?></h1>
+            <h1><?=$name?></h1>
             <h2>공유를 시작합니다.</h2>
             <form class='margin_42_gen' action='./function/start.php?id=<?=$_GET['id']?>' method='post'>
               <input type="checkbox" name="link"> 링크를 가진 모든 사람에게 공유
@@ -139,7 +143,7 @@
               <br />
               <br />
               <input type='submit' id='saveBtnTop' name='confirm_start' class='btn btn-success btn-lg' value='확인!' disabled>
-              <a href='./note.php?id=<?php echo $id; ?>' class='btn btn-danger btn-lg'>취소!</a>
+              <a href='./note.php?id=<?=$id?>' class='btn btn-danger btn-lg'>취소!</a>
               <hr>
               <div class="g-recaptcha selectRecaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
             </form>

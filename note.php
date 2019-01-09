@@ -51,7 +51,7 @@
       $sharedDelete = 'delete.php';
       $deleteid = $noteid;
   } else {
-      $sharedDelete = '/share/remove.php';
+      $sharedDelete = 'share/remove.php';
       $deleteid = $pid.'_'.$noteid;
       if ($_GET['mod'] === 'shareView') {
           $sharedEditDisabler = ' disabled';
