@@ -37,6 +37,7 @@
   $name = $row['name'];
   $text = $row['text'];
   $edittime = $row['edittime'];
+  $sharedEdit = 'process/edit.php';
 
   // Select Wheater to Share
   $sharedEditDisabler = '';
@@ -49,12 +50,13 @@
           $row = null;
       }
       $sharedDelete = 'delete.php';
-      $deleteid = $noteid;
+      $shareid = $noteid;
   } else {
       $sharedDelete = 'share/remove.php';
-      $deleteid = $pid.'_'.$noteid;
+      $shareid = $pid.'_'.$noteid;
       if ($_GET['mod'] === 'shareView') {
           $sharedEditDisabler = ' disabled';
+          $sharedEdit = 'function/error_confirm.php';
       }
   }
 
@@ -173,11 +175,11 @@
       </div>
       <hr class="displayOptionMobile" />
       <div class="col-md-10">
-        <form action="./process/edit.php?id=<?=$noteid?>" method="post">
+        <form action="./<?=$sharedEdit?>?id=<?=$shareid?>" method="post">
           <?php if ($_GET['mod'] !== 'shareView'): ?>
             <input type="submit" id="saveBtnTop" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
           <?php endif; ?>
-          <a href='./<?=$sharedDelete?>?id=<?=$deleteid?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
+          <a href='./<?=$sharedDelete?>?id=<?=$shareid?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
           if ($pid == $_SESSION['pid']) {
               if ($row) {
@@ -206,9 +208,9 @@
           </div>
 
           <?php if ($_GET['mod'] !== 'shareView'): ?>
-            <input type="submit" id="saveBtnTop" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
+            <input type="submit" id="saveBtnBottom" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
           <?php endif; ?>
-          <a href='./<?=$sharedDelete?>?id=<?=$deleteid?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
+          <a href='./<?=$sharedDelete?>?id=<?=$shareid?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
             if ($pid == $_SESSION['pid']) {
                 if ($row) {
