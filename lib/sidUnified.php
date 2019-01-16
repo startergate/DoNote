@@ -15,14 +15,13 @@
 
               return 1;
           } else {
-              return self::__destruct();
+              setcookie('sidParker', 0x00, time() + 86400 * 30, '/');
+              throw new \Exception("Requires Vaild Client Name", -1);
           }
       }
 
-      public function __destruct()
+      private function __destruct()
       {
-          $_SESSION['SID_DEBUG'] = 0x00;
-
           return 0;
       }
 
@@ -288,7 +287,7 @@
           return $profileImg;
       }
 
-      public function generateRenStr($length)
+      private function generateRenStr($length)
       {
           $character = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
           $rendom_str = '';
