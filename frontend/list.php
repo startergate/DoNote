@@ -60,7 +60,7 @@
                 $sqle = 'SELECT name FROM notedb_'.$noteData[0]." WHERE id LIKE '".$noteData[1]."'";
                 $resulte = $conn->query($sqle);
                 $rowe = $resulte->fetch_assoc();
-                if ($rows['shareMod']) {
+                if ($rows['shareEdit'] === '1') {
                     echo '<li class="donoteLister list-group-item"><a class="donoteListerA" href="../note.php?id='.$rows['shareID'].'&mod=shareEdit">'.$rowe['name'].'</li></a><hr class="hrControlNote">';
                 } else {
                     echo '<li class="donoteLister list-group-item"><a class="donoteListerA" href="../note.php?id='.$rows['shareID'].'&mod=shareView">'.$rowe['name'].'</li></a><hr class="hrControlNote">';

@@ -15,8 +15,13 @@
       if (!$row) {
           header('Location: ../../function/error_confirm.php');
       }
+      $originPid = explode("_", $table)[0];
+      $sql = "SELECT shareEdit FROM sharedb_$originPid WHERE shareID LIKE '$code'";
+      $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
+      $isEditable = $row['shareEdit'];
       $sdb = 'sharedb_'.$pid;
-      $sql = "INSERT INTO $sdb (shareTable,shareID) VALUES ('$table','$code')";
+      $sql = "INSERT INTO $sdb (shareTable,shareID,shareEdit) VALUES ('$table','$code', $isEditable)";
       $conn->query($sql);
       $_SESSION['confirm'] = 'confirm';
       header('Location: ../../complete/write.php?pid='.$rand);

@@ -22,7 +22,7 @@
       $result = $conn->query($sql);
   } while ($result->fetch_assoc());
   $id = $conn->real_escape_string($_GET['id']);
-  if ($_POST['edit'] === 'true') {
+  if ($_POST['edit'] === 'on') {
       $edit = 1;
   } else {
       $edit = 0;
