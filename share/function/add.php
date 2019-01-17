@@ -15,7 +15,7 @@
       if (!$row) {
           header('Location: ../../function/error_confirm.php');
       }
-      $originPid = explode("_", $table)[0];
+      $originPid = explode('_', $table)[0];
       $sql = "SELECT shareEdit FROM sharedb_$originPid WHERE shareID LIKE '$code'";
       $result = $conn->query($sql);
       $row = $result->fetch_assoc();

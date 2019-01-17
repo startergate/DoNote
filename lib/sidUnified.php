@@ -16,7 +16,8 @@
               return 1;
           } else {
               setcookie('sidParker', 0x00, time() + 86400 * 30, '/');
-              throw new \Exception("Requires Vaild Client Name", -1);
+
+              throw new \Exception('Requires Vaild Client Name', -1);
           }
       }
 
