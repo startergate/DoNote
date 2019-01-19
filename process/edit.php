@@ -4,7 +4,7 @@
   $SID = new SID('donote');
   $SID->loginCheck('../');
   $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);
-  if ($_POST['confirm_edit'] !== '수정한 내용을 저장!') {
+  if ($_POST['confirm_edit'] !== '저장') {
       header('Location: ../function/error_confirm.php');
   }
   if (empty($_POST['name'])) {
@@ -19,7 +19,14 @@
       if (count(explode('_', $id)) > 1) {
           $pid = explode('_', $id)[0];
           $id = explode('_', $id)[1];
-          $sql = "SELECT shareEdit FROM sharedb_$pid WHERE id LIKE ".$_GET['id'];
+          $sql = "SELECT shareEdit FROM sharedb_$pid WHERE shareTable LIKE '".$_GET['id']."'";
+          $result = $conn->query($sql);
+          $row = $result->fetch_assoc();
+          if ($row['shareEdit'] !== '1') {
+              echo "exit".$row['shareEdit'];
+              header('Location: ../function/error_confirm.php');
+          }
+          echo $row['shareEdit'];
       }
       $udb = "notedb_$pid";
       $sql = "UPDATE $udb SET name='$name', text='$text', edittime=now() WHERE id='$id'";
