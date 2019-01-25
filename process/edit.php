@@ -23,10 +23,8 @@
           $result = $conn->query($sql);
           $row = $result->fetch_assoc();
           if ($row['shareEdit'] !== '1') {
-              echo 'exit'.$row['shareEdit'];
               header('Location: ../function/error_confirm.php');
           }
-          echo $row['shareEdit'];
       }
       $udb = "notedb_$pid";
       $sql = "UPDATE $udb SET name='$name', text='$text', edittime=now() WHERE id='$id'";

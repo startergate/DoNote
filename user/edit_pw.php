@@ -125,7 +125,7 @@
       </div>
       <hr class="displayOptionMobile" />
       <div class="col-md-10">
-        <form action="../function/edit_user_pw.php" method="post">
+        <form action="../function/edit_user_pw.php" class='usereditInfoForm' method="post">
           <div class="form-group">
             <input type='password' class='form-control' name='pw' placeholder='비밀번호' />
           </div>
