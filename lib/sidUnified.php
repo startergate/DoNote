@@ -195,10 +195,8 @@
       {
           $conn = new mysqli('sid.donote.co', 'root', 'Wb4H9nn542', 'sid_userdata');
           $nickname = $conn->real_escape_string($nickname);
-          if ($nickname === $currentNickname) {
+          if ($nickname === $currentNickname || $nickname === '') {
               return 0;
-          } elseif ($nickname === '') {
-              $nickname = 'User';
           }
 
           try {
@@ -282,7 +280,7 @@
           if (empty($row['profile_img'])) {
               $profileImg = $locater.'/static/img/common/donotepfo.png';
           } else {
-              $profileImg = $locater.$row['profile_img'];
+              $profileImg = $locater.'/static/img/common/profile/'.$_SESSION['pid'].'.'.$row['profile_img'];
           }
 
           return $profileImg;
