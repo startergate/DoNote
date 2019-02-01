@@ -136,6 +136,13 @@
                     } else {
                         continue;
                     }
+                    $resultsn = $conn->query('SELECT * FROM _shared WHERE id LIKE \''.$row['shareID']."'");
+                    $rowsn = $resultsn->fetch_assoc();
+                    if (!$rowsn) {
+                        $sqlsd = 'DELETE FROM sharedb_'.$_SESSION['pid'].' WHERE shareID LIKE \''.$rows['shareID'].'\'';
+                        $conn->query($sqlsd);
+                        continue;
+                    }
                     $sTab = $row['shareTable'];
                     $noteData = explode('_', $sTab);
                     $sqle = 'SELECT name FROM notedb_'.$noteData[1]." WHERE id LIKE '".$noteData[0]."'";

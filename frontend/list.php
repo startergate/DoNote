@@ -20,7 +20,7 @@
         session_start();
 
         // DoNote Share(list) Function
-        $sqls = 'SELECT shareTable,shareID,shareEdit FROM sharedb_'.$_SESSION['pid'].'';
+        $sqls = 'SELECT * FROM sharedb_'.$_SESSION['pid'];
         $results = $conn->query($sqls);
         $rows = $results->fetch_assoc();
 
@@ -32,6 +32,8 @@
             do {
                 $resultsn = $conn->query('SELECT shareID FROM sharedb_'.$_SESSION['pid']." WHERE shareTable LIKE '".$_SESSION['pid'].'_'.$row['id']."'");
                 $rowsn = $resultsn->fetch_assoc();
+                // 여기 SQL 구문 없앨 수 있을듯
+
                 $isShared = '';
                 $isSharedBorder = '';
                 if ($rowsn['shareID']) {
@@ -56,6 +58,15 @@
                 if ($noteData[0] === $_SESSION['pid']) {
                     continue;
                 }
+
+                $resultsn = $conn->query('SELECT * FROM _shared WHERE id LIKE \''.$rows['shareID']."'");
+                $rowsn = $resultsn->fetch_assoc();
+                if (!$rowsn) {
+                    $sqlsd = 'DELETE FROM sharedb_'.$_SESSION['pid'].' WHERE shareID LIKE \''.$rows['shareID'].'\'';
+                    $conn->query($sqlsd);
+                    continue;
+                }
+
                 $counter++;
                 $sqle = 'SELECT name FROM notedb_'.$noteData[0]." WHERE id LIKE '".$noteData[1]."'";
                 $resulte = $conn->query($sqle);
