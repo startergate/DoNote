@@ -22,21 +22,22 @@
         // DoNote Share(list) Function
         $sqls = 'SELECT * FROM sharedb_'.$_SESSION['pid'];
         $results = $conn->query($sqls);
-        $rows = $results->fetch_assoc();
 
         $result = $conn->query('SELECT id,name FROM notedb_'.$_SESSION['pid']);
         $row = $result->fetch_assoc();
         if (!$row) {
             echo '<li class="donoteLister list-group-item" style="padding-left: 15px;padding-top:10px;padding-bottom:10px">작성된 노트가 없습니다.</li><hr class="hrControlNote">';
         } else {
+            $myShared = [];
+            while ($rows = $results->fetch_assoc()) {
+                if (explode('_', $rows['shareTable'])[0] === $_SESSION['pid']) {
+                    $myShared[] = $rows['shareTable'];
+                }
+            }
             do {
-                $resultsn = $conn->query('SELECT shareID FROM sharedb_'.$_SESSION['pid']." WHERE shareTable LIKE '".$_SESSION['pid'].'_'.$row['id']."'");
-                $rowsn = $resultsn->fetch_assoc();
-                // 여기 SQL 구문 없앨 수 있을듯
-
                 $isShared = '';
                 $isSharedBorder = '';
-                if ($rowsn['shareID']) {
+                if (in_array($_SESSION['pid'].'_'.$row['id'], $myShared)) {
                     $isShared = "<span class='badge donoteBadge' style='z-index:1'>공유중</span>";
                     $isSharedBorder = ' donoteBadgeBorder';
                     $rowsn = null;
@@ -48,6 +49,8 @@
       <li class="donoteLister"><a href="../write.php">페이지 추가하기</li></a><hr class="hrControlNote">
       <div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">
       <?php
+        $results = $conn->query($sqls);
+        $rows = $results->fetch_assoc();
         if (!$rows) {
             NOSHARED:
             echo '<li style="padding-left: 15px;padding-top:10px;padding-bottom:10px">공유 받은 항목이 없습니다.</li><hr class="hrControlNote">';
