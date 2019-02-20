@@ -39,6 +39,9 @@
   .noteList{
     height: 200px;
   }
+  .usereditInfoForm {
+    width: 100%;
+  }
 }
 @media (min-width: 992px) {
   .displayOptionMobile{
@@ -49,5 +52,8 @@
   }
   .noteList{
     height: calc(100vh - 100px);
+  }
+  .usereditInfoForm {
+    width: 350px;
   }
 }

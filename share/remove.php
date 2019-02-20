@@ -4,10 +4,27 @@
   require '../config/config.php';
   $SID = new SID('donote');
   $SID->loginCheck('../');
+  if (empty($_GET['id'])) {
+      if (!$_GET['id'] == 0) {
+          header('Location: ../function/error_confirm.php');
+      }
+  }
   $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);  //Note Database
+
+  //Select Note Database
+  $id = $_GET['id'];
+  $sql = 'SELECT name,text FROM notedb_'.$_SESSION['pid']." WHERE id = '".$id."'";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
+  $name = $row['name'];
+  $text = $row['text'];
 
   //Select Profile Image
   $profileImg = $SID->profileGet($_SESSION['pid'], '..');
+  $noteData = explode('_', $id);
+  $sql = "SELECT name FROM notedb_$noteData[0] WHERE id LIKE '$noteData[1]'";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
 ?>
 <html lang="ko" dir="ltr">
   <head>
@@ -31,8 +48,6 @@
     <meta name="Cache-Control" content="public, max-age=60">
 
     <!-- 패비콘 관련 구문 -->
-    <link rel="shortcut icon" href="../static/img/favicon/favicon-16x16.png" type="image/x-icon">
-    <link rel="icon" href="../static/img/favicon/favicon-16x16.png" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="57x57" href="../static/img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../static/img/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="../static/img/favicon/apple-icon-72x72.png">
@@ -72,10 +87,11 @@
 
     <!-- CSS 관련 구문 -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  	<link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/bg_style.css?v=1">
+  	<link rel="stylesheet" type="text/css" href="../css/style.css?ver=1">
+    <link rel="stylesheet" type="text/css" href="../css/bg_style.css">
   	<link rel="stylesheet" type="text/css" href="../css/top.css">
   	<link rel="stylesheet" type="text/css" href="../css/list.css">
+  	<link rel="stylesheet" type="text/css" href="../css/select.css?v=2018-10-04_1">
   	<link rel="stylesheet" type="text/css" href="../css/master.css">
   	<link rel="stylesheet" type="text/css" href="../css/Normalize.css">
 
@@ -84,8 +100,8 @@
     <script src='../lib/reCaptchaEnabler.js'></script>
 
     <!-- 페이지 설명 구문 -->
-    <meta name="description" content="Add Share Code - DoNote">
-    <title>DoNote</title>
+    <meta name="description" content="Delete Note - DoNote">
+    <title><?=$name?> 삭제 | DoNote</title>
   </head>
   <body>
     <!--[if IE]>
@@ -95,8 +111,8 @@
     <![endif]-->
     <div class="container-fluid padding-erase">
       <div class="fixed layer1 bg bgi bgImg">
-        <div class="col-md-3" style="font-size: 30px">
-          <a href="../note.php" id='white'><img src="../static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='DoNote' style='margin-top: -5px' \></a>
+        <div class="col-md-3">
+          <a href="../note.php" ><img src="../static/img/common/donotevec.png" alt="DoNote" class="img-rounded" id=logo alt='메인으로 가기' \></a>
         </div>
         <div class="col-md-9 text-right">
           <div class="btn-group dropdown">
@@ -120,13 +136,19 @@
       </div>
       <hr class="displayOptionMobile" />
       <div class="col-md-10">
-        <form action="./function/add.php" method="post" class="text-center">
-          <div class="form-group">
-            <label for="shareCode"><h2>공유 코드를 입력해주세요.</h2></label>
-            <input class='form-control' name='shareCode' id='form-title' placeholder='코드 입력' style="width: 50%; margin-left: 25%" />
+        <header class="jumbotron text-center" id="delete">
+          <div class="deleteMiddle">
+            <h1><?=$row['name']?></h1>
+            <h2>내 공유 목록에서 삭제하시겠습니까?</h2>
+            <br />
+            <form class='margin_42_gen' action='./function/remove.php?id=<?=$id?>' method='post'>
+              <input type='submit' id='saveBtnTop' name='confirm_delete' class='btn btn-danger btn-lg' value='삭제!' disabled>
+              <a href='./note.php?id=<?=$id?>' class='btn btn-success btn-lg'>취소!</a>
+              <hr>
+              <div class="g-recaptcha selectRecaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
+            </form>
           </div>
-          <input type="submit" name="confirm_code" value="확인" class="btn btn-default btn-lg" />
-        </form>
+        </header>
       </div>
       <div id="padding-generate-bottom"></div>
     </div>

@@ -10,7 +10,7 @@
       $sql = "DELETE FROM $udb WHERE id='$id'";
       $result = $conn->query($sql);
       $_SESSION['confirm_delete'] = 'confirm';
-      header('Location: ../complete/delete.php?id='.$id);
+      header('Location: ../complete/delete.php');
   } else {
       header('Location: ../function/error_confirm.php');
   }

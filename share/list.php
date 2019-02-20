@@ -16,10 +16,6 @@
 
   //Select Profile Image
   $profileImg = $SID->profileGet($pid, '..');
-
-  $sql = "SELECT shareTable,shareID,shareMod FROM sharedb_$pid WHERE shareTF LIKE 1";
-  $result = $conn->query($sql);
-  $row = $result->fetch_assoc();
 ?>
 <html lang="ko" dir="ltr">
   <head>
@@ -93,7 +89,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="Show List of Shared Pages. - DoNote">
-    <title>공유된 노트 | DoNote Beta</title>
+    <title>공유된 노트 | DoNote</title>
   </head>
   <body>
     <!--[if IE]>
@@ -138,6 +134,13 @@
                     } elseif ($sMd == 2) {
                         $shareStat = '공유 받음';
                     } else {
+                        continue;
+                    }
+                    $resultsn = $conn->query('SELECT * FROM _shared WHERE id LIKE \''.$row['shareID']."'");
+                    $rowsn = $resultsn->fetch_assoc();
+                    if (!$rowsn) {
+                        $sqlsd = 'DELETE FROM sharedb_'.$_SESSION['pid'].' WHERE shareID LIKE \''.$rows['shareID'].'\'';
+                        $conn->query($sqlsd);
                         continue;
                     }
                     $sTab = $row['shareTable'];

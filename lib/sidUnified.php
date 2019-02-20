@@ -15,14 +15,14 @@
 
               return 1;
           } else {
-              return self::__destruct();
+              setcookie('sidParker', 0x00, time() + 86400 * 30, '/');
+
+              throw new \Exception('Requires Vaild Client Name', -1);
           }
       }
 
-      public function __destruct()
+      private function __destruct()
       {
-          $_SESSION['SID_DEBUG'] = 0x00;
-
           return 0;
       }
 
@@ -88,8 +88,12 @@
 
           try {
               $sql = "INSERT INTO userdata (id,pw,nickname,register_date,pid) VALUES('".$id."','".$pw."','".$nickname."',now(),'".$pid."')";
+              $conn->query($sql);
 
-              if ($conn->query($sql)) {
+              $sql = "SELECT * FROM userdata WHERE pid LIKE '$pid'";
+              $result = $conn->query($sql);
+              $row = $result->fetch_assoc();
+              if ($row['pid']) {
                   $sql = 'INSERT INTO '.$this->clientName."_additional (pid) VALUES ('".$pid."')";
                   $conn->query($sql);
 
@@ -99,6 +103,25 @@
               }
           } catch (\Exception $e) {
               return -1;
+          }
+      }
+
+      // User Info Getter
+      public function getUserNickname($pid)
+      {
+          $conn = new mysqli('sid.donote.co', 'root', 'Wb4H9nn542', 'sid_userdata');
+
+          try {
+              $sql = 'SELECT nickname FROM userdata WHERER pid = "'.$pid.'"';
+              $result = $conn->query($sql);
+              $row = $result->fetch_assoc();
+              if ($row) {
+                  return $row['nickname'];
+              } else {
+                  return '';
+              }
+          } catch (\Exception $e) {
+              return '';
           }
       }
 
@@ -172,10 +195,8 @@
       {
           $conn = new mysqli('sid.donote.co', 'root', 'Wb4H9nn542', 'sid_userdata');
           $nickname = $conn->real_escape_string($nickname);
-          if ($nickname === $currentNickname) {
+          if ($nickname === $currentNickname || $nickname === '') {
               return 0;
-          } elseif ($nickname === '') {
-              $nickname = 'User';
           }
 
           try {
@@ -259,13 +280,13 @@
           if (empty($row['profile_img'])) {
               $profileImg = $locater.'/static/img/common/donotepfo.png';
           } else {
-              $profileImg = $locater.$row['profile_img'];
+              $profileImg = $locater.'/static/img/common/profile/'.$_SESSION['pid'].'.'.$row['profile_img'];
           }
 
           return $profileImg;
       }
 
-      public function generateRenStr($length)
+      private function generateRenStr($length)
       {
           $character = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
           $rendom_str = '';

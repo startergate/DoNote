@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
   require './lib/sidUnified.php';
   require './config/config.php';
@@ -7,50 +6,64 @@
   $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);  //Note Database
   // Select Note Database
   if (empty($_GET['id']) && !empty($_COOKIE['donoteYuuta'])) {
-      $id = $_COOKIE['donoteYuuta'];
+      $noteid = $_COOKIE['donoteYuuta'];
   } elseif (empty($_GET['id'])) {
       $result = $conn->query('SELECT id,name FROM notedb_'.$_SESSION['pid']);
       $row = $result->fetch_assoc();
-      $id = $row['id'];
+      $noteid = $row['id'];
   } elseif (empty($_GET['mod'])) {
-      $id = $_GET['id'];
+      $noteid = $_GET['id'];
   } else {
       $result = $conn->query('SELECT note FROM _shared WHERE id = "'.$_GET['id'].'"');
       $row = $result->fetch_assoc();
-      $id = explode('_', $row['note'])[1];
+      $noteid = explode('_', $row['note'])[1];
   }
   if (empty($_GET['mod'])) {
       $pid = $_SESSION['pid'];
   } else {
       $pid = explode('_', $row['note'])[0];
   }
-  setcookie('donoteYuuta', $id, time() + 86400 * 30, '/');
+  setcookie('donoteYuuta', $noteid, time() + 86400 * 30, '/');
 
   // Select Note Text
-  $sql = 'SELECT name,text,edittime FROM notedb_'.$pid." WHERE id LIKE '".$id."'";
+  $sql = "SELECT name,text,edittime FROM notedb_$pid WHERE id LIKE '$noteid'";
   $result = $conn->query($sql);
-  $row = $result->fetch_assoc();
+  if ($result) {
+      $row = $result->fetch_assoc();
+  }
   if (!$row) {
       header('Location: ./write.php');
   }
   $name = $row['name'];
   $text = $row['text'];
   $edittime = $row['edittime'];
+  $sharedEdit = 'process/edit.php';
 
   // Select Wheater to Share
+  $sharedEditDisabler = '';
   if (empty($_GET['mod'])) {
       try {
-          $sql = 'SELECT * FROM sharedb_'.$_SESSION['pid']." WHERE shareTable LIKE '".$_SESSION['pid'].'_'.$id."'";
+          $sql = 'SELECT * FROM sharedb_'.$_SESSION['pid']." WHERE shareTable LIKE '".$_SESSION['pid'].'_'.$noteid."'";
           $result = $conn->query($sql);
           $row = $result->fetch_assoc();
       } catch (\Exception $e) {
           $row = null;
+      }
+      $sharedDelete = 'delete.php';
+      $shareid = $noteid;
+  } else {
+      $sharedDelete = 'share/remove.php';
+      $shareid = $pid.'_'.$noteid;
+      if ($_GET['mod'] === 'shareView') {
+          $sharedEditDisabler = ' disabled';
+          $sharedEdit = 'function/error_confirm.php';
       }
   }
 
   // Select Profile Image
   $profileImg = $SID->profileGet($_SESSION['pid'], '.');
 ?>
+<!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -127,7 +140,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="View/Edit Notes">
-    <title><?php echo $name; ?> | DoNote Beta</title>
+    <title><?php echo $name; ?> | DoNote</title>
   </head>
   <body>
     <!--[if IE]>
@@ -162,15 +175,19 @@
       </div>
       <hr class="displayOptionMobile" />
       <div class="col-md-10">
-        <form action="./process/edit.php?id=<?=$id?>" method="post">
-          <input type="submit" id="saveBtnTop" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
-          <a href='./delete.php?id=<?=$id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
+        <form action="./<?=$sharedEdit?>?id=<?=$shareid?>" method="post">
+          <?php if ($_GET['mod'] !== 'shareView'): ?>
+            <input type="submit" id="saveBtnTop" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
+          <?php endif; ?>
+          <a href='./<?=$sharedDelete?>?id=<?=$shareid?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
-            if ($row) {
-                echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
-            } else {
-                echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
-            }
+          if ($pid == $_SESSION['pid']) {
+              if ($row) {
+                  echo "<a href='./share/stop.php?id=".$noteid."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
+              } else {
+                  echo "<a href='./share/start.php?id=".$noteid."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
+              }
+          }
           ?>
           <div class="text-right edittime">
             최근 수정 일자:
@@ -184,19 +201,24 @@
             </script>
           </div>
           <div class="form-group">
-            <textarea type='text' class='form-control' name='name' id='title' placeholder='제목을 작성하세요.'><?=$name?></textarea>
+            <textarea type='text' class='form-control' name='name' id='title' placeholder='제목을 작성하세요.' <?=$sharedEditDisabler?>><?=$name?></textarea>
           </div>
           <div class="form-group form-text">
-            <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.'><?=$text?></textarea>
+            <textarea class='form-control' name='text' id='text' placeholder='내용을 작성하세요.' <?=$sharedEditDisabler?>><?=$text?></textarea>
           </div>
-          <input type="submit" id="saveBtnBottom" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
-          <a href='./delete.php?id=<?=$id?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
+
+          <?php if ($_GET['mod'] !== 'shareView'): ?>
+            <input type="submit" id="saveBtnBottom" name="confirm_edit" disabled="disabled" value="저장" class="btn btn-default">
+          <?php endif; ?>
+          <a href='./<?=$sharedDelete?>?id=<?=$shareid?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
-            if ($row) {
-                echo "<a href='./share/stop.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
-                echo "<span class='input-group donoteShareCode'><span class='input-group-addon'>공유 코드</span><input type='text' name='' class='form-control' value='".$row['shareID']."' disabled></span>";
-            } else {
-                echo "<a href='./share/start.php?id=".$id."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
+            if ($pid == $_SESSION['pid']) {
+                if ($row) {
+                    echo "<a href='./share/stop.php?id=".$noteid."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
+                    echo "<span class='input-group donoteShareCode'><span class='input-group-addon'>공유 코드</span><input type='text' name='' class='form-control' value='".$row['shareID']."' disabled></span>";
+                } else {
+                    echo "<a href='./share/start.php?id=".$noteid."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유</a>";
+                }
             }
           ?>
           <hr>

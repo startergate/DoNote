@@ -22,11 +22,16 @@
       $result = $conn->query($sql);
   } while ($result->fetch_assoc());
   $id = $conn->real_escape_string($_GET['id']);
+  if ($_POST['edit'] === 'on') {
+      $edit = 1;
+  } else {
+      $edit = 0;
+  }
   $table = $pid.'_'.$id;
   $sql = "INSERT INTO _shared (note,id) VALUES ('$table','$rand')";
   $conn->query($sql);
   $sdb = 'sharedb_'.$pid;
-  $sql = "INSERT INTO $sdb (shareTable,shareID) VALUES ('$table','$rand')";
+  $sql = "INSERT INTO $sdb (shareTable,shareID, shareEdit) VALUES ('$table','$rand', $edit)";
   $conn->query($sql);
   $_SESSION['confirm'] = 'confirm';
   header('Location: ../../complete/share_start.php?pid='.$id);

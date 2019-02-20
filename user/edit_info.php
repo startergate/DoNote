@@ -84,7 +84,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="Edit SID User's Information">
-    <title>기본 정보 수정 | DoNote Beta</title>
+    <title>기본 정보 수정 | DoNote</title>
   </head>
   <body>
     <!--[if IE]>
@@ -125,9 +125,12 @@
       </div>
       <hr class="displayOptionMobile" />
       <div class="col-md-10">
-        <form action="../function/edit_user_info.php" method="post">
+        <form action="../function/edit_user_info.php" enctype="multipart/form-data" class='usereditInfoForm' method="post">
           <div class="form-group">
+            <label for="nickname">닉네임</label>
             <input type='text' class='form-control' name='nickname' placeholder='닉네임(비워두시면 변경되지 않습니다.)' />
+            <label for="profile">프로필 사진</label>
+            <input type="file" class='form-control' name="profileimg" value="">
           </div>
           <input type="submit" name="confirm_user_edit" value="수정한 내용을 저장!" class="btn btn-default btn-lg">
         </form>

@@ -84,7 +84,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="Edit SID User's Password">
-    <title>비밀번호 수정 | DoNote Beta</title>
+    <title>비밀번호 수정 | DoNote</title>
   </head>
   <body>
     <!--[if IE]>
@@ -125,7 +125,7 @@
       </div>
       <hr class="displayOptionMobile" />
       <div class="col-md-10">
-        <form action="../function/edit_user_pw.php" method="post">
+        <form action="../function/edit_user_pw.php" class='usereditInfoForm' method="post">
           <div class="form-group">
             <input type='password' class='form-control' name='pw' placeholder='비밀번호' />
           </div>

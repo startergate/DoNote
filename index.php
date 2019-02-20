@@ -85,7 +85,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="Index Page of DoNote - DoNote">
-    <title>DoNote Beta</title>
+    <title>DoNote</title>
   </head>
   <body class='bg bge bgImg'>
     <!--[if IE]>
@@ -182,8 +182,5 @@
     </script>
 		<script src="./lib/jquery-3.3.1.min.js"></script>
     <script src="./bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        alert("2019년 1월 1일경에 DB 구조 변경으로 인해 데이터베이스가 초기화될 예정입니다. 계정, 노트, 공유 기록 등 전부가 삭제될 예정이니 미리 백업해두시기 바랍니다.");
-    </script>
   </body>
 </html>

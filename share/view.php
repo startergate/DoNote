@@ -24,10 +24,6 @@
   $row = $result->fetch_assoc();
   $sTF = $row['shareTF'];
   $sMod = $row['shareMod'];
-
-  $sqls = 'SELECT shareTable,shareID FROM sharedb_'.$_SESSION['pid'].' WHERE shareTF = 1 AND shareMod = 2';
-  $results = $conn->query($sqls);
-  $rows = $result->fetch_assoc();
 ?>
 <html lang="ko" dir="ltr">
   <head>
@@ -102,7 +98,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="View Shared Note for Non-Login User - DoNote">
-    <title><?=$name?> | DoNote Beta</title>
+    <title><?=$name?> | DoNote</title>
   </head>
   <body>
     <!--[if IE]>

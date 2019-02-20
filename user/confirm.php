@@ -85,7 +85,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="Confirm SID User's Password">
-    <title>DoNote Beta</title>
+    <title>DoNote</title>
   </head>
   <body>
     <!--[if IE]>

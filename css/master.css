@@ -39,3 +39,7 @@ hr{
   margin: 0 auto;
   text-align: center;
 }
+.white {
+  font-size: 15px;
+  color: white;
+}

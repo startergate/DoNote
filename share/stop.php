@@ -15,10 +15,6 @@
 
   //Select Profile Image
   $profileImg = $SID->profileGet($_SESSION['pid'], '..');
-
-  $sqls = 'SELECT shareTable,shareID FROM sharedb_'.$_SESSION['pid'].' WHERE shareTF = 1 AND shareMod = 2';
-  $results = $conn->query($sqls);
-  $rows = $results->fetch_assoc();
 ?>
 <html lang="ko" dir="ltr">
   <head>
@@ -97,7 +93,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="Stop Sharing - DoNote">
-    <title>공유 시작 | DoNote Beta</title>
+    <title>공유 시작 | DoNote</title>
   </head>
   <body>
     <!--[if IE]>
