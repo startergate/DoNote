@@ -98,7 +98,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="Start Sharing - DoNote">
-    <title>공유 시작 | DoNote Beta</title>
+    <title>공유 시작 | DoNote</title>
   </head>
   <body>
     <!--[if IE]>

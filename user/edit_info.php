@@ -84,7 +84,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="Edit SID User's Information">
-    <title>기본 정보 수정 | DoNote Beta</title>
+    <title>기본 정보 수정 | DoNote</title>
   </head>
   <body>
     <!--[if IE]>

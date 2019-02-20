@@ -15,17 +15,12 @@ DoNote is Simple Note App with PHP. <http://donote.co><br />
 <br />
 This Web Page Designed for PHP 7 with MySQL 5.
 <br />
-The whole package of DoNote is including jQuery and Bootstrap.
+The package of DoNote includes jQuery and Bootstrap.
 <br />
 The Copyright of This Web Page Follows GPL 3.0. Please Read LICENSE File for Copyright Information.
 
-This Web Page is Pre-Release.
-
 Roadmap
 ---------------
-v1.0 Release<br />
-In 2019 Q1.<br />
-
 v1.1 DoNote NG<br />
 In v1.1 update, UI of DoNote will be changed.
 * Note style page will be re-designed.

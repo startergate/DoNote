@@ -140,7 +140,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="View/Edit Notes">
-    <title><?php echo $name; ?> | DoNote Beta</title>
+    <title><?php echo $name; ?> | DoNote</title>
   </head>
   <body>
     <!--[if IE]>

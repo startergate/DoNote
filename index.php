@@ -85,7 +85,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="Index Page of DoNote - DoNote">
-    <title>DoNote Beta</title>
+    <title>DoNote</title>
   </head>
   <body class='bg bge bgImg'>
     <!--[if IE]>

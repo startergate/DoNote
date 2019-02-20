@@ -98,7 +98,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="View Shared Note for Non-Login User - DoNote">
-    <title><?=$name?> | DoNote Beta</title>
+    <title><?=$name?> | DoNote</title>
   </head>
   <body>
     <!--[if IE]>

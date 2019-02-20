@@ -87,7 +87,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="Generate New Note - DoNote">
-    <title>새 노트 | DoNote Beta</title>
+    <title>새 노트 | DoNote</title>
   </head>
   <body>
     <!--[if IE]>

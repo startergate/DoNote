@@ -84,7 +84,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="Edit SID User's Password">
-    <title>비밀번호 수정 | DoNote Beta</title>
+    <title>비밀번호 수정 | DoNote</title>
   </head>
   <body>
     <!--[if IE]>

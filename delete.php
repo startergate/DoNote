@@ -97,7 +97,7 @@
 
     <!-- 페이지 설명 구문 -->
     <meta name="description" content="Delete Note - DoNote">
-    <title><?=$name?> 삭제 | DoNote Beta</title>
+    <title><?=$name?> 삭제 | DoNote</title>
   </head>
   <body>
     <!--[if IE]>
