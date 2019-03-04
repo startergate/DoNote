@@ -1,7 +1,7 @@
 <?php
   // SID LIBRARY
   // ------------------------------------------------------
-  // Copyright by 2017 ~ 2018 STARTERGATE
+  // Copyright by 2017 ~ 2019 STARTERGATE
   // This library follows CC BY-SA 4.0. Please refer to ( https://creativecommons.org/licenses/by-sa/4.0/ )
   class SID
   {
@@ -13,9 +13,18 @@
           if (func_get_args()) {
               $this->clientName = func_get_args()[0];
 
-              return 1;
+              return;
           } else {
-              setcookie('sidParker', 0x00, time() + 86400 * 30, '/');
+              setcookie('sidErrorIndicater', 0xff, time() + 86400 * 30, '/');
+
+              $conn = new mysqli('sid.donote.co', 'root', 'Wb4H9nn542', 'sid_userdata');
+              $eid;
+              do {
+                  $eid = $this->generateRenStr(64);
+              } while ($this->checkExist('error_recorder', 'eid', $eid));
+
+              $sql = "INSERT INTO error_recorder VALUES ('$eid', 255,'".$_SERVER['HTTP_HOST']." Requested Creating Invaild SID Object (Client Name Empty)"."')";
+              $conn->query($sql);
 
               throw new \Exception('Requires Vaild Client Name', -1);
           }
@@ -23,7 +32,7 @@
 
       private function __destruct()
       {
-          return 0;
+          return;
       }
 
       // Login functions
