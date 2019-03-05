@@ -232,11 +232,16 @@
           return 1;
       }
 
-      private function checkExist(String $targetDB, String $targetName, String $targetValue)
+      private function checkExist(String $targetDB, String $targetName, $targetValue, String $valueType = 'string')
       {
           $conn = new mysqli('sid.donote.co', 'root', 'Wb4H9nn542', 'sid_userdata');
 
           try {
+              if ($valueType = 'string') {
+                  $sql = "SELECT * FROM $targetDB WHERE $targetName = '$targetValue'";
+              } else {
+                  $sql = "SELECT * FROM $targetDB WHERE $targetName = $targetValue";
+              }
               $sql = "SELECT * FROM $targetDB WHERE $targetName = '$targetValue'";
               $result = $conn->query($sql);
               if ($result->fetch_assoc()) {
