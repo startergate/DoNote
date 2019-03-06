@@ -1,7 +1,7 @@
 DoNote
 ===============
-[![StyleCI](https://styleci.io/repos/128193346/shield?branch=master&style=flat)](https://styleci.io/repos/128193346)
-[![Build Status](https://travis-ci.org/startergate/DoNote.svg?branch=master)](https://travis-ci.org/startergate/DoNote)
+[![StyleCI](https://styleci.io/repos/128193346/shield?branch=dev&style=flat)](https://styleci.io/repos/128193346)
+[![Build Status](https://travis-ci.org/startergate/DoNote.svg?branch=dev)](https://travis-ci.org/startergate/DoNote)
 ![Version](https://img.shields.io/github/release-pre/startergate/DoNote.svg)
 ![](https://img.shields.io/github/release-date-pre/startergate/DoNote.svg)
 ![license](https://img.shields.io/github/license/startergate/DoNote.svg)
