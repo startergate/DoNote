@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
     <!-- 보안 -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'  ; script-src 'self' https://www.google.com https://www.gstatic.com https://www.google-analytics.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' http://fonts.googleapis.com 'unsafe-inline'; img-src *; font-src 'self' https://fonts.gstatic.com ;frame-src 'self' https://www.google.com">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'  ; script-src 'self' https://www.google.com https://www.gstatic.com https://www.google-analytics.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' http://fonts.googleapis.com 'unsafe-inline'; img-src *; font-src 'self' https://fonts.gstatic.com ;frame-src 'self' https://www.google.com; connect-src 'self' http://sid.donote.co:3000">
     <meta name="Cache-Control" content="public, max-age=60">
 
     <!-- 패비콘 관련 구문 -->
@@ -182,5 +182,7 @@
     </script>
 		<script src="./lib/jquery-3.3.1.min.js"></script>
     <script src="./bootstrap/js/bootstrap.min.js"></script>
+  	<script src="./lib/sid.js" charset="utf-8"></script>
+  	<script src="./lib/sid_donote.js" charset="utf-8"></script>
   </body>
 </html>
