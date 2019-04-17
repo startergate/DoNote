@@ -102,14 +102,14 @@
         <div class="control">
           <p class='text-center'>
             <?php
-              require './lib/sidUnified.php';
+              require './lib/sid.php';
               session_start();
-              if (!empty($_COOKIE['sidAutorizeRikka'])) {
+              if (!empty($_COOKIE['sid_clientid']) && !empty($_COOKIE['sid_sessid'])) {
                   $SID = new SID('donote');
-                  $SID->authCheck();
+                  $SID->authCheck($_COOKIE['sid_clientid'], $_COOKIE['sid_sessid']);
               }
-              if (!empty($_SESSION['pid'])) {
-                  echo "<div class='white'>".$_SESSION['nickname'].'님, 돌아오셨군요!</div>';
+              if (!empty($_SESSION['sid_sessid'])) {
+                  echo "<div class='white'>".$_SESSION['sid_nickname'].'님, 돌아오셨군요!</div>';
                   echo "<script type=\"text/javascript\">setTimeout(\"location.href = './note.php'\", 5000);</script>";
                   echo "<div style='color:white'>곧 리다이렉트됩니다.</div>";
               } else {
@@ -128,9 +128,6 @@
           <form class="center form" action="./function/process_log.php" method="post">
             <input type="text" class="form-control form"name="id" placeholder="아이디" required>
             <input type="password" class="form-control form"name="pw" placeholder="비밀번호" required>
-            <div class="checkbox">
-              <input type="checkbox" name="auto"> 자동 로그인<br>자동 로그인 기능은 쿠키를 사용합니다.
-            </div>
             <div class="g-recaptcha" data-callback="saveEnable" data-expired-callback="saveDisable" data-sitekey="6LdYE2UUAAAAAH75nPeL2j1kYBpjaECBXs-TwYTA"></div>
             <br />
             <input type="submit" name="confirm_login" disabled="disabled" id="saveBtnTop" class="btn btn-light" value="로그인">
@@ -184,5 +181,10 @@
     <script src="./bootstrap/js/bootstrap.min.js"></script>
   	<script src="./lib/sid.js" charset="utf-8"></script>
   	<script src="./lib/sid_donote.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      if (localStorage.sid_clientid) {
+        document.cookie =  'sid_clientid=' + sid.getClientID();
+      }
+    </script>
   </body>
 </html>
