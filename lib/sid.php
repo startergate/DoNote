@@ -70,18 +70,18 @@
                   "isWeb" => true
               )));
               $userdata = json_decode($userdata);
-              if ($userdata['type'] === 'error') {
+              if ($userdata->type === 'error') {
                   return 0;
               }
               $output = 1;
-              $_SESSION['sid_sessid'] = $userdata['requested_data'][0];
-              $_SESSION['sid_pid'] = $userdata['requested_data'][1];
-              $_SESSION['sid_nickname'] = strip_tags($userdata['requested_data'][2]);
+              $_SESSION['sid_sessid'] = $userdata->requested_data[0];
+              $_SESSION['sid_pid'] = $userdata->requested_data[1];
+              $_SESSION['sid_nickname'] = strip_tags($userdata->requested_data[2]);
 
-              $timedata = explode(' ', $userdata['requested_data'][3]);
+              $timedata = explode(' ', $userdata->requested_data[3]);
               $datedata = explode('-', $timedata);
               $timedata = explode(':', $timedata);
-              setcookie('sid_sessid', $userdata['requested_data'][0], gmmktime($timedata[2], $timedata[1], $timedata[0], $datedata[2], $datedata[1], $datedata[0]), '/');
+              setcookie('sid_sessid', $userdata->requested_data[0], gmmktime($timedata[2], $timedata[1], $timedata[0], $datedata[2], $datedata[1], $datedata[0]), '/');
 
               return 1;
           } catch (\Exception $e) {
@@ -97,10 +97,10 @@
               "sessid" => $sessid
           )));
           $userdata = json_decode($userdata);
-          if ($userdata['type'] === 'error') {
+          if ($userdat->type === 'error') {
               return 0;
           }
-          if (!$userdata['is_succeed']) {
+          if (!$userdata->is_succeed) {
               return 0;
           }
           session_destroy();
@@ -123,13 +123,13 @@
                   "password" => $pw
               )));
               $userdata = json_decode($userdata);
-              if ($userdata['type'] === 'error') {
+              if ($userdata->type === 'error') {
                   return 0;
               }
-              if (!$userdata['is_succeed']) {
+              if (!$userdata->is_succeed) {
                   return 0;
               }
-              return $userdata['private_id'];
+              return $userdata->private_id;
           } catch (\Exception $e) {
               return -1;
           }
@@ -146,13 +146,13 @@
                   "sessid" => $sessid
               )));
               $userdata = json_decode($userdata);
-              if ($userdata['type'] === 'error') {
+              if ($userdata->type === 'error') {
                   return '';
               }
-              if (!$userdata['isvaild']) {
+              if (!$userdata->is_vaild) {
                   return '';
               }
-              return $userdata['response_data'];
+              return $userdata->response_data;
           } catch (\Exception $e) {
               return '';
           }
@@ -167,13 +167,14 @@
                 "sessid" => $sessid
             )));
               $userdata = json_decode($userdata);
-              if ($userdata['type'] === 'error') {
+              if ($userdata->type === 'error') {
                   return 0;
               }
               $output = 1;
-              $_SESSION['sid_sessid'] = $userdata['requested_data'][0];
-              $_SESSION['sid_pid'] = $userdata['requested_data'][1];
-              $_SESSION['sid_nickname'] = strip_tags($userdata['requested_data'][2]);
+              $_SESSION['sid_sessid'] = $userdata->requested_data[0];
+              $_SESSION['sid_pid'] = $userdata->requested_data[1];
+              $_SESSION['sid_nickname'] = strip_tags($userdata->requested_data[2]);
+              setcookie('sid_sessid', $userdata->requested_data[0], gmmktime($timedata[2], $timedata[1], $timedata[0], $datedata[2], $datedata[1], $datedata[0]), '/');
 
               return 1;
           } catch (\Exception $e) {
@@ -205,10 +206,10 @@
             )));
 
               $userdata = json_decode($userdata);
-              if ($userdata['type'] === 'error') {
+              if ($userdata->type === 'error') {
                   return 0;
               }
-              if ($userdata['is_vaild'] === true) {
+              if ($userdata->is_vaild === true) {
                   return 1;
               }
 
