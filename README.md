@@ -9,7 +9,7 @@ DoNote
 ![](https://img.shields.io/github/commit-activity/y/startergate/DoNote.svg)
 ![](https://img.shields.io/github/last-commit/startergate/DoNote.svg)
 <br />
-Celebrating 100th Contribution!<br />
+Celebrating 200th Contribution!<br />
 <br />
 DoNote is Simple Note App with PHP. <http://donote.co><br />
 <br />
@@ -21,15 +21,18 @@ The Copyright of This Web Page Follows GPL 3.0. Please Read LICENSE File for Cop
 
 Roadmap
 ---------------
-v1.1 DoNote NG<br />
-In v1.1 update, UI of DoNote will be changed.
-* Note style page will be re-designed.
+v1.1
+In v1.1 update, SID 2.0 will be applied.
+
+v1.2 DoNote NG<br />
+In v1.2 update, DoNote UI will be changed.
+* Note page will be re-designed.
   * Note text will use Noto Serif CJK KR.
   * Note title will use Noto Sans KR(Google Webfont).
+* DoNote will be converted to Single Page Application.
 * Menu bar will be openable, also closable.
 * User dropdown design will be changed.
 * Bootstrap will be customized. So No Bootstrap update required.
-* SID feature will be removed due to security reason and STARTERGATE IDENTITY project will take care.
 
 DoNote Back-End Neo<br />
 DoNote Neo is language change of DoNote Server.<br />
