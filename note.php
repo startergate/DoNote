@@ -8,7 +8,7 @@
   if (empty($_GET['id']) && !empty($_COOKIE['donoteYuuta'])) {
       $noteid = $_COOKIE['donoteYuuta'];
   } elseif (empty($_GET['id'])) {
-      $result = $conn->query('SELECT id,name FROM notedb_'.$_SESSION['pid']);
+      $result = $conn->query('SELECT id,name FROM notedb_'.$_SESSION['sid_pid']);
       $row = $result->fetch_assoc();
       $noteid = $row['id'];
   } elseif (empty($_GET['mod'])) {
@@ -19,7 +19,7 @@
       $noteid = explode('_', $row['note'])[1];
   }
   if (empty($_GET['mod'])) {
-      $pid = $_SESSION['pid'];
+      $pid = $_SESSION['sid_pid'];
   } else {
       $pid = explode('_', $row['note'])[0];
   }
@@ -43,7 +43,7 @@
   $sharedEditDisabler = '';
   if (empty($_GET['mod'])) {
       try {
-          $sql = 'SELECT * FROM sharedb_'.$_SESSION['pid']." WHERE shareTable LIKE '".$_SESSION['pid'].'_'.$noteid."'";
+          $sql = 'SELECT * FROM sharedb_'.$_SESSION['sid_pid']." WHERE shareTable LIKE '".$_SESSION['sid_pid'].'_'.$noteid."'";
           $result = $conn->query($sql);
           $row = $result->fetch_assoc();
       } catch (\Exception $e) {
@@ -61,7 +61,7 @@
   }
 
   // Select Profile Image
-  $profileImg = $SID->profileGet($_SESSION['pid'], '.');
+  $profileImg = $SID->profileGet($_SESSION['sid_pid'], '.');
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -156,14 +156,14 @@
         <div class="col-md-9 text-right">
           <div class="btn-group dropdown">
             <button class="full-erase btn btn-link dropdown-toggle" type="button" id="white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src='<?php echo $profileImg."' alt='".$_SESSION['nickname']?>' id='profile' class='img-circle' />
+              <img src='<?php echo $profileImg."' alt='".$_SESSION['sid_nickname']?>' id='profile' class='img-circle' />
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
               <li><a class="dropdown-item" id="black" href="./user/confirm.php"><strong><span class='glyphicon glyphicon-cog' aria-hidden='true'></span> 정보 수정</strong></a></li>
               <li><a class="dropdown-item" id="black" href="./share/list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
               <li><a class="dropdown-item" id="black" href="./function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
-              <li><p class="dropdown-item text-center" id="black"><strong><?=$_SESSION['nickname']?>님, 환영합니다</strong></p></li>
+              <li><p class="dropdown-item text-center" id="black"><strong><?=$_SESSION['sid_nickname']?>님, 환영합니다</strong></p></li>
             </ul>
           </div>
         </div>
@@ -181,7 +181,7 @@
           <?php endif; ?>
           <a href='./<?=$sharedDelete?>?id=<?=$shareid?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
-          if ($pid == $_SESSION['pid']) {
+          if ($pid == $_SESSION['sid_pid']) {
               if ($row) {
                   echo "<a href='./share/stop.php?id=".$noteid."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
               } else {
@@ -212,7 +212,7 @@
           <?php endif; ?>
           <a href='./<?=$sharedDelete?>?id=<?=$shareid?>' class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 삭제</a>
           <?php
-            if ($pid == $_SESSION['pid']) {
+            if ($pid == $_SESSION['sid_pid']) {
                 if ($row) {
                     echo "<a href='./share/stop.php?id=".$noteid."' class='btn btn-info'><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유 해제</a>";
                     echo "<span class='input-group donoteShareCode'><span class='input-group-addon'>공유 코드</span><input type='text' name='' class='form-control' value='".$row['shareID']."' disabled></span>";
@@ -228,5 +228,6 @@
     </div>
     <script src="./lib/jquery-3.3.1.min.js"></script>
     <script src="./bootstrap/js/bootstrap.min.js"></script>
+  	<script src="./lib/sid.js" charset="utf-8"></script>
   </body>
 </html>
