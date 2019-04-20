@@ -12,7 +12,7 @@
     <ol class="nav list-group" nav-stacked="" nav-pills="">
       <div class="donoteIdentifier" style="">노트</div><hr class='hrControlNote'>
       <?php
-        require '../lib/sidUnified.php';
+        require '../lib/sid.php';
         require '../config/config.php';
         $SID = new SID('donote');
         $SID->loginCheck('../');
@@ -20,24 +20,24 @@
         session_start();
 
         // DoNote Share(list) Function
-        $sqls = 'SELECT * FROM sharedb_'.$_SESSION['pid'];
+        $sqls = 'SELECT * FROM sharedb_'.$_SESSION['sid_pid'];
         $results = $conn->query($sqls);
 
-        $result = $conn->query('SELECT id,name FROM notedb_'.$_SESSION['pid']);
+        $result = $conn->query('SELECT id,name FROM notedb_'.$_SESSION['sid_pid']);
         $row = $result->fetch_assoc();
         if (!$row) {
             echo '<li class="donoteLister list-group-item" style="padding-left: 15px;padding-top:10px;padding-bottom:10px">작성된 노트가 없습니다.</li><hr class="hrControlNote">';
         } else {
             $myShared = [];
             while ($rows = $results->fetch_assoc()) {
-                if (explode('_', $rows['shareTable'])[0] === $_SESSION['pid']) {
+                if (explode('_', $rows['shareTable'])[0] === $_SESSION['sid_pid']) {
                     $myShared[] = $rows['shareTable'];
                 }
             }
             do {
                 $isShared = '';
                 $isSharedBorder = '';
-                if (in_array($_SESSION['pid'].'_'.$row['id'], $myShared)) {
+                if (in_array($_SESSION['sid_pid'].'_'.$row['id'], $myShared)) {
                     $isShared = "<span class='badge donoteBadge' style='z-index:1'>공유중</span>";
                     $isSharedBorder = ' donoteBadgeBorder';
                     $rowsn = null;
@@ -58,14 +58,14 @@
             $counter = 0;
             do {
                 $noteData = explode('_', $rows['shareTable']);
-                if ($noteData[0] === $_SESSION['pid']) {
+                if ($noteData[0] === $_SESSION['sid_pid']) {
                     continue;
                 }
 
                 $resultsn = $conn->query('SELECT * FROM _shared WHERE id LIKE \''.$rows['shareID']."'");
                 $rowsn = $resultsn->fetch_assoc();
                 if (!$rowsn) {
-                    $sqlsd = 'DELETE FROM sharedb_'.$_SESSION['pid'].' WHERE shareID LIKE \''.$rows['shareID'].'\'';
+                    $sqlsd = 'DELETE FROM sharedb_'.$_SESSION['sid_pid'].' WHERE shareID LIKE \''.$rows['shareID'].'\'';
                     $conn->query($sqlsd);
                     continue;
                 }
