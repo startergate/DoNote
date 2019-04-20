@@ -4,7 +4,7 @@
   $SID->loginCheck('../');
   if ($_POST['confirm_user'] === '확인') {
       if (!empty($_POST['pw'])) {
-          if ($SID->passwordCheck($_POST['pw'], $_SESSION['pid'])) {
+          if ($SID->passwordCheck($_COOKIE['sid_clientid'], $_SESSION['sid_sessid'], $_POST['pw'])) {
               $_SESSION['confirm'] = 'confirm';
               header('Location: ../user/edit_info.php');
           } else {
