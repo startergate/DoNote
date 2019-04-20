@@ -1,5 +1,5 @@
 <?php
-  require './lib/sidUnified.php';
+  require './lib/sid.php';
   require './config/config.php';
   $SID = new SID('donote');
   $SID->loginCheck('./');
@@ -61,7 +61,7 @@
   }
 
   // Select Profile Image
-  $profileImg = $SID->profileGet($_SESSION['sid_pid'], '.');
+  $profileImg = 'temp';
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
