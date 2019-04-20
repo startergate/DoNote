@@ -74,14 +74,14 @@
                   return 0;
               }
               $output = 1;
-              $_SESSION['sid_sessid'] = $userdata->requested_data[0];
-              $_SESSION['sid_pid'] = $userdata->requested_data[1];
-              $_SESSION['sid_nickname'] = strip_tags($userdata->requested_data[2]);
+              $_SESSION['sid_sessid'] = $userdata->response_data[0];
+              $_SESSION['sid_pid'] = $userdata->response_data[1];
+              $_SESSION['sid_nickname'] = strip_tags($userdata->response_data[2]);
 
-              $timedata = explode(' ', $userdata->requested_data[3]);
+              $timedata = explode(' ', $userdata->response_data[3]);
               $datedata = explode('-', $timedata);
               $timedata = explode(':', $timedata);
-              setcookie('sid_sessid', $userdata->requested_data[0], gmmktime($timedata[2], $timedata[1], $timedata[0], $datedata[2], $datedata[1], $datedata[0]), '/');
+              setcookie('sid_sessid', $userdata->response_data[0], gmmktime($timedata[2], $timedata[1], $timedata[0], $datedata[2], $datedata[1], $datedata[0]), '/');
 
               return 1;
           } catch (\Exception $e) {
@@ -170,11 +170,14 @@
               if ($userdata->type === 'error') {
                   return 0;
               }
-              $output = 1;
-              $_SESSION['sid_sessid'] = $userdata->requested_data[0];
-              $_SESSION['sid_pid'] = $userdata->requested_data[1];
-              $_SESSION['sid_nickname'] = strip_tags($userdata->requested_data[2]);
-              setcookie('sid_sessid', $userdata->requested_data[0], gmmktime($timedata[2], $timedata[1], $timedata[0], $datedata[2], $datedata[1], $datedata[0]), '/');
+              $_SESSION['sid_sessid'] = $userdata->response_data[0];
+              $_SESSION['sid_pid'] = $userdata->response_data[1];
+              $_SESSION['sid_nickname'] = strip_tags($userdata->response_data[2]);
+
+              $timedata = explode(' ', $userdata->response_data[3]);
+              $datedata = explode('-', $timedata);
+              $timedata = explode(':', $timedata);
+              setcookie('sid_sessid', $userdata->response_data[0], gmmktime($timedata[2], $timedata[1], $timedata[0], $datedata[2], $datedata[1], $datedata[0]), '/');
 
               return 1;
           } catch (\Exception $e) {
@@ -197,7 +200,7 @@
       public function passwordCheck(String $clientid, String $sessid, String $pw)
       {
           try {
-              $userdata = $this->curlPost('http://sid.donote.co:3000/api/verify/', json_encode(array(
+              $userdata = $this->curlPost('http://sid.donote.co:3000/api/verify/password', json_encode(array(
                 "type" => "verify",
                 "data" => "password",
                 "clientid" => $clientid,
@@ -209,11 +212,11 @@
               if ($userdata->type === 'error') {
                   return 0;
               }
-              if ($userdata->is_vaild === true) {
-                  return 1;
+              if ($userdata->is_vaild === 'false') {
+                  return 0;
               }
 
-              return 0;
+              return 1;
           } catch (\Exception $e) {
               return -1;
           }
