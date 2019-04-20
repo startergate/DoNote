@@ -102,9 +102,9 @@
         <div class="control">
           <p class='text-center'>
             <?php
-              require './lib/sid.php';
               session_start();
               if (!empty($_COOKIE['sid_clientid']) && !empty($_COOKIE['sid_sessid'])) {
+                  require './lib/sid.php';
                   $SID = new SID('donote');
                   $SID->authCheck($_COOKIE['sid_clientid'], $_COOKIE['sid_sessid']);
               }
@@ -157,11 +157,13 @@
     </div>
     <script type="text/javascript">
       var logTarget1 = document.getElementById('loginBtn1');
-      logTarget1.addEventListener('click', function(event) {
-        $("#login_form").css('display', 'block');
-        $("#register").css('display', 'none');
-        $("#index").css('display', 'none');
-      });
+      if (logTarget1) {
+        logTarget1.addEventListener('click', function(event) {
+          $("#login_form").css('display', 'block');
+          $("#register").css('display', 'none');
+          $("#index").css('display', 'none');
+        });
+      }
       var logTarget2 = document.getElementById('loginBtn2');
       logTarget2.addEventListener('click', function(event) {
         event.preventDefault()
