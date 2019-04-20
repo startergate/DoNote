@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <?php
-  require '../lib/sidUnified.php';
+  require '../lib/sid.php';
   require '../config/config.php';
   $SID = new SID('donote');
   $SID->loginCheck('../');
   $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);  //Note Database
 
   //Select Profile Image
-  $profileImg = $SID->profileGet($_SESSION['pid'], '..');
+  $profileImg = 'temp';
 ?>
 <html lang="ko" dir="ltr">
   <head>
@@ -101,14 +101,14 @@
         <div class="col-md-9 text-right">
           <div class="btn-group dropdown">
             <button class="full-erase btn btn-link dropdown-toggle" type="button" id="white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src='<?php echo $profileImg."' alt='".$_SESSION['nickname']?>' id='profile' class='img-circle' />
+              <img src='<?php echo $profileImg."' alt='".$_SESSION['sid_nickname']?>' id='profile' class='img-circle' />
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
               <li><a class="dropdown-item" id="black" href="../user/confirm.php"><strong><span class='glyphicon glyphicon-cog' aria-hidden='true'></span> 정보 수정</strong></a></li>
               <li><a class="dropdown-item" id="black" href="./list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
               <li><a class="dropdown-item" id="black" href="../function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
-              <li><p class="dropdown-item text-center" id="black"><strong><?=$_SESSION['nickname']?>님, 환영합니다</strong></p></li>
+              <li><p class="dropdown-item text-center" id="black"><strong><?=$_SESSION['sid_nickname']?>님, 환영합니다</strong></p></li>
             </ul>
           </div>
         </div>

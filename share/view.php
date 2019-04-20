@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-  require '../lib/sidUnified.php';
+  require '../lib/sid.php';
   require '../config/config.php';
   $SID = new SID('donote');
   //Select Note Database
@@ -11,7 +11,7 @@
   explode('_', $_GET['id']);
 
   //Select Note Text
-  $sql = 'SELECT name,text,edittime FROM notedb_'.$_SESSION['pid']." WHERE id LIKE '".$id."'";
+  $sql = 'SELECT name,text,edittime FROM notedb_'.$_SESSION['sid_pid']." WHERE id LIKE '".$id."'";
   $result = $conn->query($sql);
   $row = $result->fetch_assoc();
   $name = $row['name'];
@@ -19,7 +19,7 @@
   $edittime = $row['edittime'];
 
   //Select Wheater to Share
-  $sql = 'SELECT shareTF, shareMod FROM sharedb_'.$_SESSION['pid']." WHERE shareTable LIKE '".$id.'_'.$_SESSION['pid']."'";
+  $sql = 'SELECT shareTF, shareMod FROM sharedb_'.$_SESSION['sid_pid']." WHERE shareTable LIKE '".$id.'_'.$_SESSION['sid_pid']."'";
   $result = $conn->query($sql);
   $row = $result->fetch_assoc();
   $sTF = $row['shareTF'];
