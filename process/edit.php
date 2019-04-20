@@ -1,6 +1,6 @@
 <?php
   require '../config/config.php';
-  require '../lib/sidUnified.php';
+  require '../lib/sid.php';
   $SID = new SID('donote');
   $SID->loginCheck('../');
   $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);
@@ -15,7 +15,7 @@
   if (!empty($_POST['text'])) {
       $text = $conn->real_escape_string($_POST['text']);
       $id = $_GET['id'];
-      $pid = $_SESSION['pid'];
+      $pid = $_SESSION['sid_pid'];
       if (count(explode('_', $id)) > 1) {
           $pid = explode('_', $id)[0];
           $id = explode('_', $id)[1];

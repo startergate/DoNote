@@ -1,6 +1,6 @@
 <?php
   require '../config/config.php';
-  require '../lib/sidUnified.php';
+  require '../lib/sid.php';
   $SID = new SID('donote');
   $SID->loginCheck('../');
   $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);
