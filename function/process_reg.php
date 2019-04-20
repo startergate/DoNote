@@ -1,5 +1,5 @@
 <?php
-  require '../lib/sidUnified.php';
+  require '../lib/sid.php';
   require '../lib/codegen.php';
   require '../config/config.php';
   session_start();

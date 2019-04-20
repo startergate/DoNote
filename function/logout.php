@@ -1,5 +1,5 @@
 <?php
-  require '../lib/sidUnified.php';
+  require '../lib/sid.php';
   $SID = new SID('donote');
   $SID->loginCheck('../');
   if ($SID->logout($_COOKIE['sid_clientid'], $_SESSION['sid_sessid'])) {

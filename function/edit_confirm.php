@@ -1,5 +1,5 @@
 <?php
-  require '../lib/sidUnified.php';
+  require '../lib/sid.php';
   $SID = new SID('donote');
   $SID->loginCheck('../');
   if ($_POST['confirm_user'] === '확인') {

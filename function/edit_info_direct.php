@@ -1,5 +1,5 @@
 <?php
-  require '../lib/sidUnified.php';
+  require '../lib/sid.php';
   $SID = new SID('donote');
   $SID->loginCheck('../');
   session_start();
