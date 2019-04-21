@@ -21,8 +21,8 @@ The Copyright of This Web Page Follows GPL 3.0. Please Read LICENSE File for Cop
 
 Roadmap
 ---------------
-v1.1
-In v1.1 update, SID 2.0 will be applied.
+v1.1<br />
+In v1.1 update, SID 2.0 will be applied.<br />
 
 v1.2 DoNote NG<br />
 In v1.2 update, DoNote UI will be changed.
