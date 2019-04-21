@@ -115,7 +115,7 @@
       public function register(String $clientid, String $id, String $pw, String $nickname = 'User')
       {
           try {
-              $userdata = $this->curlPost('http://sid.donote.co:3000/api/login', json_encode(array(
+              $userdata = $this->curlPost('http://sid.donote.co:3000/api/register', json_encode(array(
                   "type" => "register",
                   "clientid" => $clientid,
                   "userid" => $id,
