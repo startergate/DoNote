@@ -23,6 +23,8 @@ Roadmap
 ---------------
 v1.1<br />
 In v1.1 update, SID 2.0 will be applied.<br />
+* You will be able to categorize your note after this update.
+* Update to SID 2.0
 
 v1.2 DoNote NG<br />
 In v1.2 update, DoNote UI will be changed.
