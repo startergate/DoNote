@@ -35,7 +35,7 @@
                       $sql = "INSERT INTO _meta (metaid, userid) VALUES ('$rand', '$pid')";
                       $conn->query($sql);
 
-                      $sql = "INSERT INTO $mdb (datatype, metadata, metaid) VALUES ('assorter','미분류', '$rand')";
+                      $sql = "INSERT INTO $mdb (datatype, metadata, metaid) VALUES ('CATEGORY','기본', '$rand')";
                       $conn->query($sql);
 
                       $sql = "CREATE TABLE $udb (name LONGTEXT NOT NULL,text LONGTEXT,edittime DATETIME NOT NULL,id CHAR(32) NOT NULL, align INT(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY (align))";
@@ -56,7 +56,7 @@
       } else {
           echo "<script>window.alert('아이디가 입력되지 않았습니다.');</script>";
       }
-      //echo "<script>window.location=('../index.php');</script>";
+      echo "<script>window.location=('../index.php');</script>";
       exit;
   } else {
       header('Location: ./error_confirm.php');
