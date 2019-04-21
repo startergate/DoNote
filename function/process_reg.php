@@ -18,6 +18,9 @@
                       $sdb = 'sharedb_'.$pid;
                       $mdb = 'metadb_'.$pid;
 
+                      $sql = "INSERT INTO _user (pid) VALUES ('$pid')";
+                      $conn->query($sql);
+
                       $sql = "CREATE TABLE $sdb (shareTable VARCHAR(65) NOT NULL, shareID CHAR(32) NOT NULL, shareEdit INT(1), PRIMARY KEY (shareID), UNIQUE INDEX shareTable_UNIQUE (shareTable ASC), UNIQUE INDEX shareID_UNIQUE (shareID ASC))";
                       $conn->query($sql);
 
