@@ -3,7 +3,7 @@
   // ------------------------------------------------------
   // Copyright by 2017 ~ 2019 STARTERGATE
   // This library follows CC BY-SA 4.0. Please refer to ( https://creativecommons.org/licenses/by-sa/4.0/ )
-  class sid
+  class SID
   {
       private $clientName;
 
