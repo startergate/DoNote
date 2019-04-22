@@ -41,7 +41,7 @@
                       $sql = "INSERT INTO $mdb (datatype, metadata, metaid) VALUES ('CATEGORY','기본', '$rand')";
                       $conn->query($sql);
 
-                      $sql = "CREATE TABLE $udb (name LONGTEXT NOT NULL,text LONGTEXT,edittime DATETIME NOT NULL,id CHAR(32) NOT NULL, align INT(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY (align))";
+                      $sql = "CREATE TABLE $udb (name LONGTEXT NOT NULL,text LONGTEXT,edittime DATETIME NOT NULL,id CHAR(32) NOT NULL, align INT(11) NOT NULL AUTO_INCREMENT, category CHAR(32) NOT NULL,PRIMARY KEY (align), UNIQUE INDEX id_UNIQUE (id ASC))";
                       $conn->query($sql);
 
                       $sql = "INSERT INTO $udb (name,text,edittime,id) VALUES ('DoNote를 이용해주셔서 감사합니다.','DoNote는 공유와 심플함을 중점으로 하는 노트 웹앱입니다!',now(),'startergatedonotedefaultregister')";
