@@ -30,7 +30,7 @@
         $sqls = 'SELECT * FROM sharedb_'.$_SESSION['sid_pid'];
         $results = $conn->query($sqls);
 
-        $result = $conn->query('SELECT id,name,category FROM notedb_'.$_SESSION['sid_pid']);
+        $result = $conn->query('SELECT id,name,category FROM notedb_'.$_SESSION['sid_pid'].' GROUP BY category, align, id, name');
         $row = $result->fetch_assoc();
         if (!$row) {
             echo '<li class="donoteLister list-group-item" style="padding-left: 15px;padding-top:10px;padding-bottom:10px">작성된 노트가 없습니다.</li><hr class="hrControlNote">';
