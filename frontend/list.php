@@ -6,11 +6,18 @@
   	<link rel="stylesheet" type="text/css" href="../css/master.css">
   	<link rel="stylesheet" type="text/css" href="../css/list.css">
   	<link rel="stylesheet" type="text/css" href="../css/Normalize.css">
+    <style media="screen">
+      .n<?=$_GET['id']?> {
+        background-color: #f5f5f5
+      }
+      .n<?=$_GET['id']?>:hover {
+        background-color: #ededed
+      }
+    </style>
     <base target="_parent" />
   </head>
   <body style="margin: 0;">
     <ol class="nav list-group" nav-stacked="" nav-pills="">
-      <div class="donoteIdentifier" style="">노트</div><hr class='hrControlNote'>
       <?php
         require '../lib/sid.php';
         require '../config/config.php';
@@ -42,11 +49,11 @@
                     $isSharedBorder = ' donoteBadgeBorder';
                     $rowsn = null;
                 }
-                echo '<li class="donoteLister list-group-item">'.$isShared.'<div><a class="donoteListerA'.$isSharedBorder.'" style="z-index:0" href="../note.php?id='.$row['id'].'">'.$row['name'].'</div></li></a><hr class="hrControlNote">';
+                echo '<li class="donoteLister list-group-item n'.$row['id'].'">'.$isShared.'<div><a class="donoteListerA'.$isSharedBorder.'" style="z-index:0" href="../note.php?id='.$row['id'].'">'.$row['name'].'</div></li></a><hr class="hrControlNote">';
             } while ($row = $result->fetch_assoc());
         }
       ?>
-      <li class="donoteLister"><a href="../write.php">페이지 추가하기</li></a><hr class="hrControlNote">
+      <li class="donoteLister"><a href="../write.php">페이지 추가하기</li></a><hr class="hrControlNote"> <!-- 디자인 변경필요 -->
       <div class="donoteIdentifier">공유받은 페이지</div><hr class="hrControlNote">
       <?php
         $results = $conn->query($sqls);
