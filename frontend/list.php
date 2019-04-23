@@ -30,7 +30,7 @@
         $sqls = 'SELECT * FROM sharedb_'.$_SESSION['sid_pid'];
         $results = $conn->query($sqls);
 
-        $result = $conn->query('SELECT id,name FROM notedb_'.$_SESSION['sid_pid']);
+        $result = $conn->query('SELECT id,name,category FROM notedb_'.$_SESSION['sid_pid']);
         $row = $result->fetch_assoc();
         if (!$row) {
             echo '<li class="donoteLister list-group-item" style="padding-left: 15px;padding-top:10px;padding-bottom:10px">작성된 노트가 없습니다.</li><hr class="hrControlNote">';
@@ -41,7 +41,17 @@
                     $myShared[] = $rows['shareTable'];
                 }
             }
+            $categoryid = '';
+            $category = '';
             do {
+                if ($categoryid != $row['category']) {
+                    $categoryid = $row['category'];
+                    $sqlc = "SELECT metadata FROM metadb_" . $_SESSION['sid_pid'] . " WHERE metaid = '$categoryid'";
+                    $resultc = $conn->query($sqlc);
+                    $rowc = $resultc->fetch_assoc();
+                    $category = $rowc['metadata'];
+                    echo "<div class='donoteIdentifier' style=''>$category</div><hr class='hrControlNote'>";
+                }
                 $isShared = '';
                 $isSharedBorder = '';
                 if (in_array($_SESSION['sid_pid'].'_'.$row['id'], $myShared)) {
