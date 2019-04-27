@@ -8,7 +8,7 @@
       private $clientName;
 
       // basic curl
-      private function curlPost($url, $data)
+      private function curlPost($url, $data, $method='POST')
       {
           $ch = curl_init();
 
@@ -17,7 +17,10 @@
           curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
           curl_setopt($ch, CURLOPT_URL, $url);
 
-          curl_setopt($ch, CURLOPT_POST, true);
+          if (condition) {
+              // code...
+          }
+          curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
           curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
           curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
