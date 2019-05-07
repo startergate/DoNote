@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-  require '../lib/sidUnified.php';
+  require '../lib/sid.php';
   require '../config/config.php';
   $SID = new SID('donote');
   $SID->loginCheck('../');
@@ -20,7 +20,8 @@
   $text = $row['text'];
 
   //Select Profile Image
-  $profileImg = $SID->profileGet($_SESSION['pid'], '..');
+  $profileImg = 'temp';
+
   $noteData = explode('_', $id);
   $sql = "SELECT name FROM notedb_$noteData[0] WHERE id LIKE '$noteData[1]'";
   $result = $conn->query($sql);
@@ -44,7 +45,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
     <!-- 보안 -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'  ; script-src 'self' https://www.google.com https://www.gstatic.com https://www.google-analytics.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' http://fonts.googleapis.com 'unsafe-inline'; img-src *; font-src 'self' https://fonts.gstatic.com ;frame-src 'self' https://www.google.com">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'  ; script-src 'self' https://www.google.com https://www.gstatic.com https://www.google-analytics.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' http://fonts.googleapis.com 'unsafe-inline'; img-src *; font-src 'self' https://fonts.gstatic.com ;frame-src 'self' https://www.google.com; connect-src 'self' http://sid.donote.co:3000">
     <meta name="Cache-Control" content="public, max-age=60">
 
     <!-- 패비콘 관련 구문 -->
@@ -117,14 +118,14 @@
         <div class="col-md-9 text-right">
           <div class="btn-group dropdown">
             <button class="full-erase btn btn-link dropdown-toggle" type="button" id="white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src='<?php echo $profileImg."' alt='".$_SESSION['nickname']?>' id='profile' class='img-circle' />
+              <img src='<?php echo $profileImg."' alt='".$_SESSION['sid_nickname']?>' id='profile' class='img-circle' />
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
               <li><a class="dropdown-item" id="black" href="../user/confirm.php"><strong><span class='glyphicon glyphicon-cog' aria-hidden='true'></span> 정보 수정</strong></a></li>
               <li><a class="dropdown-item" id="black" href="./list.php"><strong><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 공유한 노트 보기</strong></a></li>
               <li><a class="dropdown-item" id="black" href="../function/logout.php"><strong><span class='glyphicon glyphicon-off' aria-hidden='true'></span> 로그아웃</strong></a></li>
               <li role="separator" class="divider"></li>
-              <li><p class="dropdown-item text-center" id="black"><strong><?=$_SESSION['nickname']?>님, 환영합니다</strong></p></li>
+              <li><p class="dropdown-item text-center" id="black"><strong><?=$_SESSION['sid_nickname']?>님, 환영합니다</strong></p></li>
             </ul>
           </div>
         </div>

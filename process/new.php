@@ -1,6 +1,6 @@
 <?php
   require '../config/config.php';
-  require '../lib/sidUnified.php';
+  require '../lib/sid.php';
   require '../lib/codegen.php';
   $SID = new SID('donote');
   $SID->loginCheck('../');
@@ -14,7 +14,7 @@
       }
       if (!empty($_POST['text'])) {
           $text = $conn->real_escape_string($_POST['text']);
-          $pid = $_SESSION['pid'];
+          $pid = $_SESSION['sid_pid'];
 
           $rand = $name.generateRenStr(10);
           $rand = md5($rand, false);

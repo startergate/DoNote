@@ -1,5 +1,6 @@
 <?php
-  require '../lib/sidUnified.php';
+  require '../lib/sid.php';
+  require '../lib/checkExist.php';
   require '../config/config.php';
   $SID = new SID('donote');
 
@@ -9,12 +10,8 @@
       if (!empty($_POST['id'])) {
           if (!empty($_POST['pw'])) {
               $conn = new mysqli($config['host'], $config['duser'], $config['dpw'], $config['dname']);
-              $loginToken = $SID->login($_POST['id'], $_POST['pw']);
-              if ($loginToken) {
-                  if ($_POST['auto'] === 'on') {
-                      $SID->loginCookie($_POST['pw'], $_SESSION['pid'], '/');
-                  }
-                  if ($loginToken === 2) {
+              if ($SID->login($_COOKIE['sid_clientid'], $_POST['id'], $_POST['pw'])) {
+                  if (!checkExist('_user', 'pid', $_SESSION['pid'])) {
                       $udb = 'notedb_'.$_SESSION['pid'];
                       $sdb = 'sharedb_'.$_SESSION['pid'];
 
@@ -40,5 +37,6 @@
       }
   } else {
       header('Location: ./error_confirm.php');
+      exit;
   }
   echo "<script>window.location=('../');</script>";

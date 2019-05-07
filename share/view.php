@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-  require '../lib/sidUnified.php';
+  require '../lib/sid.php';
   require '../config/config.php';
   $SID = new SID('donote');
   //Select Note Database
@@ -11,7 +11,7 @@
   explode('_', $_GET['id']);
 
   //Select Note Text
-  $sql = 'SELECT name,text,edittime FROM notedb_'.$_SESSION['pid']." WHERE id LIKE '".$id."'";
+  $sql = 'SELECT name,text,edittime FROM notedb_'.$_SESSION['sid_pid']." WHERE id LIKE '".$id."'";
   $result = $conn->query($sql);
   $row = $result->fetch_assoc();
   $name = $row['name'];
@@ -19,7 +19,7 @@
   $edittime = $row['edittime'];
 
   //Select Wheater to Share
-  $sql = 'SELECT shareTF, shareMod FROM sharedb_'.$_SESSION['pid']." WHERE shareTable LIKE '".$id.'_'.$_SESSION['pid']."'";
+  $sql = 'SELECT shareTF, shareMod FROM sharedb_'.$_SESSION['sid_pid']." WHERE shareTable LIKE '".$id.'_'.$_SESSION['sid_pid']."'";
   $result = $conn->query($sql);
   $row = $result->fetch_assoc();
   $sTF = $row['shareTF'];
@@ -43,7 +43,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
     <!-- 보안 -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'  ; script-src 'self' https://www.google.com https://www.gstatic.com https://www.google-analytics.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' http://fonts.googleapis.com 'unsafe-inline'; img-src *; font-src 'self' https://fonts.gstatic.com ;frame-src 'self' https://www.google.com">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'  ; script-src 'self' https://www.google.com https://www.gstatic.com https://www.google-analytics.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' http://fonts.googleapis.com 'unsafe-inline'; img-src *; font-src 'self' https://fonts.gstatic.com ;frame-src 'self' https://www.google.com; connect-src 'self' http://sid.donote.co:3000">
     <meta name="Cache-Control" content="public, max-age=60">
 
     <!-- 패비콘 관련 구문 -->
