@@ -72,10 +72,19 @@
         position: fixed;
         font-size: 10px;
         background-color:rgba(255,255,255,0.5);
-        width:100px;
+        width:auto;
         padding: 5px;
         top: 10px;
         left: 10px;
+      }
+      .versionInfo{
+        position: fixed;
+        font-size: 10px;
+        background-color:rgba(255,255,255,0.5);
+        width:auto;
+        padding: 5px;
+        bottom: 10px;
+        right: 10px;
       }
     </style>
 
@@ -94,6 +103,7 @@
       </script>
     <![endif]-->
     <p class="imgLocation">Image by Unsplash</p>
+    <p class="versionInfo">Build 2019-05-07</p>
     <div id="index" class="cover full-window">
       <div class="col-sm-12 larger">
         <p class='text-center'>
