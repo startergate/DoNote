@@ -49,3 +49,6 @@ DoNote of Prediction<br />
 DoNote of Prediction is Auto-Completion function based on deep learning.<br />
 * The server of prediction feature will be seperated.
 * Front-End will use Ajax to communicate with prediction server.
+
+End of Life<br />
+After DoNote of Prediction Update, DoNote won't be updated anymore.
