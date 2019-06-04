@@ -17,9 +17,6 @@
           curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
           curl_setopt($ch, CURLOPT_URL, $url);
 
-          if (condition) {
-              // code...
-          }
           curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
           curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
