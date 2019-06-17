@@ -63,7 +63,7 @@
       public function login($clientid, $id, $pw)
       {
           try {
-              $userdata = $this->curlPost('http://sid.donote.co:3000/api/session', json_encode([
+              $userdata = $this->curlPost('http://sid.donote.co:3000/api/v1/session', json_encode([
                   'type'        => 'login',
                   'clientid'    => $clientid,
                   'userid'      => $id,
@@ -75,7 +75,7 @@
               if ($userdata->type === 'error') {
                   return 0;
               }
-              $output = 1;
+
               $_SESSION['sid_sessid'] = $userdata->response_data[0];
               $_SESSION['sid_pid'] = $userdata->response_data[1];
               $_SESSION['sid_nickname'] = strip_tags($userdata->response_data[2]);
@@ -93,13 +93,13 @@
 
       public function logout($clientid, $sessid)
       {
-          $userdata = $this->curlPost('http://sid.donote.co:3000/api/session', json_encode([
+          $userdata = $this->curlPost('http://sid.donote.co:3000/api/v1/session', json_encode([
               'type'     => 'logout',
               'clientid' => $clientid,
               'sessid'   => $sessid,
           ]), 'DELETE');
           $userdata = json_decode($userdata);
-          if ($userdat->type === 'error') {
+          if ($userdata->type === 'error') {
               return 0;
           }
           if (!$userdata->is_succeed) {
@@ -117,7 +117,7 @@
       public function register(String $clientid, String $id, String $pw, String $nickname = 'User')
       {
           try {
-              $userdata = $this->curlPost('http://sid.donote.co:3000/api/user', json_encode([
+              $userdata = $this->curlPost('http://sid.donote.co:3000/api/v1/user', json_encode([
                   'type'     => 'register',
                   'clientid' => $clientid,
                   'userid'   => $id,
@@ -142,7 +142,7 @@
       public function getUserNickname($clientid, $sessid)
       {
           try {
-              $userdata = $this->curlPost("http://sid.donote.co:3000/api/$clientid/$sessid/usname", false, 'GET');
+              $userdata = $this->curlPost("http://sid.donote.co:3000/api/v1/$clientid/$sessid/usname", false, 'GET');
               $userdata = json_decode($userdata);
               if ($userdata->type === 'error') {
                   return '';
@@ -160,7 +160,7 @@
       public function authCheck($clientid, $sessid)
       {
           try {
-              $userdata = $this->curlPost('http://sid.donote.co:3000/api/session', json_encode([
+              $userdata = $this->curlPost('http://sid.donote.co:3000/api/v1/session', json_encode([
                 'type'     => 'login',
                 'clientid' => $clientid,
                 'sessid'   => $sessid,
@@ -199,7 +199,7 @@
       public function passwordCheck(String $clientid, String $sessid, String $pw)
       {
           try {
-              $userdata = $this->curlPost('http://sid.donote.co:3000/api/password/verify', json_encode([
+              $userdata = $this->curlPost('http://sid.donote.co:3000/api/v1/password/verify', json_encode([
                 'type'     => 'verify',
                 'data'     => 'password',
                 'clientid' => $clientid,
