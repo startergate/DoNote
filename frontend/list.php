@@ -46,7 +46,7 @@
             do {
                 if ($categoryid != $row['category']) {
                     $categoryid = $row['category'];
-                    $sqlc = "SELECT metadata FROM metadb_" . $_SESSION['sid_pid'] . " WHERE metaid = '$categoryid'";
+                    $sqlc = 'SELECT metadata FROM metadb_'.$_SESSION['sid_pid']." WHERE metaid = '$categoryid'";
                     $resultc = $conn->query($sqlc);
                     $rowc = $resultc->fetch_assoc();
                     $category = $rowc['metadata'];

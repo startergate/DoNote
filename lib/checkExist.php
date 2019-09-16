@@ -1,5 +1,5 @@
 <?php
-  function checkExist(String $targetDB, String $targetName, $targetValue, String $valueType = 'string')
+  function checkExist(string $targetDB, string $targetName, $targetValue, string $valueType = 'string')
   {
       $conn = new mysqli('db.donote.co', 'root', 'Wb4H9nn542', 'donote_beta');
 

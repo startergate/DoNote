@@ -3,12 +3,12 @@
   // ------------------------------------------------------
   // Copyright by 2017 ~ 2019 STARTERGATE
   // This library follows CC BY-SA 4.0. Please refer to ( https://creativecommons.org/licenses/by-sa/4.0/ )
-  class SID
+  class sid
   {
       private $clientName;
 
       // basic curl
-      private function curlPost($url, $data, $method='POST')
+      private function curlPost($url, $data, $method = 'POST')
       {
           $ch = curl_init();
 
@@ -114,7 +114,7 @@
           return 1;
       }
 
-      public function register(String $clientid, String $id, String $pw, String $nickname = 'User')
+      public function register(string $clientid, string $id, string $pw, string $nickname = 'User')
       {
           try {
               $userdata = $this->curlPost('http://sid.donote.co:3000/api/v1/user', json_encode([
@@ -196,7 +196,7 @@
           return 1;
       }
 
-      public function passwordCheck(String $clientid, String $sessid, String $pw)
+      public function passwordCheck(string $clientid, string $sessid, string $pw)
       {
           try {
               $userdata = $this->curlPost('http://sid.donote.co:3000/api/v1/password/verify', json_encode([
