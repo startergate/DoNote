@@ -1,7 +1,5 @@
 DoNote
 ===============
-![](https://badgen.net/uptime-robot/response/m783843005-f2b44c21cf6360a6b88ee4bb)
-![](https://badgen.net/uptime-robot/month/m783843005-f2b44c21cf6360a6b88ee4bb)
 [![StyleCI](https://styleci.io/repos/128193346/shield?branch=dev&style=flat)](https://styleci.io/repos/128193346)
 [![Build Status](https://travis-ci.org/startergate/DoNote.svg?branch=dev)](https://travis-ci.org/startergate/DoNote)
 ![Version](https://img.shields.io/github/release-pre/startergate/DoNote.svg)
