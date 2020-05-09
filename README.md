@@ -9,9 +9,7 @@ DoNote
 ![](https://img.shields.io/github/commit-activity/y/startergate/DoNote.svg)
 ![](https://img.shields.io/github/last-commit/startergate/DoNote.svg)
 <br />
-Celebrating 200th Contribution!<br />
-<br />
-DoNote is Simple Note App with PHP. <http://donote.co><br />
+DoNote is Simple Note App with PHP.<br />
 <br />
 This Web Page Designed for PHP 7 with MySQL 5.
 <br />
